@@ -5,8 +5,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="WelcomeController">
    <children>
       <ImageView fitHeight="400.0" fitWidth="600.0">
          <image>
@@ -23,12 +22,12 @@
             <Image url="@images/WelcomeViewButtonPlay.png" />
          </image>
       </ImageView>
-      <Button layoutX="75.0" layoutY="262.0" mnemonicParsing="false" opacity="0.0" prefHeight="31.0" prefWidth="158.0" />
+      <Button fx:id="playButton" layoutX="75.0" layoutY="262.0" mnemonicParsing="false" onAction="#onPlayButtonClick" opacity="0.0" prefHeight="31.0" prefWidth="158.0" />
       <ImageView fitHeight="67.0" fitWidth="210.0" layoutX="329.0" layoutY="244.0">
          <image>
             <Image url="@images/WelcomeViewButtonContinue.png" />
          </image>
       </ImageView>
-      <Button layoutX="348.0" layoutY="266.0" mnemonicParsing="false" opacity="0.0" prefHeight="25.0" prefWidth="166.0" />
+      <Button fx:id="continueButton" layoutX="348.0" layoutY="266.0" mnemonicParsing="false" onAction="#onContinueButtonClick" opacity="0.0" prefHeight="25.0" prefWidth="166.0" />
    </children>
 </AnchorPane>
