@@ -188,7 +188,13 @@ public class GameController implements Initializable {
         }*/
     }
 
-    public void updateStatusLabel(String message){
+    public void updateStatusLabel(String message, int type){
+        switch(type){
+            case 1:
+                statusLabel.setStyle("-fx-font-size: 15px; -fx-text-fill: green;");
+            case 2:
+                statusLabel.setStyle("-fx-font-size: 15px; -fx-text-fill: red;");
+        }
         statusLabel.setText(message);
     }
 
@@ -205,4 +211,5 @@ public class GameController implements Initializable {
     public void setNavalBattle(NavalBattle navalBattle) {
         this.navalBattle = navalBattle;
     }
+
 }
