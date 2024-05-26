@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.HBox;
 import org.example.navalbattle.model.Cell;
 import org.example.navalbattle.model.NavalBattle;
 import org.example.navalbattle.model.Ship;
@@ -21,8 +21,6 @@ public class GameController implements Initializable {
     GridPane playerBoard;
     @FXML
     GridPane enemyBoard;
-    @FXML
-    VBox shipsBox;
     private boolean playerTurn = true;
     private NavalBattle navalBattle;
     @Override
@@ -39,11 +37,6 @@ public class GameController implements Initializable {
         for (int row = 0; row < 10; row++) {
             for (int column = 0; column < 10; column++) {
                 Cell cell = new Cell(row, column, true, navalBattle);
-                cell.getRectangle().setOnMouseClicked(mouseEvent -> {
-                    if (playerTurn){
-                        launchAttack(cell.getRow(), cell.getColumn());
-                    }
-                });
                 enemyBoard.add(cell, column, row);
                 enemyBoardAux[row][column] = cell;
             }
@@ -52,6 +45,7 @@ public class GameController implements Initializable {
     }
 
     public void arrangeEnemyBoard(){
+        Cell[][] enemyBoardAux = navalBattle.getEnemyBoardAux();
         int randomInt = (int) (Math.random() * 3);
         switch (randomInt){
             case 1:
@@ -148,49 +142,6 @@ public class GameController implements Initializable {
                 //Frigate 4
                 enemyBoardAux[][].setShip(enemyShips[9]);
         }
-        /*
-        for (Ship enemyShip : enemyShips){
-            if (enemyShip.getType() == 1){
-                boolean validPlacement = false;
-                do{
-                    randomX = (int) (Math.random() * 10);
-                    randomY = (int) (Math.random() * 10);
-                    if (!enemyBoardAux[randomX][randomY].isOccupied()){
-                        validPlacement = true;
-                        enemyBoardAux[randomX][randomY].setShip(enemyShip);
-
-                    }
-                }
-                while (!validPlacement);
-            }
-            else{
-                boolean validPlacement = true;
-                boolean horizontal = Math.random() < 0.50;
-                if(horizontal){
-                    do{
-                        randomX = (int) (Math.random() * 10);
-                        randomY = (int) (Math.random() * 10);
-
-                        if (randomX == 0) {
-                            for (int i = 0; i < enemyShip.getType(); i++) {
-                                if (!enemyBoardAux[i][randomY].isOccupied()) {
-                                    validPlacement = false;
-                                }
-                            }
-                            if (validPlacement) {
-                                for (int i = 0; i < enemyShip.getType(); i++){
-                                    enemyBoardAux[i][randomY].setShip(enemyShip);
-                                }
-                            }
-                        }
-                    }
-                    while (!validPlacement);
-                }
-                else{
-
-                }
-            }
-        }*/
     }
 
     public void createEnemyShips() {

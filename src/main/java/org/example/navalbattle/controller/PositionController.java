@@ -3,6 +3,7 @@ package org.example.navalbattle.controller;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import org.example.navalbattle.model.Cell;
 import org.example.navalbattle.model.NavalBattle;
 import org.example.navalbattle.model.Ship;
@@ -13,6 +14,8 @@ import java.util.ResourceBundle;
 public class PositionController implements Initializable {
     @FXML
     GridPane playerBoard;
+    @FXML
+    HBox shipsBox;
     private NavalBattle navalBattle = new NavalBattle();
 
     @Override

@@ -41,6 +41,10 @@ public class NavalBattle {
         return playerBoardAux;
     }
 
+    public Cell[][] getEnemyBoardAux() {
+        return enemyBoardAux;
+    }
+
     public Ship[] getPlayerShips() {
         return playerShips;
     }

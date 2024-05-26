@@ -27,7 +27,7 @@ public class WelcomeController {
     @FXML
     void onPlayButtonClick(ActionEvent event) throws IOException {
         Stage stage = (Stage) playButton.getScene().getWindow();
-        PositionController playerStageController = PositionStage.getInstance().getPlayerStageController();
+        PositionController positionController = PositionStage.getInstance().getPositionController();
         stage.close();
     }
 

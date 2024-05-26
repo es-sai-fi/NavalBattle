@@ -43,7 +43,7 @@
    <bottom>
       <StackPane prefHeight="169.0" prefWidth="500.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-spacing: 10;" />
+            <HBox fx:id="shipsBox" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-spacing: 10;" />
          </children></StackPane>
    </bottom>
    <center>
