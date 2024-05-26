@@ -13,7 +13,22 @@
             <Image url="@images/WelcomeStageWallpaper.gif" />
          </image>
       </ImageView>
-      <Button layoutX="109.0" layoutY="272.0" mnemonicParsing="false" text="Jugar" />
-      <Button layoutX="392.0" layoutY="272.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="129.0" text="Continuar partida" />
+      <ImageView fitHeight="106.0" fitWidth="431.0" layoutX="85.0" layoutY="78.0">
+         <image>
+            <Image url="@images/WelcomeViewTittle.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="67.0" fitWidth="200.0" layoutX="56.0" layoutY="242.0">
+         <image>
+            <Image url="@images/WelcomeViewButtonPlay.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="75.0" layoutY="262.0" mnemonicParsing="false" opacity="0.0" prefHeight="31.0" prefWidth="158.0" />
+      <ImageView fitHeight="67.0" fitWidth="210.0" layoutX="329.0" layoutY="244.0">
+         <image>
+            <Image url="@images/WelcomeViewButtonContinue.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="348.0" layoutY="266.0" mnemonicParsing="false" opacity="0.0" prefHeight="25.0" prefWidth="166.0" />
    </children>
 </AnchorPane>
