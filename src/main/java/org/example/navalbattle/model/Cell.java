@@ -4,6 +4,7 @@ import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Rectangle;
+import org.example.navalbattle.controller.GameController;
 
 public class Cell extends Node {
     private StackPane stackPane;
@@ -14,22 +15,25 @@ public class Cell extends Node {
     private Ship ship;
     private boolean hasBeenAttacked = false;
     private boolean occupied;
-    private boolean leftNeighbor;
-    private boolean rightNeighbor;
-    private boolean upNeighbor;
-    private boolean downNeighbor;
 
-    public Cell (int row, int column, boolean enemyCell, NavalBattle navalBattle){
+    public Cell (int row, int column, NavalBattle navalBattle){
+        Rectangle rectangle = new Rectangle(50,50);
+        rectangle.setOnMouseClicked(event -> {
+            navalBattle.launchAttack(row, column);
+        });
+        rectangle.setStyle("-fx-background-color: blue");
+        ImageView imageView = new ImageView();
+        StackPane stackPane = new StackPane(rectangle, imageView);
+        this.row = row;
+        this.column = column;
+    }
+    public Cell (int row, int column){
         Rectangle rectangle = new Rectangle(50,50);
         rectangle.setStyle("-fx-background-color: blue");
         ImageView imageView = new ImageView();
         StackPane stackPane = new StackPane(rectangle, imageView);
         this.row = row;
         this.column = column;
-
-        if(enemyCell){
-
-        }
     }
 
     public void setShip(Ship ship) {
@@ -56,40 +60,12 @@ public class Cell extends Node {
         return column;
     }
 
-    public void setRightNeighbor(boolean rightNeighbor) {
-        this.rightNeighbor = rightNeighbor;
-    }
-
-    public void setLeftNeighbor(boolean leftNeighbor) {
-        this.leftNeighbor = leftNeighbor;
-    }
-
-    public void setDownNeighbor(boolean downNeighbor) {
-        this.downNeighbor = downNeighbor;
-    }
-
     public void setOccupied(boolean occupied) {
         this.occupied = occupied;
     }
 
-    public void setUpNeighbor(boolean upNeighbor) {
-        this.upNeighbor = upNeighbor;
-    }
-
-    public boolean hasRightNeighbor(){
-        return rightNeighbor;
-    }
-
-    public boolean hasLeftNeighbor(){
-        return leftNeighbor;
-    }
-
-    public boolean hasUpNeighbor(){
-        return upNeighbor;
-    }
-
-    public boolean hasDownNeighbor(){
-        return downNeighbor;
+    public boolean getHasBeenAttacked() {
+        return hasBeenAttacked;
     }
 
     @Override
@@ -97,4 +73,7 @@ public class Cell extends Node {
         return super.getStyleableNode();
     }
 
+    public void setHasBeenAttacked(boolean hasBeenAttacked) {
+        this.hasBeenAttacked = hasBeenAttacked;
+    }
 }
