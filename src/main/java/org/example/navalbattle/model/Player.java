@@ -1,28 +1,17 @@
-package org.example.sudoku.model;
+package org.example.navalbattle.model;
 
 public class Player {
     private int id;
-    private String nickname;
+    private boolean itsTurn = true;
 
-    public Player(int id, String nickname){
+    public Player(int id){
         this.id = id;
-        this.nickname = nickname;
     }
 
     public int getId() {
         return id;
     }
-
-    public String getNickname(){
-        return nickname;
-    }
-
     public void setId(int id) {
         this.id = id;
     }
-
-    public void setNickname(String nickname){
-        this.nickname = nickname;
-    }
-
 }
