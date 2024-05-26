@@ -21,15 +21,15 @@ public class ShipDrawing {
         this.angle = 0;
     }
 
-    private Color determinarColor(String tipo) {
-        switch (tipo) {
-            case "Portaaviones":
+    private Color determinarColor(String type) {
+        switch (type) {
+            case "aircraftCarrier":
                 return Color.GRAY;
-            case "Submarino":
+            case "submarine":
                 return Color.BLUE;
-            case "Destructor":
+            case "destroyer":
                 return Color.GREEN;
-            case "Fragata":
+            case "frigate":
                 return Color.RED;
             default:
                 return Color.BLACK;
@@ -51,17 +51,17 @@ public class ShipDrawing {
         g2d.drawRoundRect(0, 0, width, height, 15, 15);
 
         // Dibujar cabina o torre dependiendo del tipo de barco
-        if ("Portaaviones".equals(tipo) || "Submarino".equals(tipo)) {
+        if ("aircraftCarrier".equals(tipo) || "submarine".equals(tipo)) {
             g2d.fillRect(width / 2 - 10, -10, 20, 10);
         }
 
         // Dibujar detalles adicionales para submarinos
-        if ("Submarino".equals(tipo)) {
+        if ("submarine".equals(tipo)) {
             g2d.fillOval(width - 20, height / 2 - 5, 10, 10);
         }
 
         // Dibujar ventanas para destructores y fragatas
-        if ("Destructor".equals(tipo) || "Fragata".equals(tipo)) {
+        if ("destroyer".equals(tipo) || "frigate".equals(tipo)) {
             for (int i = 0; i < width / 20; i++) {
                 g2d.fillOval(10 + i * 20, height / 4, 10, 10);
             }

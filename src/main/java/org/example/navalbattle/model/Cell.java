@@ -1,8 +1,6 @@
 package org.example.navalbattle.model;
 
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Rectangle;
@@ -13,26 +11,33 @@ public class Cell extends Node {
     private ImageView imageView;
     private int row;
     private int column;
-    private boolean isOccupied;
+    private Ship ship;
     private boolean hasBeenAttacked = false;
-    private ShipNode shipNode;
+    private boolean occupied;
+    private boolean leftNeighbor;
+    private boolean rightNeighbor;
+    private boolean upNeighbor;
+    private boolean downNeighbor;
 
-    public Cell (int row, int column){
+    public Cell (int row, int column, boolean enemyCell, NavalBattle navalBattle){
         Rectangle rectangle = new Rectangle(50,50);
         rectangle.setStyle("-fx-background-color: blue");
         ImageView imageView = new ImageView();
         StackPane stackPane = new StackPane(rectangle, imageView);
         this.row = row;
         this.column = column;
+
+        if(enemyCell){
+
+        }
     }
 
-    public void setShipNode(ShipNode shipNode) {
-        this.shipNode = shipNode;
-        isOccupied = true;
+    public void setShip(Ship ship) {
+        this.ship = ship;
     }
 
-    public ShipNode getShipNode() {
-        return shipNode;
+    public Ship getShip(){
+        return ship;
     }
 
     public Rectangle getRectangle() {
@@ -40,7 +45,7 @@ public class Cell extends Node {
     }
 
     public boolean isOccupied() {
-        return isOccupied;
+        return occupied;
     }
 
     public int getRow() {
@@ -49,6 +54,42 @@ public class Cell extends Node {
 
     public int getColumn() {
         return column;
+    }
+
+    public void setRightNeighbor(boolean rightNeighbor) {
+        this.rightNeighbor = rightNeighbor;
+    }
+
+    public void setLeftNeighbor(boolean leftNeighbor) {
+        this.leftNeighbor = leftNeighbor;
+    }
+
+    public void setDownNeighbor(boolean downNeighbor) {
+        this.downNeighbor = downNeighbor;
+    }
+
+    public void setOccupied(boolean occupied) {
+        this.occupied = occupied;
+    }
+
+    public void setUpNeighbor(boolean upNeighbor) {
+        this.upNeighbor = upNeighbor;
+    }
+
+    public boolean hasRightNeighbor(){
+        return rightNeighbor;
+    }
+
+    public boolean hasLeftNeighbor(){
+        return leftNeighbor;
+    }
+
+    public boolean hasUpNeighbor(){
+        return upNeighbor;
+    }
+
+    public boolean hasDownNeighbor(){
+        return downNeighbor;
     }
 
     @Override

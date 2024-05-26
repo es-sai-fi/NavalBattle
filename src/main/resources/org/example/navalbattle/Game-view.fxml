@@ -12,9 +12,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="945.0" style="-fx-background-color: peachpuff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="569.0" prefWidth="1194.0" style="-fx-background-color: peachpuff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GameController">
    <left>
-      <GridPane gridLinesVisible="true" prefHeight="250.0" prefWidth="433.0" style="-fx-background-color: deepskyblue;" BorderPane.alignment="CENTER">
+      <GridPane fx:id="playerBoard" gridLinesVisible="true" maxHeight="500.0" maxWidth="500.0" minHeight="500.0" minWidth="500.0" prefHeight="500.0" prefWidth="500.0" style="-fx-background-color: deepskyblue;" BorderPane.alignment="CENTER">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -44,7 +44,7 @@
       </GridPane>
    </left>
    <right>
-      <GridPane gridLinesVisible="true" prefHeight="250.0" prefWidth="379.0" style="-fx-background-color: darkturquoise;" BorderPane.alignment="CENTER">
+      <GridPane fx:id="enemyBoard" gridLinesVisible="true" maxHeight="500.0" maxWidth="500.0" minHeight="500.0" minWidth="500.0" prefHeight="500.0" prefWidth="500.0" style="-fx-background-color: darkturquoise;" BorderPane.alignment="CENTER">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -80,7 +80,7 @@
                <children>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <Label text="Fallaste">
+                        <Label fx:id="failLabel" text="Fallaste">
                            <font>
                               <Font name="MV Boli" size="18.0" />
                            </font>
@@ -89,7 +89,7 @@
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <Label text="Tocado">
+                        <Label fx:id="hitLabel" text="Tocado">
                            <font>
                               <Font name="MV Boli" size="18.0" />
                            </font>
@@ -98,7 +98,7 @@
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <Label text="Hundido">
+                        <Label fx:id="sunkLabel">
                            <font>
                               <Font name="MV Boli" size="18.0" />
                            </font>
