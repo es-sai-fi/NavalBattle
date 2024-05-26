@@ -31,18 +31,15 @@ public class NavalBattle {
     public void launchAttack(int row, int column){
         Cell enemyCell = enemyBoardAux[row][column];
         try{
-            if(!enemyCell.isOccupied()){
-                throw new AttackException("La celda no está ocupada.");
-            }
+            String message = "";
             if(enemyCell.getHasBeenAttacked()){
-                throw new AttackException("La celda ya ha sido atacada.");
+                throw new AttackException();
             }
             enemyCell.getShip().receiveDamage();
             enemyCell.setHasBeenAttacked(true);
-        } catch (AttackException e1){
-            gameController.updateStatusLabel(e1.getMessage());
-        } catch (AttackException e2){
-
+            gameController.updateStatusLabel("¡Ataque exitoso!", 1);
+        } catch (AttackException e) {
+            String message =
         }
     }
 
