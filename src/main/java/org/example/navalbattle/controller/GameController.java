@@ -5,10 +5,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 import org.example.navalbattle.model.Cell;
 import org.example.navalbattle.model.NavalBattle;
 import org.example.navalbattle.model.Ship;
+import org.example.navalbattle.view.LoseStage;
+import org.example.navalbattle.view.WinStage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -23,10 +27,12 @@ public class GameController implements Initializable {
     GridPane playerBoard;
     @FXML
     GridPane enemyBoard;
+    Stage stage;
     private boolean playerTurn = true;
     private NavalBattle navalBattle = new NavalBattle(this);
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        stage = (Stage) missLabel.getScene().getWindow();
         createEnemyBoard();
         createEnemyShips();
         arrangeEnemyBoard();
@@ -51,35 +57,35 @@ public class GameController implements Initializable {
         switch (randomInt){
             case 1:
                 //Aircraft Carrier
-                enemyBoardAux[][].setShip(enemyShips[0]);
-                enemyBoardAux[][].setShip(enemyShips[0]);
-                enemyBoardAux[][].setShip(enemyShips[0]);
-                enemyBoardAux[][].setShip(enemyShips[0]);
+                enemyBoardAux[7][6].setShip(enemyShips[0]);
+                enemyBoardAux[7][7].setShip(enemyShips[0]);
+                enemyBoardAux[7][8].setShip(enemyShips[0]);
+                enemyBoardAux[7][9].setShip(enemyShips[0]);
                 //Submarine 1
-                enemyBoardAux[][].setShip(enemyShips[1]);
-                enemyBoardAux[][].setShip(enemyShips[1]);
-                enemyBoardAux[][].setShip(enemyShips[1]);
+                enemyBoardAux[1][5].setShip(enemyShips[1]);
+                enemyBoardAux[2][5].setShip(enemyShips[1]);
+                enemyBoardAux[3][5].setShip(enemyShips[1]);
                 //Submarine 2
-                enemyBoardAux[][].setShip(enemyShips[2]);
-                enemyBoardAux[][].setShip(enemyShips[2]);
-                enemyBoardAux[][].setShip(enemyShips[2]);
+                enemyBoardAux[2][6].setShip(enemyShips[2]);
+                enemyBoardAux[3][6].setShip(enemyShips[2]);
+                enemyBoardAux[4][6].setShip(enemyShips[2]);
                 //Destroyer 1
-                enemyBoardAux[][].setShip(enemyShips[3]);
-                enemyBoardAux[][].setShip(enemyShips[3]);
+                enemyBoardAux[5][0].setShip(enemyShips[3]);
+                enemyBoardAux[6][0].setShip(enemyShips[3]);
                 //Destroyer 2
-                enemyBoardAux[][].setShip(enemyShips[4]);
-                enemyBoardAux[][].setShip(enemyShips[4]);
+                enemyBoardAux[6][1].setShip(enemyShips[4]);
+                enemyBoardAux[7][1].setShip(enemyShips[4]);
                 //Destroyer 3
-                enemyBoardAux[][].setShip(enemyShips[5]);
-                enemyBoardAux[][].setShip(enemyShips[5]);
+                enemyBoardAux[1][0].setShip(enemyShips[5]);
+                enemyBoardAux[1][1].setShip(enemyShips[5]);
                 //Frigate 1
-                enemyBoardAux[][].setShip(enemyShips[6]);
+                enemyBoardAux[0][6].setShip(enemyShips[6]);
                 //Frigate 2
-                enemyBoardAux[][].setShip(enemyShips[7]);
+                enemyBoardAux[1][9].setShip(enemyShips[7]);
                 //Frigate 3
-                enemyBoardAux[][].setShip(enemyShips[8]);
+                enemyBoardAux[5][3].setShip(enemyShips[8]);
                 //Frigate 4
-                enemyBoardAux[][].setShip(enemyShips[9]);
+                enemyBoardAux[5][4].setShip(enemyShips[9]);
             case 2:
                 //Aircraft Carrier
                 enemyBoardAux[][].setShip(enemyShips[0]);
@@ -207,6 +213,19 @@ public class GameController implements Initializable {
         }
         navalBattle.setEnemyShips(enemyShips);
     }
+
+    public void win() throws IOException {
+        WinStage winStage = new WinStage();
+        winStage.show();
+        stage.close();
+    }
+
+    public void lose() throws IOException {
+        LoseStage loseStage = new LoseStage();
+        loseStage.show();
+        stage.close();
+    }
+
 
     public void setNavalBattle(NavalBattle navalBattle) {
         this.navalBattle = navalBattle;

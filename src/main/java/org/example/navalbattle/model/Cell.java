@@ -1,6 +1,7 @@
 package org.example.navalbattle.model;
 
 import javafx.scene.Node;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Rectangle;
@@ -23,6 +24,9 @@ public class Cell extends Node {
         });
         rectangle.setStyle("-fx-background-color: blue");
         ImageView imageView = new ImageView();
+        imageView.setFitHeight(50);
+        imageView.setFitWidth(50);
+        imageView.setPreserveRatio(true);
         StackPane stackPane = new StackPane(rectangle, imageView);
         this.row = row;
         this.column = column;
@@ -31,6 +35,9 @@ public class Cell extends Node {
         Rectangle rectangle = new Rectangle(50,50);
         rectangle.setStyle("-fx-background-color: blue");
         ImageView imageView = new ImageView();
+        imageView.setFitHeight(50);
+        imageView.setFitWidth(50);
+        imageView.setPreserveRatio(true);
         StackPane stackPane = new StackPane(rectangle, imageView);
         this.row = row;
         this.column = column;
@@ -67,7 +74,9 @@ public class Cell extends Node {
     public boolean getHasBeenAttacked() {
         return hasBeenAttacked;
     }
-
+    public void setImage(String url){
+        imageView.setImage(new Image(String.valueOf(getClass().getResource(url))));
+    }
     @Override
     public Node getStyleableNode() {
         return super.getStyleableNode();
