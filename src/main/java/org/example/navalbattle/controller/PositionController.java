@@ -16,7 +16,8 @@ public class PositionController implements Initializable {
     GridPane playerBoard;
     @FXML
     HBox shipsBox;
-    private NavalBattle navalBattle = new NavalBattle();
+    Cell[][] playerBoardAux = new Cell[10][10];
+    Ship[] playerShips = new Ship[10];
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -26,15 +27,13 @@ public class PositionController implements Initializable {
 
     public void createPlayerBoard(){
         Cell[][] playerBoardAux = new Cell[10][10];
-        Ship[] playerShips = new Ship[9];
         for (int row = 0; row < 10; row++) {
             for (int column = 0; column < 10; column++) {
-                Cell cell = new Cell(row, column, false, navalBattle);
+                Cell cell = new Cell(row, column);
                 playerBoard.add(cell, column, row);
                 playerBoardAux[row][column] = cell;
             }
         }
-        navalBattle.setPlayerBoardAux(playerBoardAux);
     }
 
      public void createPlayerShips(){
@@ -44,6 +43,15 @@ public class PositionController implements Initializable {
              Ship ship = new Ship(i);
              playerShips[i] = ship;
          }
-         navalBattle.setPlayerShips(playerShips);
      }
+    public Cell[][] getPlayerBoardAux(){
+        return playerBoardAux;
+   }
+
+    public Ship[] getPlayerShips() {
+        return playerShips;
+    }
 }
+
+
+
