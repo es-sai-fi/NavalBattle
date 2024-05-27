@@ -4,6 +4,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import org.example.navalbattle.model.Cell;
 import org.example.navalbattle.model.Ship;
 import org.example.navalbattle.model.ShipDrawing;
@@ -21,17 +23,6 @@ public class PositionController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        ShipDrawing aircraftCarrier = new ShipDrawing(50, 50, 200, 50, "aircraftCarrier");
-        ShipDrawing submarine1 = new ShipDrawing(50, 150, 150, 50, "submarine");
-        ShipDrawing submarine2 = new ShipDrawing(250, 150, 150, 50, "submarine");
-        ShipDrawing destroyer1 = new ShipDrawing(50, 250, 100, 50, "destroyer");
-        ShipDrawing destroyer2 = new ShipDrawing(200, 250, 100, 50, "destroyer");
-        ShipDrawing destroyer3 = new ShipDrawing(350, 250, 100, 50, "destroyer");
-        ShipDrawing frigate1 = new ShipDrawing(50, 350, 50, 50, "frigate");
-        ShipDrawing frigate2 = new ShipDrawing(150, 350, 50, 50, "frigate");
-        ShipDrawing frigate3 = new ShipDrawing(250, 350, 50, 50, "frigate");
-        ShipDrawing frigate4 = new ShipDrawing(350, 350, 50, 50, "frigate");
-        anchorPane.getChildren().addAll(aircraftCarrier, submarine1, submarine2, destroyer1, destroyer2, destroyer3, frigate1, frigate2, frigate3, frigate4);
         createPlayerBoard();
         createPlayerShips();
     }

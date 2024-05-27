@@ -42,10 +42,15 @@ public class NavalBattle {
                 throw new AttackException("La celda ya ha sido atacada.");
             }
             if(!enemyCell.isOccupied()){
+                enemyCell.getImageView().toFront();
+                enemyCell.getImageView().setVisible(true);
                 enemyCell.setImage("/org/example/navalbattle/images/fail.png");
+                enemyCell.setHasBeenAttacked(true);
             }
             else{
                 enemyCell.getShip().receiveDamage();
+                enemyCell.getImageView().toFront();
+                enemyCell.getImageView().setVisible(true);
                 enemyCell.setImage("/org/example/navalbattle/images/hit.png");
                 enemyCell.setHasBeenAttacked(true);
                 gameController.updateStatusLabel("¡Ataque exitoso!", 1);
@@ -66,10 +71,16 @@ public class NavalBattle {
                             validAttack = true;
                             if(playerCell.isOccupied()){
                                 playerCell.getShip().receiveDamage();
+                                playerCell.getImageView().toFront();
+                                playerCell.getImageView().setVisible(true);
                                 playerCell.setImage("/org/example/navalbattle/images/hit.png");
+                                playerCell.setHasBeenAttacked(true);
                             }
                             else{
+                                playerCell.getImageView().toFront();
+                                playerCell.getImageView().setVisible(true);
                                 playerCell.setImage("/org/example/navalbattle/images/fail.png");
+                                playerCell.setHasBeenAttacked(true);
                             }
                         }
                     }while(!validAttack);
