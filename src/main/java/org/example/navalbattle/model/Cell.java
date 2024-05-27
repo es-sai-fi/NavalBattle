@@ -23,7 +23,6 @@ public class Cell extends Pane {
         rectangle.setOnMouseClicked(event -> {
             navalBattle.launchAttack(row, column);
         });
-        rectangle.setStyle("-fx-background-color: blue");
         imageView = new ImageView();
         imageView.setFitHeight(50);
         imageView.setFitWidth(50);
@@ -34,7 +33,6 @@ public class Cell extends Pane {
     }
     public Cell (int row, int column){
         rectangle = new Rectangle(50,50);
-        rectangle.setStyle("-fx-background-color: blue");
         imageView = new ImageView();
         imageView.setFitHeight(50);
         imageView.setFitWidth(50);
