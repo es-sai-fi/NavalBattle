@@ -1,24 +1,26 @@
 package org.example.navalbattle.model;
 
-import java.awt.Graphics2D;
-import java.awt.Color;
-import java.awt.geom.AffineTransform;
-import java.awt.geom.Rectangle2D;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 
-public class ShipDrawing {
+public class ShipDrawing extends Pane {
     private int x, y, width, height;
-    private String tipo;
+    private String type;
     private Color color;
-    private double angle;
+    private Rectangle rectangle;
 
-    public ShipDrawing(int x, int y, int width, int height, String tipo) {
+    public ShipDrawing(int x, int y, int width, int height, String type) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
-        this.tipo = tipo;
-        this.color = determinarColor(tipo);
-        this.angle = 0;
+        this.type = type;
+        this.color = determinarColor(type);
+        this.rectangle = new Rectangle(width, height, color);
+        this.getChildren().add(rectangle);
+        setPosition(x, y);
+        draw();
     }
 
     private Color determinarColor(String type) {
@@ -36,73 +38,28 @@ public class ShipDrawing {
         }
     }
 
-    public void dibujar(Graphics2D g2d) {
-        AffineTransform old = g2d.getTransform();
-        g2d.translate(x + width / 2, y + height / 2);
-        g2d.rotate(Math.toRadians(angle));
-        g2d.translate(-width / 2, -height / 2);
-
-        // Dibujar el cuerpo del barco
-        g2d.setColor(color);
-        g2d.fillRoundRect(0, 0, width, height, 15, 15);
-
-        // Dibujar detalles del barco
-        g2d.setColor(Color.BLACK);
-        g2d.drawRoundRect(0, 0, width, height, 15, 15);
-
-        // Dibujar cabina o torre dependiendo del tipo de barco
-        if ("aircraftCarrier".equals(tipo) || "submarine".equals(tipo)) {
-            g2d.fillRect(width / 2 - 10, -10, 20, 10);
-        }
-
-        // Dibujar detalles adicionales para submarinos
-        if ("submarine".equals(tipo)) {
-            g2d.fillOval(width - 20, height / 2 - 5, 10, 10);
-        }
-
-        // Dibujar ventanas para destructores y fragatas
-        if ("destroyer".equals(tipo) || "frigate".equals(tipo)) {
-            for (int i = 0; i < width / 20; i++) {
-                g2d.fillOval(10 + i * 20, height / 4, 10, 10);
-            }
-        }
-
-        g2d.setTransform(old);
-    }
-
-    public boolean contains(int mouseX, int mouseY) {
-        AffineTransform at = AffineTransform.getRotateInstance(Math.toRadians(angle), x + width / 2, y + height / 2);
-        Rectangle2D rect = new Rectangle2D.Double(x, y, width, height);
-        return at.createTransformedShape(rect).contains(mouseX, mouseY);
+    private void draw() {
+        rectangle.setFill(color);
+        rectangle.setStroke(Color.BLACK);
+        rectangle.setArcWidth(15);
+        rectangle.setArcHeight(15);
     }
 
     public void setPosition(int x, int y) {
-        this.x = x;
-        this.y = y;
+        this.setLayoutX(x);
+        this.setLayoutY(y);
     }
 
     public void rotate() {
-        this.angle += 90;
-        this.angle = this.angle % 360;
-        // Ajustar el tamaño después de rotar
-        int temp = this.width;
+        double temp = this.width;
         this.width = this.height;
-        this.height = temp;
-    }
+        this.height = (int) temp;
 
-    public int getX() {
-        return x;
-    }
+        rectangle.setWidth(width);
+        rectangle.setHeight(height);
 
-    public int getY() {
-        return y;
-    }
-
-    public int getWidth() {
-        return width;
-    }
-
-    public int getHeight() {
-        return height;
+        this.setRotate(this.getRotate() + 90);
     }
 }
+
+

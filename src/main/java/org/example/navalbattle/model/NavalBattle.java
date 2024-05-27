@@ -90,9 +90,9 @@ public class NavalBattle {
         }
     }
 
-    public void arrangeEnemyBoard(){
+    public void arrangeEnemyBoard() {
         int randomInt = random.nextInt(3);
-        switch (randomInt){
+        switch (randomInt) {
             case 0:
                 //Aircraft Carrier
                 enemyBoardAux[7][6].setShip(enemyShips[0]);
@@ -157,36 +157,37 @@ public class NavalBattle {
                 enemyBoardAux[0][9].setShip(enemyShips[9]);
             case 2:
                 //Aircraft Carrier
-                enemyBoardAux[][].setShip(enemyShips[0]);
-                enemyBoardAux[][].setShip(enemyShips[0]);
-                enemyBoardAux[][].setShip(enemyShips[0]);
-                enemyBoardAux[][].setShip(enemyShips[0]);
+                enemyBoardAux[8][1].setShip(enemyShips[0]);
+                enemyBoardAux[8][2].setShip(enemyShips[0]);
+                enemyBoardAux[8][3].setShip(enemyShips[0]);
+                enemyBoardAux[8][4].setShip(enemyShips[0]);
                 //Submarine 1
-                enemyBoardAux[][].setShip(enemyShips[1]);
-                enemyBoardAux[][].setShip(enemyShips[1]);
-                enemyBoardAux[][].setShip(enemyShips[1]);
+                enemyBoardAux[2][0].setShip(enemyShips[1]);
+                enemyBoardAux[3][0].setShip(enemyShips[1]);
+                enemyBoardAux[4][0].setShip(enemyShips[1]);
                 //Submarine 2
-                enemyBoardAux[][].setShip(enemyShips[2]);
-                enemyBoardAux[][].setShip(enemyShips[2]);
-                enemyBoardAux[][].setShip(enemyShips[2]);
+                enemyBoardAux[2][4].setShip(enemyShips[2]);
+                enemyBoardAux[2][5].setShip(enemyShips[2]);
+                enemyBoardAux[2][6].setShip(enemyShips[2]);
                 //Destroyer 1
-                enemyBoardAux[][].setShip(enemyShips[3]);
-                enemyBoardAux[][].setShip(enemyShips[3]);
+                enemyBoardAux[8][0].setShip(enemyShips[3]);
+                enemyBoardAux[8][1].setShip(enemyShips[3]);
                 //Destroyer 2
-                enemyBoardAux[][].setShip(enemyShips[4]);
-                enemyBoardAux[][].setShip(enemyShips[4]);
+                enemyBoardAux[8][5].setShip(enemyShips[4]);
+                enemyBoardAux[8][6].setShip(enemyShips[4]);
                 //Destroyer 3
-                enemyBoardAux[][].setShip(enemyShips[5]);
-                enemyBoardAux[][].setShip(enemyShips[5]);
+                enemyBoardAux[0][1].setShip(enemyShips[5]);
+                enemyBoardAux[0][2].setShip(enemyShips[5]);
                 //Frigate 1
-                enemyBoardAux[0][0].setShip(enemyShips[6]);
+                enemyBoardAux[6][0].setShip(enemyShips[6]);
                 //Frigate 2
-                enemyBoardAux[0][9].setShip(enemyShips[7]);
+                enemyBoardAux[5][2].setShip(enemyShips[7]);
                 //Frigate 3
-                enemyBoardAux[9][0].setShip(enemyShips[8]);
+                enemyBoardAux[5][6].setShip(enemyShips[8]);
                 //Frigate 4
                 enemyBoardAux[9][9].setShip(enemyShips[9]);
         }
+    }
 
     public void setPlayerShips(Ship[] playerShips) {
         this.playerShips = playerShips;

@@ -3,11 +3,12 @@ package org.example.navalbattle.model;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Rectangle;
 import org.example.navalbattle.controller.GameController;
 
-public class Cell extends Node {
+public class Cell extends Pane {
     private StackPane stackPane;
     private Rectangle rectangle;
     private ImageView imageView;
@@ -18,27 +19,27 @@ public class Cell extends Node {
     private boolean occupied;
 
     public Cell (int row, int column, NavalBattle navalBattle){
-        Rectangle rectangle = new Rectangle(50,50);
+        rectangle = new Rectangle(50,50);
         rectangle.setOnMouseClicked(event -> {
             navalBattle.launchAttack(row, column);
         });
         rectangle.setStyle("-fx-background-color: blue");
-        ImageView imageView = new ImageView();
+        imageView = new ImageView();
         imageView.setFitHeight(50);
         imageView.setFitWidth(50);
         imageView.setPreserveRatio(true);
-        StackPane stackPane = new StackPane(rectangle, imageView);
+        stackPane = new StackPane(rectangle, imageView);
         this.row = row;
         this.column = column;
     }
     public Cell (int row, int column){
-        Rectangle rectangle = new Rectangle(50,50);
+        rectangle = new Rectangle(50,50);
         rectangle.setStyle("-fx-background-color: blue");
-        ImageView imageView = new ImageView();
+        imageView = new ImageView();
         imageView.setFitHeight(50);
         imageView.setFitWidth(50);
         imageView.setPreserveRatio(true);
-        StackPane stackPane = new StackPane(rectangle, imageView);
+        stackPane = new StackPane(rectangle, imageView);
         this.row = row;
         this.column = column;
     }
