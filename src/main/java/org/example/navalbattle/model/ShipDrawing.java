@@ -1,6 +1,7 @@
 package org.example.navalbattle.model;
 
 import javafx.scene.Group;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -12,6 +13,9 @@ public class ShipDrawing extends Pane {
     private Rectangle rectangle;
     private Group boatGroup;
 
+    private double initialMouseX, initialMouseY;
+    private double initialTranslateX, initialTranslateY;
+
     public ShipDrawing(int x, int y, int width, int height, String type) {
         boatGroup = new Group();
         this.x = x;
@@ -22,6 +26,13 @@ public class ShipDrawing extends Pane {
         this.color = determinarColor(type);
         this.rectangle = new Rectangle(width, height, color);
         boatGroup.getChildren().add(rectangle);
+        this.getChildren().add(boatGroup);
+
+        this.setOnMousePressed(this::onMousePressed);
+        this.setOnMouseDragged(this::onMouseDragged);
+        this.setOnMouseReleased(this::onMouseReleased);
+
+        draw();
     }
 
     public Group getBoatGroup() {
@@ -65,6 +76,22 @@ public class ShipDrawing extends Pane {
 
         this.setRotate(this.getRotate() + 90);
     }
+
+    private void onMousePressed(MouseEvent event) {
+        initialMouseX = event.getSceneX();
+        initialMouseY = event.getSceneY();
+        initialTranslateX = this.getTranslateX();
+        initialTranslateY = this.getTranslateY();
+    }
+
+    private void onMouseDragged(MouseEvent event) {
+        double offsetX = event.getSceneX() - initialMouseX;
+        double offsetY = event.getSceneY() - initialMouseY;
+        this.setTranslateX(initialTranslateX + offsetX);
+        this.setTranslateY(initialTranslateY + offsetY);
+    }
+
+    private void onMouseReleased(MouseEvent event) {
+        // El método onMouseReleased se manejará en el PositionController
+    }
 }
-
-
