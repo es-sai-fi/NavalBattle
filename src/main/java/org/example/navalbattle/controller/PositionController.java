@@ -1,130 +1,33 @@
 package org.example.navalbattle.controller;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TextField;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.input.MouseEvent;
 import org.example.navalbattle.model.Cell;
-import org.example.navalbattle.model.InputException;
 import org.example.navalbattle.model.Ship;
 import org.example.navalbattle.model.ShipDrawing;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
-import static java.lang.Character.getNumericValue;
-import static java.lang.Character.isDigit;
-
-public class PositionController implements Initializable {
+public class    PositionController implements Initializable {
     @FXML
     GridPane playerBoard;
     @FXML
     AnchorPane anchorPane;
-    @FXML
-    TextField addRowTextField;
-    @FXML
-    TextField addColumnTextField;
-    ShipDrawing[] shipDrawings = new ShipDrawing[10];
-    int boatIndexToAdd;
-    int boatTypeToAdd;
-    boolean boatClicked;
     Cell[][] playerBoardAux = new Cell[10][10];
-    List<Ship> playerShips = new ArrayList<>();
-    @FXML
-    void onAddShipButtonClick(ActionEvent actionEvent){
-        try{
-            char rowInput = addRowTextField.getText().charAt(0);
-            char columnInput = addColumnTextField.getText().charAt(0);
-            if (addRowTextField.getText().isEmpty() || addColumnTextField.getText().isEmpty()) {
-                throw new InputException("No input has been done to either text field.");
-            }
-            if(!isDigit(rowInput) || !isDigit(columnInput)){
-                throw new InputException("Input is not a number");
-            }
-            if(!boatClicked){
-                throw new InputException("A boat has not been selected");
-            }
-            int row = getNumericValue(rowInput);
-            int column = getNumericValue(columnInput);
-            if (row < 0 || row > 9 || column < 0 || column > 9){
-                throw new IndexOutOfBoundsException("Row or column is out of bounds.");
-            }
-            if (playerBoardAux[row][column].isOccupied()){
-                throw new InputException("Cell is already occupied.");
-            }
-            ShipDrawing shipDrawing = shipDrawings[boatIndexToAdd];
-            if(shipDrawing.getType() == 1){
-                Ship ship = new Ship(1);
-                playerShips.add(ship);
-                playerBoard.add(shipDrawing, column, row);
-                shipDrawing.setHasBeenPlaced(true);
-                playerBoardAux[row][column].setShip(ship);
-                boatClicked = false;
-            }
-            else{
-                Ship ship = new Ship(type);
-                int type = shipDrawing.getType();
-                int finalRow = row + type;
-                int finalColumn = row + type;
-                if (shipDrawing.isVertical()){
-                    if(finalRow <= 9) {
-                        for (int i = row; i < row + type; i++) {
-                            playerBoardAux[row][column].setShip(ship);
-                        }
-                        boatClicked = false;
-                    }
-                    else{
-                        throw new IndexOutOfBoundsException("Ship doesn't fit in said position.");
-                    }
-                }
-                else{
-                    if(finalColumn <= 9) {
-                        for (int j = column; j < column + type; j++) {
-                            playerBoardAux[row][column].setShip(ship);
-                        }
-                        boatClicked = false;
-                    }
-                    else{
-                        throw new IndexOutOfBoundsException("Ship doesn't fit in said position.");
-                    }
-                }
-                playerBoard.add(shipDrawing, column, row);
-                playerShips.add(ship);
-                shipDrawing.setHasBeenPlaced(true);
-            }
-
-
-        } catch (InputException e1){
-            System.out.println("Se ha generado un error: " + e1.getMessage());
-        } catch (IndexOutOfBoundsException e2){
-            System.out.println("Se ha generado un error: " + e2.getMessage());
-            addRowTextField.setText("");
-            addColumnTextField.setText("");
-        }
-    }
-
-    @FXML
-    void onAddLetterKeyPressed(KeyEvent keyEvent){
-        TextField textField = (TextField) keyEvent.getSource();
-        textField.setEditable(true);
-        if(textField.getText().length() > 1){
-            textField.setEditable(false);
-            textField.setText("");
-        }
-    }
+    Ship[] playerShips = new Ship[10];
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         createPlayerBoard();
         createPlayerShips();
+        placeShipsOnBoard();
     }
 
-    public void createPlayerBoard(){
+    public void createPlayerBoard() {
         for (int row = 0; row < 10; row++) {
             for (int column = 0; column < 10; column++) {
                 Cell cell = new Cell(row, column);
@@ -134,20 +37,39 @@ public class PositionController implements Initializable {
         }
     }
 
-    public void createPlayerShips(){
-        for (int i = 0; i < 10; i++) {
-            Ship ship = new Ship(i);
-            playerShips.set(i, ship);
+    public void createPlayerShips() {
+        int[] shipLengths = {5, 4, 3, 3, 2, 2, 2, 1, 1, 1}; // Ejemplo de longitudes de barcos
+        for (int i = 0; i < shipLengths.length; i++) {
+            Ship ship = new Ship(shipLengths[i]);
+            playerShips[i] = ship;
         }
     }
-    public Cell[][] getPlayerBoardAux(){
-        return playerBoardAux;
-   }
 
-    public List<Ship> getPlayerShips() {
+    public void placeShipsOnBoard() {
+        String[] shipTypes = {"aircraftCarrier", "destroyer", "submarine", "frigate", "patrolBoat"}; // Ejemplo de tipos de barcos
+        for (int i = 0; i < playerShips.length; i++) {
+            if (playerShips[i] != null) {
+                // Ajusta la posición inicial de los barcos en el tablero
+                int initialX = i;
+                int initialY = 0;
+
+                ShipDrawing shipDrawing = new ShipDrawing(initialX, initialY, playerShips[i].getLength() * 30, 30, shipTypes[i % shipTypes.length]);
+                shipDrawing.setOnMouseClicked(this::rotateShip);
+                playerBoard.add(shipDrawing, initialX, initialY); // Ajusta la posición según necesites
+            }
+        }
+    }
+
+    public void rotateShip(MouseEvent event) {
+        ShipDrawing shipDrawing = (ShipDrawing) event.getSource();
+        shipDrawing.rotate();
+    }
+
+    public Cell[][] getPlayerBoardAux() {
+        return playerBoardAux;
+    }
+
+    public Ship[] getPlayerShips() {
         return playerShips;
     }
 }
-
-
-
