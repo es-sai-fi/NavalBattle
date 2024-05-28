@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import static java.lang.Character.getNumericValue;
 import static java.lang.Character.isDigit;
 
 public class PositionController implements Initializable {
@@ -39,14 +40,20 @@ public class PositionController implements Initializable {
         try{
             char rowInput = addRowTextField.getText().charAt(0);
             char columnInput = addColumnTextField.getText().charAt(0);
+            if (addRowTextField.getText().isEmpty() || addColumnTextField.getText().isEmpty()) {
+                throw new InputException("No input has been done to either text field.");
+            }
             if(!isDigit(rowInput) || !isDigit(columnInput)){
                 throw new InputException("Input is not a number");
             }
             if(!boatClicked){
                 throw new InputException("A boat has not been selected");
             }
-            int row = (int) rowInput;
-            int column = (int) columnInput;
+            int row = getNumericValue(rowInput);
+            int column = getNumericValue(columnInput);
+            if (row < 0 || row > 9 || column < 0 || column > 9){
+                throw new IndexOutOfBoundsException("Row or column is out of bounds.");
+            }
             if (playerBoardAux[row][column].isOccupied()){
                 throw new InputException("Cell is already occupied.");
             }
@@ -54,19 +61,41 @@ public class PositionController implements Initializable {
             if(shipDrawing.getType() == 1){
                 Ship ship = new Ship(1);
                 playerShips.add(ship);
-                playerBoardAux.add(shipDrawing, column, row);
+                playerBoard.add(shipDrawing, column, row);
                 shipDrawing.setHasBeenPlaced(true);
                 playerBoardAux[row][column].setShip(ship);
                 boatClicked = false;
             }
             else{
+                Ship ship = new Ship(type);
+                int type = shipDrawing.getType();
+                int finalRow = row + type;
+                int finalColumn = row + type;
                 if (shipDrawing.isVertical()){
-                    for (int j = column-shipDrawing.getType(); j < )
+                    if(finalRow <= 9) {
+                        for (int i = row; i < row + type; i++) {
+                            playerBoardAux[row][column].setShip(ship);
+                        }
+                        boatClicked = false;
+                    }
+                    else{
+                        throw new IndexOutOfBoundsException("Ship doesn't fit in said position.");
+                    }
                 }
-                playerBoard.add(shipDrawings[boatIndexToAdd], column, row);
                 else{
-
+                    if(finalColumn <= 9) {
+                        for (int j = column; j < column + type; j++) {
+                            playerBoardAux[row][column].setShip(ship);
+                        }
+                        boatClicked = false;
+                    }
+                    else{
+                        throw new IndexOutOfBoundsException("Ship doesn't fit in said position.");
+                    }
                 }
+                playerBoard.add(shipDrawing, column, row);
+                playerShips.add(ship);
+                shipDrawing.setHasBeenPlaced(true);
             }
 
 
@@ -76,10 +105,6 @@ public class PositionController implements Initializable {
             System.out.println("Se ha generado un error: " + e2.getMessage());
             addRowTextField.setText("");
             addColumnTextField.setText("");
-            shipDrawings[boatIndexToAdd].setHasBeenClicked(false);
-        } catch (StringIndexOutOfBoundsException e3){
-            System.out.println("Se ha generado un error: " + e3.getMessage());
-            shipDrawings[boatIndexToAdd].setHasBeenClicked(false);
         }
     }
 
