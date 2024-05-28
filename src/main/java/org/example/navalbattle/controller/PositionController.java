@@ -137,14 +137,14 @@ public class PositionController implements Initializable {
     public void createPlayerShips(){
         for (int i = 0; i < 10; i++) {
             Ship ship = new Ship(i);
-            playerShips[i] = ship;
+            playerShips.set(i, ship);
         }
     }
     public Cell[][] getPlayerBoardAux(){
         return playerBoardAux;
    }
 
-    public Ship[] getPlayerShips() {
+    public List<Ship> getPlayerShips() {
         return playerShips;
     }
 }
