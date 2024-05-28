@@ -59,5 +59,3 @@ public class ShipDrawing extends Pane {
         this.setRotate(this.getRotate() + 90);
     }
 }
-
-

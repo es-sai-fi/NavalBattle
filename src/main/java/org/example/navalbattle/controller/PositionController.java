@@ -148,6 +148,3 @@ public class PositionController implements Initializable {
         return playerShips;
     }
 }
-
-
-
