@@ -2,11 +2,15 @@ package org.example.navalbattle.model;
 
 import org.example.navalbattle.controller.GameController;
 
+import java.io.IOException;
+import java.util.Random;
+
 public class NavalBattle {
     private Cell[][] playerBoardAux = new Cell[10][10];
     private Cell[][] enemyBoardAux = new Cell[10][10];
     private Ship[] playerShips = new Ship[9];
     private Ship[] enemyShips = new Ship[9];
+    private Random random = new Random();
     private GameController gameController;
 
     public NavalBattle(GameController gameController){
@@ -29,17 +33,170 @@ public class NavalBattle {
     }
 
     public void launchAttack(int row, int column){
+        boolean validAttack = false;
+        boolean win = true;
+        boolean lose = true;
         Cell enemyCell = enemyBoardAux[row][column];
         try{
-            String message = "";
             if(enemyCell.getHasBeenAttacked()){
-                throw new AttackException();
+                throw new AttackException("La celda ya ha sido atacada.");
             }
-            enemyCell.getShip().receiveDamage();
-            enemyCell.setHasBeenAttacked(true);
-            gameController.updateStatusLabel("¡Ataque exitoso!", 1);
+            if(!enemyCell.isOccupied()){
+                enemyCell.getImageView().toFront();
+                enemyCell.getImageView().setVisible(true);
+                enemyCell.setImage("/org/example/navalbattle/images/fail.png");
+                enemyCell.setHasBeenAttacked(true);
+            }
+            else{
+                enemyCell.getShip().receiveDamage();
+                enemyCell.getImageView().toFront();
+                enemyCell.getImageView().setVisible(true);
+                enemyCell.setImage("/org/example/navalbattle/images/hit.png");
+                enemyCell.setHasBeenAttacked(true);
+                gameController.updateStatusLabel("¡Ataque exitoso!", 1);
+                for(Ship enemyShip: enemyShips){
+                    if (enemyShip.isAlive()){
+                        win = false;
+                    }
+                }
+                if(win){
+                    gameController.win();
+                }
+                else{
+                    do {
+                        int randomRow = random.nextInt(10);
+                        int randomColumn = random.nextInt(10);
+                        Cell playerCell = playerBoardAux[randomRow][randomColumn];
+                        if(!playerCell.getHasBeenAttacked()){
+                            validAttack = true;
+                            if(playerCell.isOccupied()){
+                                playerCell.getShip().receiveDamage();
+                                playerCell.getImageView().toFront();
+                                playerCell.getImageView().setVisible(true);
+                                playerCell.setImage("/org/example/navalbattle/images/hit.png");
+                                playerCell.setHasBeenAttacked(true);
+                            }
+                            else{
+                                playerCell.getImageView().toFront();
+                                playerCell.getImageView().setVisible(true);
+                                playerCell.setImage("/org/example/navalbattle/images/fail.png");
+                                playerCell.setHasBeenAttacked(true);
+                            }
+                        }
+                    }while(!validAttack);
+                    for (Ship playerShip: playerShips){
+                        if (playerShip.isAlive()){
+                            lose = false;
+                        }
+                    }
+                    if(lose){
+                        gameController.lose();
+                    }
+                }
+            }
         } catch (AttackException e) {
-            String message =
+            gameController.updateStatusLabel(e.getMessage(), 2);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void arrangeEnemyBoard() {
+        int randomInt = random.nextInt(3);
+        switch (randomInt) {
+            case 0:
+                //Aircraft Carrier
+                enemyBoardAux[7][6].setShip(enemyShips[0]);
+                enemyBoardAux[7][7].setShip(enemyShips[0]);
+                enemyBoardAux[7][8].setShip(enemyShips[0]);
+                enemyBoardAux[7][9].setShip(enemyShips[0]);
+                //Submarine 1
+                enemyBoardAux[1][5].setShip(enemyShips[1]);
+                enemyBoardAux[2][5].setShip(enemyShips[1]);
+                enemyBoardAux[3][5].setShip(enemyShips[1]);
+                //Submarine 2
+                enemyBoardAux[2][6].setShip(enemyShips[2]);
+                enemyBoardAux[3][6].setShip(enemyShips[2]);
+                enemyBoardAux[4][6].setShip(enemyShips[2]);
+                //Destroyer 1
+                enemyBoardAux[5][0].setShip(enemyShips[3]);
+                enemyBoardAux[6][0].setShip(enemyShips[3]);
+                //Destroyer 2
+                enemyBoardAux[6][1].setShip(enemyShips[4]);
+                enemyBoardAux[7][1].setShip(enemyShips[4]);
+                //Destroyer 3
+                enemyBoardAux[1][0].setShip(enemyShips[5]);
+                enemyBoardAux[1][1].setShip(enemyShips[5]);
+                //Frigate 1
+                enemyBoardAux[0][6].setShip(enemyShips[6]);
+                //Frigate 2
+                enemyBoardAux[1][9].setShip(enemyShips[7]);
+                //Frigate 3
+                enemyBoardAux[5][3].setShip(enemyShips[8]);
+                //Frigate 4
+                enemyBoardAux[5][4].setShip(enemyShips[9]);
+            case 1:
+                //Aircraft Carrier
+                enemyBoardAux[4][0].setShip(enemyShips[0]);
+                enemyBoardAux[5][0].setShip(enemyShips[0]);
+                enemyBoardAux[6][0].setShip(enemyShips[0]);
+                enemyBoardAux[7][0].setShip(enemyShips[0]);
+                //Submarine 1
+                enemyBoardAux[8][3].setShip(enemyShips[1]);
+                enemyBoardAux[8][4].setShip(enemyShips[1]);
+                enemyBoardAux[8][5].setShip(enemyShips[1]);
+                //Submarine 2
+                enemyBoardAux[3][9].setShip(enemyShips[2]);
+                enemyBoardAux[4][9].setShip(enemyShips[2]);
+                enemyBoardAux[5][9].setShip(enemyShips[2]);
+                //Destroyer 1
+                enemyBoardAux[5][5].setShip(enemyShips[3]);
+                enemyBoardAux[6][5].setShip(enemyShips[3]);
+                //Destroyer 2
+                enemyBoardAux[6][6].setShip(enemyShips[4]);
+                enemyBoardAux[7][6].setShip(enemyShips[4]);
+                //Destroyer 3
+                enemyBoardAux[4][3].setShip(enemyShips[5]);
+                enemyBoardAux[5][3].setShip(enemyShips[5]);
+                //Frigate 1
+                enemyBoardAux[0][1].setShip(enemyShips[6]);
+                //Frigate 2
+                enemyBoardAux[0][3].setShip(enemyShips[7]);
+                //Frigate 3
+                enemyBoardAux[1][3].setShip(enemyShips[8]);
+                //Frigate 4
+                enemyBoardAux[0][9].setShip(enemyShips[9]);
+            case 2:
+                //Aircraft Carrier
+                enemyBoardAux[8][1].setShip(enemyShips[0]);
+                enemyBoardAux[8][2].setShip(enemyShips[0]);
+                enemyBoardAux[8][3].setShip(enemyShips[0]);
+                enemyBoardAux[8][4].setShip(enemyShips[0]);
+                //Submarine 1
+                enemyBoardAux[2][0].setShip(enemyShips[1]);
+                enemyBoardAux[3][0].setShip(enemyShips[1]);
+                enemyBoardAux[4][0].setShip(enemyShips[1]);
+                //Submarine 2
+                enemyBoardAux[2][4].setShip(enemyShips[2]);
+                enemyBoardAux[2][5].setShip(enemyShips[2]);
+                enemyBoardAux[2][6].setShip(enemyShips[2]);
+                //Destroyer 1
+                enemyBoardAux[8][0].setShip(enemyShips[3]);
+                enemyBoardAux[8][1].setShip(enemyShips[3]);
+                //Destroyer 2
+                enemyBoardAux[8][5].setShip(enemyShips[4]);
+                enemyBoardAux[8][6].setShip(enemyShips[4]);
+                //Destroyer 3
+                enemyBoardAux[0][1].setShip(enemyShips[5]);
+                enemyBoardAux[0][2].setShip(enemyShips[5]);
+                //Frigate 1
+                enemyBoardAux[6][0].setShip(enemyShips[6]);
+                //Frigate 2
+                enemyBoardAux[5][2].setShip(enemyShips[7]);
+                //Frigate 3
+                enemyBoardAux[5][6].setShip(enemyShips[8]);
+                //Frigate 4
+                enemyBoardAux[9][9].setShip(enemyShips[9]);
         }
     }
 

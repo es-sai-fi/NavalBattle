@@ -5,10 +5,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 import org.example.navalbattle.model.Cell;
 import org.example.navalbattle.model.NavalBattle;
 import org.example.navalbattle.model.Ship;
+import org.example.navalbattle.view.LoseStage;
+import org.example.navalbattle.view.WinStage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -23,13 +27,14 @@ public class GameController implements Initializable {
     GridPane playerBoard;
     @FXML
     GridPane enemyBoard;
-    private boolean playerTurn = true;
+    Stage stage;
     private NavalBattle navalBattle = new NavalBattle(this);
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        stage = (Stage) missLabel.getScene().getWindow();
         createEnemyBoard();
         createEnemyShips();
-        arrangeEnemyBoard();
+        navalBattle.arrangeEnemyBoard();
         missLabel.setVisible(false);
         hitLabel.setVisible(false);
     }
@@ -44,148 +49,6 @@ public class GameController implements Initializable {
             }
         }
         navalBattle.setEnemyBoardAux(enemyBoardAux);
-    }
-
-    public void arrangeEnemyBoard(){
-        int randomInt = (int) (Math.random() * 3);
-        switch (randomInt){
-            case 1:
-                //Aircraft Carrier
-                enemyBoardAux[][].setShip(enemyShips[0]);
-                enemyBoardAux[][].setShip(enemyShips[0]);
-                enemyBoardAux[][].setShip(enemyShips[0]);
-                enemyBoardAux[][].setShip(enemyShips[0]);
-                //Submarine 1
-                enemyBoardAux[][].setShip(enemyShips[1]);
-                enemyBoardAux[][].setShip(enemyShips[1]);
-                enemyBoardAux[][].setShip(enemyShips[1]);
-                //Submarine 2
-                enemyBoardAux[][].setShip(enemyShips[2]);
-                enemyBoardAux[][].setShip(enemyShips[2]);
-                enemyBoardAux[][].setShip(enemyShips[2]);
-                //Destroyer 1
-                enemyBoardAux[][].setShip(enemyShips[3]);
-                enemyBoardAux[][].setShip(enemyShips[3]);
-                //Destroyer 2
-                enemyBoardAux[][].setShip(enemyShips[4]);
-                enemyBoardAux[][].setShip(enemyShips[4]);
-                //Destroyer 3
-                enemyBoardAux[][].setShip(enemyShips[5]);
-                enemyBoardAux[][].setShip(enemyShips[5]);
-                //Frigate 1
-                enemyBoardAux[][].setShip(enemyShips[6]);
-                //Frigate 2
-                enemyBoardAux[][].setShip(enemyShips[7]);
-                //Frigate 3
-                enemyBoardAux[][].setShip(enemyShips[8]);
-                //Frigate 4
-                enemyBoardAux[][].setShip(enemyShips[9]);
-            case 2:
-                //Aircraft Carrier
-                enemyBoardAux[][].setShip(enemyShips[0]);
-                enemyBoardAux[][].setShip(enemyShips[0]);
-                enemyBoardAux[][].setShip(enemyShips[0]);
-                enemyBoardAux[][].setShip(enemyShips[0]);
-                //Submarine 1
-                enemyBoardAux[][].setShip(enemyShips[1]);
-                enemyBoardAux[][].setShip(enemyShips[1]);
-                enemyBoardAux[][].setShip(enemyShips[1]);
-                //Submarine 2
-                enemyBoardAux[][].setShip(enemyShips[2]);
-                enemyBoardAux[][].setShip(enemyShips[2]);
-                enemyBoardAux[][].setShip(enemyShips[2]);
-                //Destroyer 1
-                enemyBoardAux[][].setShip(enemyShips[3]);
-                enemyBoardAux[][].setShip(enemyShips[3]);
-                //Destroyer 2
-                enemyBoardAux[][].setShip(enemyShips[4]);
-                enemyBoardAux[][].setShip(enemyShips[4]);
-                //Destroyer 3
-                enemyBoardAux[][].setShip(enemyShips[5]);
-                enemyBoardAux[][].setShip(enemyShips[5]);
-                //Frigate 1
-                enemyBoardAux[][].setShip(enemyShips[6]);
-                //Frigate 2
-                enemyBoardAux[][].setShip(enemyShips[7]);
-                //Frigate 3
-                enemyBoardAux[][].setShip(enemyShips[8]);
-                //Frigate 4
-                enemyBoardAux[][].setShip(enemyShips[9]);
-            case 3:
-                //Aircraft Carrier
-                enemyBoardAux[][].setShip(enemyShips[0]);
-                enemyBoardAux[][].setShip(enemyShips[0]);
-                enemyBoardAux[][].setShip(enemyShips[0]);
-                enemyBoardAux[][].setShip(enemyShips[0]);
-                //Submarine 1
-                enemyBoardAux[][].setShip(enemyShips[1]);
-                enemyBoardAux[][].setShip(enemyShips[1]);
-                enemyBoardAux[][].setShip(enemyShips[1]);
-                //Submarine 2
-                enemyBoardAux[][].setShip(enemyShips[2]);
-                enemyBoardAux[][].setShip(enemyShips[2]);
-                enemyBoardAux[][].setShip(enemyShips[2]);
-                //Destroyer 1
-                enemyBoardAux[][].setShip(enemyShips[3]);
-                enemyBoardAux[][].setShip(enemyShips[3]);
-                //Destroyer 2
-                enemyBoardAux[][].setShip(enemyShips[4]);
-                enemyBoardAux[][].setShip(enemyShips[4]);
-                //Destroyer 3
-                enemyBoardAux[][].setShip(enemyShips[5]);
-                enemyBoardAux[][].setShip(enemyShips[5]);
-                //Frigate 1
-                enemyBoardAux[][].setShip(enemyShips[6]);
-                //Frigate 2
-                enemyBoardAux[][].setShip(enemyShips[7]);
-                //Frigate 3
-                enemyBoardAux[][].setShip(enemyShips[8]);
-                //Frigate 4
-                enemyBoardAux[][].setShip(enemyShips[9]);
-        }
-        /*
-        for (Ship enemyShip : enemyShips){
-            if (enemyShip.getType() == 1){
-                boolean validPlacement = false;
-                do{
-                    randomX = (int) (Math.random() * 10);
-                    randomY = (int) (Math.random() * 10);
-                    if (!enemyBoardAux[randomX][randomY].isOccupied()){
-                        validPlacement = true;
-                        enemyBoardAux[randomX][randomY].setShip(enemyShip);
-
-                    }
-                }
-                while (!validPlacement);
-            }
-            else{
-                boolean validPlacement = true;
-                boolean horizontal = Math.random() < 0.50;
-                if(horizontal){
-                    do{
-                        randomX = (int) (Math.random() * 10);
-                        randomY = (int) (Math.random() * 10);
-
-                        if (randomX == 0) {
-                            for (int i = 0; i < enemyShip.getType(); i++) {
-                                if (!enemyBoardAux[i][randomY].isOccupied()) {
-                                    validPlacement = false;
-                                }
-                            }
-                            if (validPlacement) {
-                                for (int i = 0; i < enemyShip.getType(); i++){
-                                    enemyBoardAux[i][randomY].setShip(enemyShip);
-                                }
-                            }
-                        }
-                    }
-                    while (!validPlacement);
-                }
-                else{
-
-                }
-            }
-        }*/
     }
 
     public void updateStatusLabel(String message, int type){
@@ -207,6 +70,19 @@ public class GameController implements Initializable {
         }
         navalBattle.setEnemyShips(enemyShips);
     }
+
+    public void win() throws IOException {
+        WinStage winStage = new WinStage();
+        winStage.show();
+        stage.close();
+    }
+
+    public void lose() throws IOException {
+        LoseStage loseStage = new LoseStage();
+        loseStage.show();
+        stage.close();
+    }
+
 
     public void setNavalBattle(NavalBattle navalBattle) {
         this.navalBattle = navalBattle;

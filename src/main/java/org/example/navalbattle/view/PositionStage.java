@@ -13,7 +13,7 @@ public class PositionStage extends Stage {
     private PositionController positionController;
 
     public PositionStage() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/navalbattle/player-view.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/navalbattle/position-view.fxml"));
         Parent root;
         try {
             root = loader.load();
@@ -28,7 +28,7 @@ public class PositionStage extends Stage {
                 new Image(
                         String.valueOf(getClass().getResource("/org/example/navalbattle/images/favicon.png"))));
         setScene(scene);
-        setResizable(false);
+        setResizable(true);
         show();
     }
 
