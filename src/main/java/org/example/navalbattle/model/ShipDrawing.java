@@ -1,6 +1,7 @@
 package org.example.navalbattle.model;
 
 import javafx.scene.Group;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -20,6 +21,8 @@ public class ShipDrawing extends Pane {
         this.color = determinarColor(type);
         this.rectangle = new Rectangle(width, height, color);
         boatGroup.getChildren().add(rectangle);
+        this.getChildren().add(boatGroup);
+        draw();
     }
 
     public Group getBoatGroup() {
