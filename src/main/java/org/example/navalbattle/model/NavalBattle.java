@@ -55,8 +55,9 @@ public class NavalBattle {
                 enemyCell.setHasBeenAttacked(true);
                 gameController.updateStatusLabel("¡Ataque exitoso!", 1);
                 for(Ship enemyShip: enemyShips){
-                    if (enemyShip.isAlive()){
+                    if (enemyShip.isAlive()) {
                         win = false;
+                        break;
                     }
                 }
                 if(win){
@@ -85,8 +86,9 @@ public class NavalBattle {
                         }
                     }while(!validAttack);
                     for (Ship playerShip: playerShips){
-                        if (playerShip.isAlive()){
+                        if (playerShip.isAlive()) {
                             lose = false;
+                            break;
                         }
                     }
                     if(lose){

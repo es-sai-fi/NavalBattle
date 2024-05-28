@@ -12,6 +12,8 @@ public class ShipDrawing extends Pane {
     private Color color;
     private Rectangle rectangle;
     private Group boatGroup;
+    private boolean hasBeenPlaced;
+    private boolean isVertical;
 
     public ShipDrawing(int width, int height, int type) {
         boatGroup = new Group();
@@ -60,5 +62,21 @@ public class ShipDrawing extends Pane {
         rectangle.setHeight(height);
 
         this.setRotate(this.getRotate() + 90);
+    }
+
+    public boolean hasBeenPlaced() {
+        return hasBeenPlaced;
+    }
+
+    public void setHasBeenPlaced(boolean hasBeenPlaced) {
+        this.hasBeenPlaced = hasBeenPlaced;
+    }
+
+    public boolean isVertical() {
+        return isVertical;
+    }
+
+    public int getType() {
+        return type;
     }
 }

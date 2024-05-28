@@ -11,7 +11,11 @@ import org.example.navalbattle.model.Cell;
 import org.example.navalbattle.model.InputException;
 import org.example.navalbattle.model.Ship;
 import org.example.navalbattle.model.ShipDrawing;
+import org.example.navalbattle.view.HelpStage;
+import org.example.navalbattle.view.WinStage;
 
+import javax.swing.*;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +35,6 @@ public class PositionController implements Initializable {
     TextField addColumnTextField;
     ShipDrawing[] shipDrawings = new ShipDrawing[10];
     int boatIndexToAdd;
-    int boatTypeToAdd;
     boolean boatClicked;
     Cell[][] playerBoardAux = new Cell[10][10];
     List<Ship> playerShips = new ArrayList<>();
@@ -58,7 +61,8 @@ public class PositionController implements Initializable {
                 throw new InputException("Cell is already occupied.");
             }
             ShipDrawing shipDrawing = shipDrawings[boatIndexToAdd];
-            if(shipDrawing.getType() == 1){
+            int shipDrawingType = shipDrawing.getType();
+            if(shipDrawingType == 1){
                 Ship ship = new Ship(1);
                 playerShips.add(ship);
                 playerBoard.add(shipDrawing, column, row);
@@ -67,7 +71,7 @@ public class PositionController implements Initializable {
                 boatClicked = false;
             }
             else{
-                Ship ship = new Ship(type);
+                Ship ship = new Ship(shipDrawingType);
                 int type = shipDrawing.getType();
                 int finalRow = row + type;
                 int finalColumn = row + type;
@@ -109,6 +113,12 @@ public class PositionController implements Initializable {
     }
 
     @FXML
+    void onHelpButtonClick(ActionEvent actionEvent) throws IOException{
+        HelpStage helpStage = new HelpStage();
+        helpStage.show();
+    }
+
+    @FXML
     void onAddLetterKeyPressed(KeyEvent keyEvent){
         TextField textField = (TextField) keyEvent.getSource();
         textField.setEditable(true);
@@ -121,7 +131,7 @@ public class PositionController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         createPlayerBoard();
-        createPlayerShips();
+        creatShipDrawings();
     }
 
     public void createPlayerBoard(){
@@ -134,11 +144,8 @@ public class PositionController implements Initializable {
         }
     }
 
-    public void createPlayerShips(){
-        for (int i = 0; i < 10; i++) {
-            Ship ship = new Ship(i);
-            playerShips.set(i, ship);
-        }
+    public void creatShipDrawings(){
+
     }
     public Cell[][] getPlayerBoardAux(){
         return playerBoardAux;
