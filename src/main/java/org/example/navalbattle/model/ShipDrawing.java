@@ -1,5 +1,6 @@
 package org.example.navalbattle.model;
 
+import javafx.scene.Group;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -9,8 +10,10 @@ public class ShipDrawing extends Pane {
     private String type;
     private Color color;
     private Rectangle rectangle;
+    private Group boatGroup;
 
     public ShipDrawing(int x, int y, int width, int height, String type) {
+        boatGroup = new Group();
         this.x = x;
         this.y = y;
         this.width = width;
@@ -18,9 +21,11 @@ public class ShipDrawing extends Pane {
         this.type = type;
         this.color = determinarColor(type);
         this.rectangle = new Rectangle(width, height, color);
-        this.getChildren().add(rectangle);
-        setPosition(x, y);
-        draw();
+        boatGroup.getChildren().add(rectangle);
+    }
+
+    public Group getBoatGroup() {
+        return boatGroup;
     }
 
     private Color determinarColor(String type) {

@@ -3,6 +3,9 @@ package org.example.navalbattle.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import org.example.navalbattle.view.GameStage;
 import org.example.navalbattle.view.PositionStage;
@@ -16,7 +19,6 @@ public class WelcomeController {
 
     @FXML
     private Button playButton;
-
     @FXML
     void onContinueButtonClick(ActionEvent event) throws IOException {
         Stage stage = (Stage) playButton.getScene().getWindow();

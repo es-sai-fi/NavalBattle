@@ -9,8 +9,6 @@ import javafx.scene.shape.Rectangle;
 import org.example.navalbattle.controller.GameController;
 
 public class Cell extends Pane {
-    private StackPane stackPane;
-    private Rectangle rectangle;
     private ImageView imageView;
     private int row;
     private int column;
@@ -19,25 +17,23 @@ public class Cell extends Pane {
     private boolean occupied;
 
     public Cell (int row, int column, NavalBattle navalBattle){
-        rectangle = new Rectangle(50,50);
-        rectangle.setOnMouseClicked(event -> {
+        imageView = new ImageView();
+        imageView.setOnMouseClicked(event -> {
             navalBattle.launchAttack(row, column);
         });
-        imageView = new ImageView();
         imageView.setFitHeight(50);
         imageView.setFitWidth(50);
         imageView.setPreserveRatio(true);
-        stackPane = new StackPane(rectangle, imageView);
+        imageView.setVisible(false);
         this.row = row;
         this.column = column;
     }
     public Cell (int row, int column){
-        rectangle = new Rectangle(50,50);
         imageView = new ImageView();
         imageView.setFitHeight(50);
         imageView.setFitWidth(50);
         imageView.setPreserveRatio(true);
-        stackPane = new StackPane(rectangle, imageView);
+        imageView.setVisible(false);
         this.row = row;
         this.column = column;
     }
@@ -48,10 +44,6 @@ public class Cell extends Pane {
 
     public Ship getShip(){
         return ship;
-    }
-
-    public Rectangle getRectangle() {
-        return rectangle;
     }
 
     public boolean isOccupied() {
@@ -83,5 +75,9 @@ public class Cell extends Pane {
 
     public void setHasBeenAttacked(boolean hasBeenAttacked) {
         this.hasBeenAttacked = hasBeenAttacked;
+    }
+
+    public ImageView getImageView() {
+        return imageView;
     }
 }
