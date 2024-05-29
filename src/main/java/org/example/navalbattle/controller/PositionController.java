@@ -69,6 +69,8 @@ public class PositionController implements Initializable {
                 cell.setShip(ship);
                 cell.setOccupied(true);
                 boatClicked = false;
+                addRowTextField.setText("");
+                addColumnTextField.setText("");
             }
             else{
                 Ship ship = new Ship(shipDrawingType);

@@ -2,10 +2,8 @@ package org.example.navalbattle.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import org.example.navalbattle.model.Cell;
 import org.example.navalbattle.model.NavalBattle;
