@@ -42,4 +42,3 @@ public class Ship {
         return type; // Asumiendo que el tipo es igual a la longitud
     }
 }
-

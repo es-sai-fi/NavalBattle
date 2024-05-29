@@ -223,7 +223,7 @@ public class PositionController implements Initializable {
 
     public Cell[][] getPlayerBoardAux(){
         return playerBoardAux;
-   }
+    }
 
     public List<Ship> getPlayerShips() {
         return playerShips;
