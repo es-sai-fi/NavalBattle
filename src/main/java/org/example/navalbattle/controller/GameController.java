@@ -87,6 +87,16 @@ public class GameController implements Initializable {
                 // Frigate 4
                 ShipDrawing frigate4 = new ShipDrawing(50, 50, 1);
                 enemyBoard.add(frigate4, 4, 5);
+                aircraftCarrier.setVisible(false);
+                submarine1.setVisible(false);
+                submarine2.setVisible(false);
+                destroyer1.setVisible(false);
+                destroyer2.setVisible(false);
+                destroyer3.setVisible(false);
+                frigate1.setVisible(false);
+                frigate2.setVisible(false);
+                frigate3.setVisible(false);
+                frigate4.setVisible(false);
                 break;
 
             case 1:
@@ -129,6 +139,17 @@ public class GameController implements Initializable {
                 // Frigate 4
                 ShipDrawing frigate44 = new ShipDrawing(50, 50, 1, false);
                 enemyBoard.add(frigate44, 9, 0);
+
+                aircraftCarrier1.setVisible(false);
+                submarine11.setVisible(false);
+                submarine22.setVisible(false);
+                destroyer11.setVisible(false);
+                destroyer22.setVisible(false);
+                destroyer33.setVisible(false);
+                frigate11.setVisible(false);
+                frigate22.setVisible(false);
+                frigate33.setVisible(false);
+                frigate44.setVisible(false);
                 break;
 
             case 2:
@@ -171,6 +192,17 @@ public class GameController implements Initializable {
                 // Frigate 4
                 ShipDrawing frigate45 = new ShipDrawing(50, 50, 1);
                 enemyBoard.add(frigate45, 9, 9);
+
+                aircraftCarrier2.setVisible(false);
+                submarine12.setVisible(false);
+                submarine23.setVisible(false);
+                destroyer12.setVisible(false);
+                destroyer23.setVisible(false);
+                destroyer34.setVisible(false);
+                frigate12.setVisible(false);
+                frigate23.setVisible(false);
+                frigate34.setVisible(false);
+                frigate45.setVisible(false);
                 break;
         }
         navalBattle.setEnemyBoardAux(enemyBoardAux);

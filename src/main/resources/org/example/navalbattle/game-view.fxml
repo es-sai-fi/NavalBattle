@@ -382,7 +382,7 @@
             <Image url="@images/gameViewSeeRivalBoardButton.png" />
          </image>
       </ImageView>
-      <Button layoutX="1435.0" layoutY="664.0" mnemonicParsing="false" opacity="0.0" prefHeight="25.0" prefWidth="120.0" />
+      <Button layoutX="1435.0" layoutY="664.0" mnemonicParsing="false" onAction="#onShowEnemyBoardButtonClick" opacity="0.0" prefHeight="25.0" prefWidth="120.0" />
       <ImageView fx:id="playerBoard" fitHeight="500.0" fitWidth="500.0" layoutX="126.0" layoutY="107.0">
          <image>
             <Image url="@images/positionBoardWallpaper.PNG" />
