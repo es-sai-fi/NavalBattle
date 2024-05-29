@@ -127,7 +127,7 @@
             <Image url="@images/positionBoardWallpaper.PNG" />
          </image>
       </ImageView>
-      <ImageView fitHeight="33.0" fitWidth="121.0" layoutX="41.0" layoutY="620.0">
+      <ImageView fitHeight="31.0" fitWidth="109.0" layoutX="57.0" layoutY="623.0">
          <image>
             <Image url="@images/positionViewRowsLabel.png" />
          </image>
