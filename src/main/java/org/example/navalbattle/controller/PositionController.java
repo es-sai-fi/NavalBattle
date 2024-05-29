@@ -1,8 +1,10 @@
 package org.example.navalbattle.controller;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
@@ -36,6 +38,7 @@ public class PositionController implements Initializable {
     private Cell[][] playerBoardAux = new Cell[10][10];
     private ShipDrawing[] shipDrawings = new ShipDrawing[10];
     private List<Ship> playerShips = new ArrayList<>();
+    NavalBattle navalBattle = new NavalBattle();
     @FXML
     void onAddShipButtonClick(ActionEvent actionEvent){
         try{
@@ -212,26 +215,35 @@ public class PositionController implements Initializable {
     @FXML
     void onStartButtonClick(ActionEvent actionEvent) throws IOException {
         boolean canContinue = true;
-        for (ShipDrawing shipDrawing : shipDrawings){
-            if(!shipDrawing.hasBeenPlaced()){
+        for (ShipDrawing shipDrawing : shipDrawings) {
+            if (!shipDrawing.hasBeenPlaced()) {
                 canContinue = false;
                 break;
             }
         }
-        try{
-            if(canContinue){
+        try {
+            if (canContinue) {
                 GameController gameController = GameStage.getInstance().getGameController();
-                NavalBattle navalBattle = new NavalBattle(gameController);
+                navalBattle.setGameController(gameController);
                 navalBattle.setPlayerBoardAux(playerBoardAux);
                 navalBattle.setPlayerShips(playerShips);
-                gameController.setPlayerBoard(playerBoard);
+
+                // Clear current playerBoard in GameController to avoid duplicates
+                gameController.getPlayerBoard().getChildren().clear();
+
+                // Transfer nodes from playerBoard in PositionStage to playerBoard in GameController
+                for (Node node : playerBoard.getChildren()) {
+                    Integer colIndex = GridPane.getColumnIndex(node);
+                    Integer rowIndex = GridPane.getRowIndex(node);
+                    gameController.getPlayerBoard().add(node, colIndex != null ? colIndex : 0, rowIndex != null ? rowIndex : 0);
+                }
+
                 gameController.setNavalBattle(navalBattle);
                 PositionStage.deleteInstance();
-            }
-            else{
+            } else {
                 throw new NavalBattleException("All boats have not been placed.");
             }
-        } catch (NavalBattleException e){
+        } catch (NavalBattleException e) {
             System.out.println("An error has occurred: " + e.getMessage());
         }
     }

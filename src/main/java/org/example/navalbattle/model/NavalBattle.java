@@ -1,5 +1,6 @@
 package org.example.navalbattle.model;
 
+import javafx.scene.layout.GridPane;
 import org.example.navalbattle.controller.GameController;
 
 import java.io.IOException;
@@ -12,12 +13,11 @@ public class NavalBattle {
     private Cell[][] enemyBoardAux = new Cell[10][10];
     private List<Ship> playerShips = new ArrayList<>();
     private Ship[] enemyShips = new Ship[10];
+    GridPane playerBoard;
+    GridPane enemyBoard;
     private Random random = new Random();
     private GameController gameController;
-
-    public NavalBattle(GameController gameController){
-        this.gameController = gameController;
-    }
+    private int arrangeInt;
 
     public void updateOccupation() {
         for (int row = 0; row < 10; row++) {
@@ -111,8 +111,8 @@ public class NavalBattle {
     }
 
     public void arrangeEnemyBoard() {
-        int randomInt = random.nextInt(3);
-        switch (randomInt) {
+        arrangeInt = random.nextInt(3);
+        switch (arrangeInt) {
             case 0:
                 //Aircraft Carrier
                 enemyBoardAux[7][6].setShip(enemyShips[0]);
@@ -209,6 +209,10 @@ public class NavalBattle {
         }
     }
 
+    public int getArrangeInt() {
+        return arrangeInt;
+    }
+
     public void setPlayerShips(List<Ship> playerShips) {
         this.playerShips = playerShips;
     }
@@ -223,5 +227,17 @@ public class NavalBattle {
 
     public void setEnemyShips(Ship[] enemyShips) {
         this.enemyShips = enemyShips;
+    }
+
+    public void setPlayerBoard(GridPane playerBoard) {
+        this.playerBoard = playerBoard;
+    }
+
+    public void setEnemyBoard(GridPane enemyBoard) {
+        this.enemyBoard = enemyBoard;
+    }
+
+    public void setGameController(GameController gameController) {
+        this.gameController = gameController;
     }
 }

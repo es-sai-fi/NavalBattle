@@ -9,12 +9,12 @@
    <children>
       <ImageView fitHeight="400.0" fitWidth="600.0">
          <image>
-            <Image url="@images/WelcomeStageWallpaper.gif" />
+            <Image url="@images/welcomeStageWallpaper.gif" />
          </image>
       </ImageView>
       <ImageView fitHeight="117.0" fitWidth="354.0" layoutX="123.0" layoutY="39.0">
          <image>
-            <Image url="@images/welcomeViewTittle.png" />
+            <Image url="@images/welcomeViewTitle.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="67.0" fitWidth="200.0" layoutX="56.0" layoutY="237.0">
