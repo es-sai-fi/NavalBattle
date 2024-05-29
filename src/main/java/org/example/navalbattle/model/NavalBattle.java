@@ -119,6 +119,8 @@ public class NavalBattle {
                 enemyBoardAux[7][7].setShip(enemyShips[0]);
                 enemyBoardAux[7][8].setShip(enemyShips[0]);
                 enemyBoardAux[7][9].setShip(enemyShips[0]);
+                ShipDrawing shipDrawing = new ShipDrawing(50, 250, 4, false);
+                enemyBoard[6][7].add(shipDrawing);
                 //Submarine 1
                 enemyBoardAux[1][5].setShip(enemyShips[1]);
                 enemyBoardAux[2][5].setShip(enemyShips[1]);

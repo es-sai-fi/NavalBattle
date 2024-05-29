@@ -28,6 +28,22 @@ public class ShipDrawing extends Pane {
         draw();
     }
 
+    public ShipDrawing(int width, int height, int type, boolean isVertical) {
+        this.isVertical = isVertical;
+        if(!isVertical){
+            rotate();
+        }
+        boatGroup = new Group();
+        this.width = width;
+        this.height = height;
+        this.type = type;
+        this.color = determinarColor(type);
+        this.rectangle = new Rectangle(width, height, color);
+        boatGroup.getChildren().add(rectangle);
+        this.getChildren().add(boatGroup);
+        draw();
+    }
+
     public Group getBoatGroup() {
         return boatGroup;
     }
