@@ -22,7 +22,7 @@
             <Image url="@images/missGameViewText.png" />
          </image>
       </ImageView>
-      <GridPane layoutX="124.0" layoutY="154.0" prefHeight="297.0" prefWidth="363.0">
+      <GridPane layoutX="125.0" layoutY="158.0" prefHeight="297.0" prefWidth="363.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
@@ -74,16 +74,6 @@
             <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
          </rowConstraints>
       </GridPane>
-      <ImageView fitHeight="500.0" fitWidth="500.0" layoutX="126.0" layoutY="157.0">
-         <image>
-            <Image url="@images/prueba.PNG" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="500.0" fitWidth="500.0" layoutX="1037.0" layoutY="158.0">
-         <image>
-            <Image url="@images/prueba1.PNG" />
-         </image>
-      </ImageView>
       <ImageView fitHeight="44.0" fitWidth="120.0" layoutX="826.0" layoutY="363.0">
          <image>
             <Image url="@images/touchGameViewText.png" />
@@ -398,5 +388,15 @@
          </image>
       </ImageView>
       <Button layoutX="703.0" layoutY="43.0" mnemonicParsing="false" opacity="0.0" prefHeight="38.0" prefWidth="187.0" />
+      <ImageView fitHeight="500.0" fitWidth="500.0" layoutX="126.0" layoutY="159.0">
+         <image>
+            <Image url="@images/positionBoardWallpaper.PNG" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="500.0" fitWidth="500.0" layoutX="1038.0" layoutY="157.0">
+         <image>
+            <Image url="@images/principalBoardWallpaper.PNG" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
