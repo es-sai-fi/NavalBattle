@@ -77,10 +77,12 @@ public class ShipDrawing extends Pane {
     }
 
     public void rotate() {
-        int temp = width;
-        width = height;
-        height = temp;
-        isVertical = !isVertical;
+        if(!hasBeenPlaced){
+            int temp = width;
+            width = height;
+            height = temp;
+            isVertical = !isVertical;
+        }
     }
 
     public boolean hasBeenPlaced() {
