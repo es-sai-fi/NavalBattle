@@ -3,6 +3,7 @@ package org.example.navalbattle.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
@@ -104,6 +105,8 @@ public class PositionController implements Initializable {
                 playerBoard.add(shipDrawing, column, row);
                 playerShips.add(ship);
                 shipDrawing.setHasBeenPlaced(true);
+                addRowTextField.setText("");
+                addColumnTextField.setText("");
             }
 
 
@@ -179,18 +182,14 @@ public class PositionController implements Initializable {
 
     @FXML
     void onClearButtonClick(ActionEvent actionEvent){
-        GridPane newGridPane = new GridPane();
-        playerBoard.getChildren().clear();
         hBox.getChildren().clear();
-
+        playerBoard.getChildren().retainAll(playerBoard.getChildren().get(0));
         playerBoardAux = new Cell[10][10];
         playerShips.clear();
         Arrays.fill(shipDrawings, null);
         boatClicked = false;
         addColumnTextField.setText("");
         addRowTextField.setText("");
-
-        playerBoard = newGridPane;
         createPlayerBoard();
         createShipDrawings();
     }
