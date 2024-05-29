@@ -17,12 +17,12 @@
             <Image url="@images/gameViewWallpaper.gif" />
          </image>
       </ImageView>
-      <ImageView fitHeight="44.0" fitWidth="158.0" layoutX="807.0" layoutY="200.0">
+      <ImageView fitHeight="44.0" fitWidth="158.0" layoutX="807.0" layoutY="107.0">
          <image>
             <Image url="@images/missGameViewText.png" />
          </image>
       </ImageView>
-      <GridPane layoutX="125.0" layoutY="158.0" prefHeight="297.0" prefWidth="363.0">
+      <GridPane layoutX="125.0" layoutY="106.0" prefHeight="297.0" prefWidth="363.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
@@ -48,7 +48,7 @@
             <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
          </rowConstraints>
       </GridPane>
-      <GridPane layoutX="1037.0" layoutY="157.0" prefHeight="297.0" prefWidth="363.0">
+      <GridPane layoutX="1037.0" layoutY="105.0" prefHeight="297.0" prefWidth="363.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
@@ -74,12 +74,12 @@
             <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
          </rowConstraints>
       </GridPane>
-      <ImageView fitHeight="44.0" fitWidth="120.0" layoutX="826.0" layoutY="363.0">
+      <ImageView fitHeight="44.0" fitWidth="120.0" layoutX="826.0" layoutY="310.0">
          <image>
             <Image url="@images/touchGameViewText.png" />
          </image>
       </ImageView>
-      <GridPane alignment="CENTER" gridLinesVisible="true" layoutX="76.0" layoutY="108.0">
+      <GridPane alignment="CENTER" gridLinesVisible="true" layoutX="76.0" layoutY="57.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
          </columnConstraints>
@@ -154,12 +154,12 @@
             </Label>
          </children>
       </GridPane>
-      <ImageView fitHeight="50.0" fitWidth="500.0" layoutX="126.0" layoutY="107.0">
+      <ImageView fitHeight="50.0" fitWidth="500.0" layoutX="126.0" layoutY="57.0">
          <image>
             <Image url="@images/numbersAndLettersBackground2.PNG" />
          </image>
       </ImageView>
-      <GridPane gridLinesVisible="true" layoutX="126.0" layoutY="108.0">
+      <GridPane gridLinesVisible="true" layoutX="126.0" layoutY="57.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
@@ -228,7 +228,7 @@
             </Label>
          </children>
       </GridPane>
-      <GridPane alignment="CENTER" gridLinesVisible="true" layoutX="988.0" layoutY="108.0">
+      <GridPane alignment="CENTER" gridLinesVisible="true" layoutX="987.0" layoutY="57.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
          </columnConstraints>
@@ -303,12 +303,12 @@
             </Label>
          </children>
       </GridPane>
-      <ImageView fitHeight="50.0" fitWidth="500.0" layoutX="1038.0" layoutY="108.0">
+      <ImageView fitHeight="50.0" fitWidth="500.0" layoutX="1037.0" layoutY="57.0">
          <image>
             <Image url="@images/numbersAndLettersBackground2.PNG" />
          </image>
       </ImageView>
-      <GridPane gridLinesVisible="true" layoutX="1038.0" layoutY="109.0">
+      <GridPane gridLinesVisible="true" layoutX="1037.0" layoutY="57.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
@@ -377,23 +377,23 @@
             </Label>
          </children>
       </GridPane>
-      <ImageView fitHeight="44.0" fitWidth="126.0" layoutX="823.0" layoutY="553.0">
+      <ImageView fitHeight="44.0" fitWidth="126.0" layoutX="823.0" layoutY="499.0">
          <image>
             <Image url="@images/sinkedGameViewText.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="79.0" fitWidth="246.0" layoutX="676.0" layoutY="22.0">
+      <ImageView fitHeight="50.0" fitWidth="158.0" layoutX="1416.0" layoutY="651.0">
          <image>
             <Image url="@images/gameViewSeeRivalBoardButton.png" />
          </image>
       </ImageView>
-      <Button layoutX="703.0" layoutY="43.0" mnemonicParsing="false" opacity="0.0" prefHeight="38.0" prefWidth="187.0" />
-      <ImageView fitHeight="500.0" fitWidth="500.0" layoutX="126.0" layoutY="159.0">
+      <Button layoutX="1435.0" layoutY="664.0" mnemonicParsing="false" opacity="0.0" prefHeight="25.0" prefWidth="120.0" />
+      <ImageView fitHeight="500.0" fitWidth="500.0" layoutX="126.0" layoutY="107.0">
          <image>
             <Image url="@images/positionBoardWallpaper.PNG" />
          </image>
       </ImageView>
-      <ImageView fitHeight="500.0" fitWidth="500.0" layoutX="1038.0" layoutY="157.0">
+      <ImageView fitHeight="500.0" fitWidth="500.0" layoutX="1037.0" layoutY="106.0">
          <image>
             <Image url="@images/principalBoardWallpaper.PNG" />
          </image>
