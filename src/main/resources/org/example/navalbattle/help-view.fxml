@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="442.0" fitWidth="600.0">
+         <image>
+            <Image url="@images/gameViewWallpaper.gif" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="293.0" fitWidth="573.0" layoutX="14.0" layoutY="54.0">
+         <image>
+            <Image url="@images/helpViewText.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
