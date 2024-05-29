@@ -106,12 +106,12 @@
          </image>
       </ImageView>
       <Button layoutX="665.0" layoutY="22.0" mnemonicParsing="false" onAction="#onClearButtonClick" opacity="0.0" prefHeight="25.0" prefWidth="109.0" />
-      <ImageView fitHeight="64.0" fitWidth="200.0" layoutX="334.0" layoutY="670.0">
+      <ImageView fitHeight="64.0" fitWidth="200.0" layoutX="602.0" layoutY="660.0">
          <image>
             <Image url="@images/positionViewButtonStar.png" />
          </image>
       </ImageView>
-      <Button layoutX="359.0" layoutY="687.0" mnemonicParsing="false" onAction="#onStartButtonClick" opacity="0.0" prefHeight="31.0" prefWidth="149.0" />
+      <Button layoutX="628.0" layoutY="677.0" mnemonicParsing="false" onAction="#onStartButtonClick" opacity="0.0" prefHeight="31.0" prefWidth="149.0" />
       <ImageView fitHeight="64.0" fitWidth="186.0" layoutX="170.0" layoutY="614.0">
          <image>
             <Image url="@images/positionViewLabelDesign.png" />
@@ -253,17 +253,12 @@
             <Font name="Stencil" size="18.0" />
          </font>
       </TextField>
-      <ImageView fitHeight="56.0" fitWidth="177.0" layoutX="231.0" layoutY="7.0">
+      <ImageView fitHeight="56.0" fitWidth="177.0" layoutX="175.0" layoutY="665.0">
          <image>
             <Image url="@images/positionViewAddShipButton.png" />
          </image>
       </ImageView>
-      <Button layoutX="250.0" layoutY="19.0" mnemonicParsing="false" onAction="#onAddShipButtonClick" opacity="0.0" prefHeight="31.0" prefWidth="140.0" />
-      <ImageView fitHeight="50.0" fitWidth="162.0" layoutX="453.0" layoutY="9.0">
-         <image>
-            <Image url="@images/positionViewAddbutton.png" />
-         </image>
-      </ImageView>
+      <Button layoutX="193.0" layoutY="677.0" mnemonicParsing="false" onAction="#onAddShipButtonClick" opacity="0.0" prefHeight="31.0" prefWidth="140.0" />
       <Button layoutX="471.0" layoutY="22.0" mnemonicParsing="false" opacity="0.0" prefHeight="25.0" prefWidth="124.0" />
    </children>
 </AnchorPane>

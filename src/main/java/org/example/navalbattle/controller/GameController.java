@@ -1,5 +1,6 @@
 package org.example.navalbattle.controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.ImageView;
@@ -13,6 +14,7 @@ import org.example.navalbattle.view.GameStage;
 import org.example.navalbattle.view.LoseStage;
 import org.example.navalbattle.view.WinStage;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -27,6 +29,7 @@ public class GameController implements Initializable {
     @FXML
     GridPane enemyBoard;
     Stage stage;
+    ShipDrawing[] enemyShipDrawings = new ShipDrawing[10];
     private NavalBattle navalBattle;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -97,6 +100,16 @@ public class GameController implements Initializable {
                 frigate2.setVisible(false);
                 frigate3.setVisible(false);
                 frigate4.setVisible(false);
+                enemyShipDrawings[0] = aircraftCarrier;
+                enemyShipDrawings[1] = submarine1;
+                enemyShipDrawings[2] = submarine2;
+                enemyShipDrawings[3] = destroyer1;
+                enemyShipDrawings[4] = destroyer2;
+                enemyShipDrawings[5] = destroyer3;
+                enemyShipDrawings[6] = frigate1;
+                enemyShipDrawings[7] = frigate2;
+                enemyShipDrawings[8] = frigate3;
+                enemyShipDrawings[9] = frigate4;
                 break;
 
             case 1:
@@ -150,6 +163,16 @@ public class GameController implements Initializable {
                 frigate22.setVisible(false);
                 frigate33.setVisible(false);
                 frigate44.setVisible(false);
+                enemyShipDrawings[0] = aircraftCarrier1;
+                enemyShipDrawings[1] = submarine11;
+                enemyShipDrawings[2] = submarine22;
+                enemyShipDrawings[3] = destroyer11;
+                enemyShipDrawings[4] = destroyer22;
+                enemyShipDrawings[5] = destroyer33;
+                enemyShipDrawings[6] = frigate11;
+                enemyShipDrawings[7] = frigate22;
+                enemyShipDrawings[8] = frigate33;
+                enemyShipDrawings[9] = frigate44;
                 break;
 
             case 2:
@@ -203,9 +226,26 @@ public class GameController implements Initializable {
                 frigate23.setVisible(false);
                 frigate34.setVisible(false);
                 frigate45.setVisible(false);
+                enemyShipDrawings[0] = aircraftCarrier2;
+                enemyShipDrawings[1] = submarine12;
+                enemyShipDrawings[2] = submarine23;
+                enemyShipDrawings[3] = destroyer12;
+                enemyShipDrawings[4] = destroyer23;
+                enemyShipDrawings[5] = destroyer34;
+                enemyShipDrawings[6] = frigate12;
+                enemyShipDrawings[7] = frigate23;
+                enemyShipDrawings[8] = frigate34;
+                enemyShipDrawings[9] = frigate45;
                 break;
         }
         navalBattle.setEnemyBoardAux(enemyBoardAux);
+    }
+
+    @FXML
+    void onShowEnemyBoardButtonClick(ActionEvent actionEvent){
+        for(ShipDrawing enemyShipDrawing : enemyShipDrawings){
+            enemyShipDrawing.setVisible(true);
+        }
     }
 
     public GridPane getPlayerBoard() {

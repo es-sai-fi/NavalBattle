@@ -20,7 +20,7 @@ public class WelcomeStage extends Stage {
             // Re-throwing the caught IOException
             throw new IOException("Error while loading FXML file", e);
         }
-        setTitle("Juego de Craps");
+        setTitle("Batalla Naval");
         Scene scene = new Scene(root);
         getIcons().add(
                 new Image(
