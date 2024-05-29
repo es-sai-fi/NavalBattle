@@ -13,7 +13,13 @@ public class WelcomeStage extends Stage {
     public WelcomeStage () throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(
                 "/org/example/navalbattle/welcome-view.fxml"));
-        Parent root = loader.load();
+        Parent root;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            // Re-throwing the caught IOException
+            throw new IOException("Error while loading FXML file", e);
+        }
         setTitle("Juego de Craps");
         Scene scene = new Scene(root);
         getIcons().add(
@@ -24,8 +30,15 @@ public class WelcomeStage extends Stage {
         show();
     }
 
-    public static WelcomeStage getInstance() throws IOException{
-        return WelcomeStageHolder.INSTANCE = new WelcomeStage();
+    public static WelcomeStage getInstance() throws IOException {
+        return  WelcomeStage.WelcomeStageHolder.INSTANCE != null ?
+                WelcomeStage.WelcomeStageHolder.INSTANCE :
+                (WelcomeStage.WelcomeStageHolder.INSTANCE = new WelcomeStage());
+    }
+
+    public static void deleteInstance() {
+        WelcomeStage.WelcomeStageHolder.INSTANCE.close();
+        WelcomeStage.WelcomeStageHolder.INSTANCE = null;
     }
 
     private static class WelcomeStageHolder {

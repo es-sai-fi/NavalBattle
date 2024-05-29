@@ -14,7 +14,13 @@ public class GameStage extends Stage {
 
     public GameStage() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/navalbattle/game-view.fxml"));
-        Parent root = loader.load();
+        Parent root;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            // Re-throwing the caught IOException
+            throw new IOException("Error while loading FXML file", e);
+        }
         gameController = loader.getController();
         setTitle("Batalla Naval");
         Scene scene = new Scene(root, 600, 600);
@@ -30,8 +36,15 @@ public class GameStage extends Stage {
         return gameController;
     }
 
-    public static GameStage getInstance() throws IOException{
-        return GameStageHolder.INSTANCE = new GameStage();
+    public static GameStage getInstance() throws IOException {
+        return  GameStage.GameStageHolder.INSTANCE != null ?
+                GameStage.GameStageHolder.INSTANCE :
+                (GameStage.GameStageHolder.INSTANCE = new GameStage());
+    }
+
+    public static void deleteInstance() {
+        GameStage.GameStageHolder.INSTANCE.close();
+        GameStage.GameStageHolder.INSTANCE = null;
     }
 
     private static class GameStageHolder {

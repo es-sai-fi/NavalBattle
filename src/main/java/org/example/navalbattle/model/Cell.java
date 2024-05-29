@@ -1,46 +1,53 @@
 package org.example.navalbattle.model;
 
 import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Rectangle;
+import org.example.navalbattle.controller.GameController;
 
-public class Cell extends Node {
-    private StackPane stackPane;
-    private Rectangle rectangle;
+public class Cell extends Pane {
     private ImageView imageView;
     private int row;
     private int column;
-    private boolean isOccupied;
+    private Ship ship;
     private boolean hasBeenAttacked = false;
-    private ShipNode shipNode;
+    private boolean occupied;
 
+    public Cell (int row, int column, NavalBattle navalBattle){
+        imageView = new ImageView();
+        imageView.setOnMouseClicked(event -> {
+            navalBattle.launchAttack(row, column);
+        });
+        imageView.setFitHeight(50);
+        imageView.setFitWidth(50);
+        imageView.setPreserveRatio(true);
+        imageView.setVisible(false);
+        this.row = row;
+        this.column = column;
+    }
     public Cell (int row, int column){
-        Rectangle rectangle = new Rectangle(50,50);
-        rectangle.setStyle("-fx-background-color: blue");
-        ImageView imageView = new ImageView();
-        StackPane stackPane = new StackPane(rectangle, imageView);
+        imageView = new ImageView();
+        imageView.setFitHeight(50);
+        imageView.setFitWidth(50);
+        imageView.setPreserveRatio(true);
+        imageView.setVisible(false);
         this.row = row;
         this.column = column;
     }
 
-    public void setShipNode(ShipNode shipNode) {
-        this.shipNode = shipNode;
-        isOccupied = true;
+    public void setShip(Ship ship) {
+        this.ship = ship;
     }
 
-    public ShipNode getShipNode() {
-        return shipNode;
-    }
-
-    public Rectangle getRectangle() {
-        return rectangle;
+    public Ship getShip(){
+        return ship;
     }
 
     public boolean isOccupied() {
-        return isOccupied;
+        return occupied;
     }
 
     public int getRow() {
@@ -51,9 +58,26 @@ public class Cell extends Node {
         return column;
     }
 
+    public void setOccupied(boolean occupied) {
+        this.occupied = occupied;
+    }
+
+    public boolean getHasBeenAttacked() {
+        return hasBeenAttacked;
+    }
+    public void setImage(String url){
+        imageView.setImage(new Image(String.valueOf(getClass().getResource(url))));
+    }
     @Override
     public Node getStyleableNode() {
         return super.getStyleableNode();
     }
 
+    public void setHasBeenAttacked(boolean hasBeenAttacked) {
+        this.hasBeenAttacked = hasBeenAttacked;
+    }
+
+    public ImageView getImageView() {
+        return imageView;
+    }
 }
