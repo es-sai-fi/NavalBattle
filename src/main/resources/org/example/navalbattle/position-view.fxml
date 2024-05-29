@@ -106,12 +106,12 @@
          </image>
       </ImageView>
       <Button layoutX="665.0" layoutY="22.0" mnemonicParsing="false" onAction="#onClearButtonClick" opacity="0.0" prefHeight="25.0" prefWidth="109.0" />
-      <ImageView fitHeight="64.0" fitWidth="200.0" layoutX="334.0" layoutY="670.0">
+      <ImageView fitHeight="64.0" fitWidth="200.0" layoutX="334.0" layoutY="661.0">
          <image>
             <Image url="@images/positionViewButtonStar.png" />
          </image>
       </ImageView>
-      <Button layoutX="359.0" layoutY="687.0" mnemonicParsing="false" onAction="#onStartButtonClick" opacity="0.0" prefHeight="31.0" prefWidth="149.0" />
+      <Button layoutX="359.0" layoutY="678.0" mnemonicParsing="false" onAction="#onStartButtonClick" opacity="0.0" prefHeight="31.0" prefWidth="149.0" />
       <ImageView fitHeight="64.0" fitWidth="186.0" layoutX="170.0" layoutY="614.0">
          <image>
             <Image url="@images/positionViewLabelDesign.png" />
