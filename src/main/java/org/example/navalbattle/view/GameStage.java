@@ -23,7 +23,7 @@ public class GameStage extends Stage {
         }
         gameController = loader.getController();
         setTitle("Batalla Naval");
-        Scene scene = new Scene(root, 600, 600);
+        Scene scene = new Scene(root, 1000, 1000);
         getIcons().add(
                 new Image(
                         String.valueOf(getClass().getResource("/org/example/navalbattle/images/favicon.png"))));

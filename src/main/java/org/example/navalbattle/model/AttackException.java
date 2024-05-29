@@ -17,4 +17,3 @@ public class AttackException extends Exception {
         super(cause);
     }
 }
-

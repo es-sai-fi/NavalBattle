@@ -28,7 +28,7 @@ public class GameController implements Initializable {
     @FXML
     GridPane enemyBoard;
     Stage stage;
-    private NavalBattle navalBattle = new NavalBattle(this);
+    private NavalBattle navalBattle;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         stage = (Stage) missLabel.getScene().getWindow();

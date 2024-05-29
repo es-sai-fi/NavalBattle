@@ -4,6 +4,7 @@ import javafx.scene.Group;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 
 public class ShipDrawing extends Pane {
@@ -13,7 +14,7 @@ public class ShipDrawing extends Pane {
     private Rectangle rectangle;
     private Group boatGroup;
     private boolean hasBeenPlaced;
-    private boolean isVertical;
+    private boolean isVertical = true;
 
     public ShipDrawing(int width, int height, int type) {
         boatGroup = new Group();
@@ -51,21 +52,42 @@ public class ShipDrawing extends Pane {
         rectangle.setStroke(Color.BLACK);
         rectangle.setArcWidth(15);
         rectangle.setArcHeight(15);
+
+        // Añadir detalles adicionales
+        addDetails();
+    }
+
+    private void addDetails() {
+        // Añadir ventanas como círculos
+        int windowCount = width / 20;
+        for (int i = 0; i < windowCount; i++) {
+            Circle window = new Circle(5, Color.WHITE);
+            window.setStroke(Color.BLACK);
+            window.setCenterX((i * 20) + 10);
+            window.setCenterY(height / 4);
+            boatGroup.getChildren().add(window);
+        }
+    }
+
+    public void changeOrientation() {
+        rotate();
     }
 
     public void rotate() {
-        double temp = this.width;
-        this.width = this.height;
-        this.height = (int) temp;
-
+        int temp = width;
+        width = height;
+        height = temp;
         rectangle.setWidth(width);
         rectangle.setHeight(height);
-
-        this.setRotate(this.getRotate() + 90);
+        isVertical = !isVertical;
     }
 
     public boolean hasBeenPlaced() {
         return hasBeenPlaced;
+    }
+
+    public void setIsVertical(boolean isVertical) {
+        this.isVertical = isVertical;
     }
 
     public void setHasBeenPlaced(boolean hasBeenPlaced) {

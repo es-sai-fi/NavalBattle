@@ -3,13 +3,15 @@ package org.example.navalbattle.model;
 import org.example.navalbattle.controller.GameController;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class NavalBattle {
     private Cell[][] playerBoardAux = new Cell[10][10];
     private Cell[][] enemyBoardAux = new Cell[10][10];
-    private Ship[] playerShips = new Ship[9];
-    private Ship[] enemyShips = new Ship[9];
+    private List<Ship> playerShips = new ArrayList<>();
+    private Ship[] enemyShips = new Ship[10];
     private Random random = new Random();
     private GameController gameController;
 
@@ -202,7 +204,7 @@ public class NavalBattle {
         }
     }
 
-    public void setPlayerShips(Ship[] playerShips) {
+    public void setPlayerShips(List<Ship> playerShips) {
         this.playerShips = playerShips;
     }
 
@@ -226,7 +228,7 @@ public class NavalBattle {
         return enemyBoardAux;
     }
 
-    public Ship[] getPlayerShips() {
+    public List<Ship> getPlayerShips() {
         return playerShips;
     }
 }

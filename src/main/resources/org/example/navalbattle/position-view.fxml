@@ -1,51 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="716.0" prefWidth="626.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="821.0" prefWidth="813.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.navalbattle.controller.PositionController">
    <children>
-      <GridPane gridLinesVisible="true" layoutX="132.0" layoutY="419.0" prefHeight="297.0" prefWidth="363.0">
+      <ImageView fitHeight="818.0" fitWidth="813.0">
+         <image>
+            <Image url="@images/gameViewWallpaper.gif" />
+         </image>
+      </ImageView>
+      <Button fx:id="startButton" layoutX="358.0" layoutY="25.0" mnemonicParsing="false" onAction="#onStartButtonClick" text="comenzar" />
+      <Button layoutX="578.0" layoutY="387.0" mnemonicParsing="false" onAction="#onHelpButtonClick" text="?" />
+      <Button fx:id="clearButton" layoutX="483.0" layoutY="25.0" mnemonicParsing="false" onAction="#onClearButtonClick" text="limpiar" />
+      <Button layoutX="94.0" layoutY="25.0" mnemonicParsing="false" onAction="#onRotateButtonClick" text="rotar" />
+      <ImageView fitHeight="500.0" fitWidth="500.0" layoutX="63.0" layoutY="61.0">
+         <image>
+            <Image url="@images/positionBoardWallpaper.jpg" />
+         </image>
+      </ImageView>
+      <GridPane fx:id="playerBoard" gridLinesVisible="true" layoutX="63.0" layoutY="61.0" prefHeight="297.0" prefWidth="363.0">
          <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
          </columnConstraints>
          <rowConstraints>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
          </rowConstraints>
-         <children>
-            <ImageView fitHeight="325.0" fitWidth="363.0" GridPane.rowIndex="5">
-               <image>
-                  <Image url="@images/positionBoardWallpaper.jpg" />
-               </image>
-            </ImageView>
-         </children>
       </GridPane>
-      <Button layoutX="72.0" layoutY="211.0" mnemonicParsing="false" text="comenzar" />
-      <Button layoutX="195.0" layoutY="211.0" mnemonicParsing="false" text="vertical" />
-      <Button layoutX="332.0" layoutY="211.0" mnemonicParsing="false" text="horizontal" />
-      <Button layoutX="454.0" layoutY="211.0" mnemonicParsing="false" text="?" />
+      <TextField fx:id="addRowTextField" layoutX="129.0" layoutY="567.0" onAction="#onAddLetterKeyPressed" />
+      <TextField fx:id="addColumnTextField" layoutX="345.0" layoutY="567.0" />
+      <HBox fx:id="hBox" layoutX="203.0" layoutY="597.0" prefHeight="210.0" prefWidth="379.0" spacing="10.0" />
+      <Button layoutX="552.0" layoutY="567.0" mnemonicParsing="false" onAction="#onAddShipButtonClick" text="Button" />
    </children>
 </AnchorPane>
