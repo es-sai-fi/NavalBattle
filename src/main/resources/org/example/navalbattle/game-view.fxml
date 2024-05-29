@@ -10,14 +10,14 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="732.0" prefWidth="1598.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="732.0" prefWidth="1598.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.navalbattle.controller.GameController">
    <children>
       <ImageView fitHeight="810.0" fitWidth="1598.0">
          <image>
             <Image url="@images/gameViewWallpaper.gif" />
          </image>
       </ImageView>
-      <ImageView fitHeight="44.0" fitWidth="158.0" layoutX="807.0" layoutY="107.0">
+      <ImageView fx:id="missImage" fitHeight="44.0" fitWidth="158.0" layoutX="807.0" layoutY="107.0">
          <image>
             <Image url="@images/missGameViewText.png" />
          </image>
@@ -48,7 +48,7 @@
             <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
          </rowConstraints>
       </GridPane>
-      <GridPane layoutX="1037.0" layoutY="105.0" prefHeight="297.0" prefWidth="363.0">
+      <GridPane fx:id="enemyBoard" layoutX="1037.0" layoutY="105.0" prefHeight="297.0" prefWidth="363.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
@@ -74,7 +74,7 @@
             <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
          </rowConstraints>
       </GridPane>
-      <ImageView fitHeight="44.0" fitWidth="120.0" layoutX="826.0" layoutY="310.0">
+      <ImageView fx:id="hitImage" fitHeight="44.0" fitWidth="120.0" layoutX="826.0" layoutY="107.0">
          <image>
             <Image url="@images/touchGameViewText.png" />
          </image>
@@ -377,18 +377,13 @@
             </Label>
          </children>
       </GridPane>
-      <ImageView fitHeight="44.0" fitWidth="126.0" layoutX="823.0" layoutY="499.0">
-         <image>
-            <Image url="@images/sinkedGameViewText.png" />
-         </image>
-      </ImageView>
       <ImageView fitHeight="50.0" fitWidth="158.0" layoutX="1416.0" layoutY="651.0">
          <image>
             <Image url="@images/gameViewSeeRivalBoardButton.png" />
          </image>
       </ImageView>
       <Button layoutX="1435.0" layoutY="664.0" mnemonicParsing="false" opacity="0.0" prefHeight="25.0" prefWidth="120.0" />
-      <ImageView fitHeight="500.0" fitWidth="500.0" layoutX="126.0" layoutY="107.0">
+      <ImageView fx:id="playerBoard" fitHeight="500.0" fitWidth="500.0" layoutX="126.0" layoutY="107.0">
          <image>
             <Image url="@images/positionBoardWallpaper.PNG" />
          </image>

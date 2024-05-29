@@ -23,12 +23,12 @@ public class PositionStage extends Stage {
         }
         positionController = loader.getController();
         setTitle("Batalla Naval");
-        Scene scene = new Scene(root, 1000, 1000);
+        Scene scene = new Scene(root, 816, 1020);
         getIcons().add(
                 new Image(
                         String.valueOf(getClass().getResource("/org/example/navalbattle/images/favicon.png"))));
         setScene(scene);
-        setResizable(true);
+        setResizable(false);
         show();
     }
 

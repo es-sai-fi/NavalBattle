@@ -41,21 +41,26 @@ public class NavalBattle {
         Cell enemyCell = enemyBoardAux[row][column];
         try{
             if(enemyCell.getHasBeenAttacked()){
-                throw new AttackException("La celda ya ha sido atacada.");
+                gameController.getHitImage().setVisible(false);
+                gameController.getMissImage().setVisible(false);
+                throw new NavalBattleException("La celda ya ha sido atacada.");
             }
             if(!enemyCell.isOccupied()){
+                gameController.getHitImage().setVisible(false);
                 enemyCell.getImageView().toFront();
                 enemyCell.getImageView().setVisible(true);
                 enemyCell.setImage("/org/example/navalbattle/images/fail.png");
                 enemyCell.setHasBeenAttacked(true);
+                gameController.getMissImage().setVisible(true);
             }
             else{
+                gameController.getMissImage().setVisible(false);
                 enemyCell.getShip().receiveDamage();
                 enemyCell.getImageView().toFront();
                 enemyCell.getImageView().setVisible(true);
                 enemyCell.setImage("/org/example/navalbattle/images/hit.png");
                 enemyCell.setHasBeenAttacked(true);
-                gameController.updateStatusLabel("¡Ataque exitoso!", 1);
+                gameController.getHitImage().setVisible(true);
                 for(Ship enemyShip: enemyShips){
                     if (enemyShip.isAlive()) {
                         win = false;
@@ -98,10 +103,10 @@ public class NavalBattle {
                     }
                 }
             }
-        } catch (AttackException e) {
-            gameController.updateStatusLabel(e.getMessage(), 2);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        } catch (NavalBattleException e1) {
+            System.out.println("An error has occurred: " + e1.getMessage());
+        } catch (IOException e2) {
+            System.out.println("An error has occurred: " + e2.getMessage());
         }
     }
 
@@ -218,17 +223,5 @@ public class NavalBattle {
 
     public void setEnemyShips(Ship[] enemyShips) {
         this.enemyShips = enemyShips;
-    }
-
-    public Cell[][] getPlayerBoardAux() {
-        return playerBoardAux;
-    }
-
-    public Cell[][] getEnemyBoardAux() {
-        return enemyBoardAux;
-    }
-
-    public List<Ship> getPlayerShips() {
-        return playerShips;
     }
 }

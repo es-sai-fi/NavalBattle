@@ -69,25 +69,19 @@ public class ShipDrawing extends Pane {
         }
     }
 
-    public void changeOrientation() {
-        rotate();
-    }
-
     public void rotate() {
-        int temp = width;
-        width = height;
-        height = temp;
-        rectangle.setWidth(width);
-        rectangle.setHeight(height);
-        isVertical = !isVertical;
+        if(!hasBeenPlaced){
+            int temp = width;
+            width = height;
+            height = temp;
+            rectangle.setWidth(width);
+            rectangle.setHeight(height);
+            isVertical = !isVertical;
+        }
     }
 
     public boolean hasBeenPlaced() {
         return hasBeenPlaced;
-    }
-
-    public void setIsVertical(boolean isVertical) {
-        this.isVertical = isVertical;
     }
 
     public void setHasBeenPlaced(boolean hasBeenPlaced) {

@@ -3,12 +3,14 @@ package org.example.navalbattle.controller;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import org.example.navalbattle.model.Cell;
 import org.example.navalbattle.model.NavalBattle;
 import org.example.navalbattle.model.Ship;
+import org.example.navalbattle.view.GameStage;
 import org.example.navalbattle.view.LoseStage;
 import org.example.navalbattle.view.WinStage;
 
@@ -18,11 +20,9 @@ import java.util.ResourceBundle;
 
 public class GameController implements Initializable {
     @FXML
-    Label missLabel;
+    ImageView missImage;
     @FXML
-    Label hitLabel;
-    @FXML
-    Label statusLabel;
+    ImageView hitImage;
     @FXML
     GridPane playerBoard;
     @FXML
@@ -31,12 +31,11 @@ public class GameController implements Initializable {
     private NavalBattle navalBattle;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        stage = (Stage) missLabel.getScene().getWindow();
+        missImage.setVisible(false);
+        hitImage.setVisible(false);
         createEnemyBoard();
         createEnemyShips();
         navalBattle.arrangeEnemyBoard();
-        missLabel.setVisible(false);
-        hitLabel.setVisible(false);
     }
 
     public void createEnemyBoard() {
@@ -49,16 +48,6 @@ public class GameController implements Initializable {
             }
         }
         navalBattle.setEnemyBoardAux(enemyBoardAux);
-    }
-
-    public void updateStatusLabel(String message, int type){
-        switch(type){
-            case 1:
-                statusLabel.setStyle("-fx-font-size: 15px; -fx-text-fill: green;");
-            case 2:
-                statusLabel.setStyle("-fx-font-size: 15px; -fx-text-fill: red;");
-        }
-        statusLabel.setText(message);
     }
 
     public void createEnemyShips() {
@@ -74,18 +63,28 @@ public class GameController implements Initializable {
     public void win() throws IOException {
         WinStage winStage = new WinStage();
         winStage.show();
-        stage.close();
+        GameStage.deleteInstance();
     }
 
     public void lose() throws IOException {
         LoseStage loseStage = new LoseStage();
         loseStage.show();
-        stage.close();
+        GameStage.deleteInstance();
     }
 
+    public ImageView getHitImage() {
+        return hitImage;
+    }
+
+    public ImageView getMissImage() {
+        return missImage;
+    }
 
     public void setNavalBattle(NavalBattle navalBattle) {
         this.navalBattle = navalBattle;
     }
 
+    public void setPlayerBoard(GridPane playerBoard) {
+        this.playerBoard = playerBoard;
+    }
 }
