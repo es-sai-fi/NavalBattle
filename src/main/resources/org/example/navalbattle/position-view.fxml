@@ -7,26 +7,26 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="716.0" prefWidth="626.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="821.0" prefWidth="813.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.navalbattle.controller.PositionController">
    <children>
-      <ImageView fitHeight="798.0" fitWidth="626.0">
+      <ImageView fitHeight="818.0" fitWidth="813.0">
          <image>
             <Image url="@images/gameViewWallpaper.gif" />
          </image>
       </ImageView>
-      <Button layoutX="357.0" layoutY="72.0" mnemonicParsing="false" text="comenzar" />
-      <Button layoutX="224.0" layoutY="72.0" mnemonicParsing="false" text="vertical" />
+      <Button fx:id="startButton" layoutX="358.0" layoutY="25.0" mnemonicParsing="false" onAction="#onStartButtonClick" text="comenzar" />
       <Button layoutX="578.0" layoutY="387.0" mnemonicParsing="false" onAction="#onHelpButtonClick" text="?" />
-      <Button layoutX="481.0" layoutY="72.0" mnemonicParsing="false" text="limpiar" />
-      <Button layoutX="87.0" layoutY="72.0" mnemonicParsing="false" text="horizontal" />
-      <ImageView fitHeight="500.0" fitWidth="500.0" layoutX="50.0" layoutY="121.0">
+      <Button fx:id="clearButton" layoutX="483.0" layoutY="25.0" mnemonicParsing="false" onAction="#onClearButtonClick" text="limpiar" />
+      <Button layoutX="94.0" layoutY="25.0" mnemonicParsing="false" onAction="#onRotateButtonClick" text="rotar" />
+      <ImageView fitHeight="500.0" fitWidth="500.0" layoutX="63.0" layoutY="61.0">
          <image>
             <Image url="@images/positionBoardWallpaper.jpg" />
          </image>
       </ImageView>
-      <GridPane gridLinesVisible="true" layoutX="50.0" layoutY="121.0" prefHeight="297.0" prefWidth="363.0">
+      <GridPane fx:id="playerBoard" gridLinesVisible="true" layoutX="63.0" layoutY="61.0" prefHeight="297.0" prefWidth="363.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
@@ -52,7 +52,9 @@
             <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
          </rowConstraints>
       </GridPane>
-      <TextField layoutX="129.0" layoutY="638.0" />
-      <TextField layoutX="351.0" layoutY="638.0" />
+      <TextField fx:id="addRowTextField" layoutX="129.0" layoutY="567.0" onAction="#onAddLetterKeyPressed" />
+      <TextField fx:id="addColumnTextField" layoutX="345.0" layoutY="567.0" />
+      <HBox fx:id="hBox" layoutX="203.0" layoutY="597.0" prefHeight="210.0" prefWidth="379.0" spacing="10.0" />
+      <Button layoutX="552.0" layoutY="567.0" mnemonicParsing="false" onAction="#onAddShipButtonClick" text="Button" />
    </children>
 </AnchorPane>

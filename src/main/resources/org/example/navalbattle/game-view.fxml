@@ -41,7 +41,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <ImageView fitHeight="324.0" fitWidth="362.0" GridPane.rowIndex="5">
+            <ImageView fx:id="playerBoard" fitHeight="324.0" fitWidth="362.0" GridPane.rowIndex="5">
                <image>
                   <Image url="@images/positionBoardWallpaper.jpg" />
                </image>
@@ -74,7 +74,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <ImageView fitHeight="327.0" fitWidth="362.0" GridPane.rowIndex="5">
+            <ImageView fx:id="enemyBoard" fitHeight="327.0" fitWidth="362.0" GridPane.rowIndex="5">
                <image>
                   <Image url="@images/principalBoardWallpaper.jpg" />
                </image>
