@@ -1,111 +1,397 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="377.0" prefWidth="997.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="732.0" prefWidth="1598.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.navalbattle.controller.GameController">
    <children>
-      <ImageView fitHeight="445.0" fitWidth="997.0">
+      <ImageView fitHeight="810.0" fitWidth="1598.0">
          <image>
             <Image url="@images/gameViewWallpaper.gif" />
          </image>
       </ImageView>
-      <GridPane gridLinesVisible="true" layoutX="32.0" layoutY="79.0" prefHeight="297.0" prefWidth="363.0">
-         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-         </rowConstraints>
-         <children>
-            <ImageView fitHeight="324.0" fitWidth="362.0" GridPane.rowIndex="5">
-               <image>
-                  <Image url="@images/positionBoardWallpaper.jpg" />
-               </image>
-            </ImageView>
-         </children>
-      </GridPane>
-      <GridPane gridLinesVisible="true" layoutX="596.0" layoutY="79.0" prefHeight="297.0" prefWidth="362.0">
-         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-         </rowConstraints>
-         <children>
-            <ImageView fitHeight="327.0" fitWidth="362.0" GridPane.rowIndex="5">
-               <image>
-                  <Image url="@images/principalBoardWallpaper.jpg" />
-               </image>
-            </ImageView>
-         </children>
-      </GridPane>
-      <ImageView fitHeight="31.0" fitWidth="325.0" layoutX="51.0" layoutY="34.0">
-         <image>
-            <Image url="@images/gameViewPositionText.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="33.0" fitWidth="259.0" layoutX="648.0" layoutY="33.0">
-         <image>
-            <Image url="@images/gameViewPrincipalText.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="33.0" fitWidth="114.0" layoutX="478.0" layoutY="113.0">
+      <ImageView fx:id="missImage" fitHeight="44.0" fitWidth="158.0" layoutX="807.0" layoutY="107.0">
          <image>
             <Image url="@images/missGameViewText.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="31.0" fitWidth="99.0" layoutX="486.0" layoutY="207.0">
+      <GridPane fx:id="playerBoard" layoutX="125.0" layoutY="106.0" prefHeight="297.0" prefWidth="363.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+      </GridPane>
+      <GridPane fx:id="enemyBoard" layoutX="1037.0" layoutY="105.0" prefHeight="297.0" prefWidth="363.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+      </GridPane>
+      <ImageView fx:id="hitImage" fitHeight="44.0" fitWidth="120.0" layoutX="826.0" layoutY="310.0">
          <image>
             <Image url="@images/touchGameViewText.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="33.0" fitWidth="99.0" layoutX="486.0" layoutY="303.0">
+      <GridPane alignment="CENTER" gridLinesVisible="true" layoutX="76.0" layoutY="57.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <ImageView fitHeight="550.0" fitWidth="50.0" GridPane.rowIndex="5">
+               <image>
+                  <Image url="@images/numbersAndLettersBackground1.PNG" />
+               </image>
+            </ImageView>
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="A" textFill="#837e7e" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Matura MT Script Capitals" size="24.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="B" textFill="#837e7e" GridPane.rowIndex="2">
+               <font>
+                  <Font name="Matura MT Script Capitals" size="24.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="C" textFill="#837e7e" GridPane.rowIndex="3">
+               <font>
+                  <Font name="Matura MT Script Capitals" size="24.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="D" textFill="#837e7e" GridPane.rowIndex="4">
+               <font>
+                  <Font name="Matura MT Script Capitals" size="24.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="E" textFill="#837e7e" GridPane.rowIndex="5">
+               <font>
+                  <Font name="Matura MT Script Capitals" size="24.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="F" textFill="#837e7e" GridPane.rowIndex="6">
+               <font>
+                  <Font name="Matura MT Script Capitals" size="24.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="G" textFill="#837e7e" GridPane.rowIndex="7">
+               <font>
+                  <Font name="Matura MT Script Capitals" size="24.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="H" textFill="#837e7e" GridPane.rowIndex="8">
+               <font>
+                  <Font name="Matura MT Script Capitals" size="24.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="I" textFill="#837e7e" GridPane.rowIndex="9">
+               <font>
+                  <Font name="Matura MT Script Capitals" size="24.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="J" textFill="#837e7e" GridPane.rowIndex="10">
+               <font>
+                  <Font name="Matura MT Script Capitals" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </GridPane>
+      <ImageView fitHeight="50.0" fitWidth="500.0" layoutX="126.0" layoutY="57.0">
          <image>
-            <Image url="@images/sinkedGameViewText.png" />
+            <Image url="@images/numbersAndLettersBackground2.PNG" />
          </image>
       </ImageView>
-      <Button layoutX="473.0" layoutY="21.0" mnemonicParsing="false" text="?" />
+      <GridPane gridLinesVisible="true" layoutX="126.0" layoutY="57.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="2" textFill="#837e7e" GridPane.columnIndex="1">
+               <font>
+                  <Font name="Matura MT Script Capitals" size="24.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="3" textFill="#837e7e" GridPane.columnIndex="2">
+               <font>
+                  <Font name="Matura MT Script Capitals" size="24.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="4" textFill="#837e7e" GridPane.columnIndex="3">
+               <font>
+                  <Font name="Matura MT Script Capitals" size="24.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="5" textFill="#837e7e" GridPane.columnIndex="4">
+               <font>
+                  <Font name="Matura MT Script Capitals" size="24.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="6" textFill="#837e7e" GridPane.columnIndex="5">
+               <font>
+                  <Font name="Matura MT Script Capitals" size="24.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="7" textFill="#837e7e" GridPane.columnIndex="6">
+               <font>
+                  <Font name="Matura MT Script Capitals" size="24.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="8" textFill="#837e7e" GridPane.columnIndex="7">
+               <font>
+                  <Font name="Matura MT Script Capitals" size="24.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="9" textFill="#837e7e" GridPane.columnIndex="8">
+               <font>
+                  <Font name="Matura MT Script Capitals" size="24.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="1" textFill="#837e7e">
+               <font>
+                  <Font name="Matura MT Script Capitals" size="24.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="10" textFill="#837e7e" GridPane.columnIndex="9">
+               <font>
+                  <Font name="Matura MT Script Capitals" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </GridPane>
+      <GridPane alignment="CENTER" gridLinesVisible="true" layoutX="987.0" layoutY="57.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <ImageView fitHeight="550.0" fitWidth="50.0" GridPane.rowIndex="5">
+               <image>
+                  <Image url="@images/numbersAndLettersBackground1.PNG" />
+               </image>
+            </ImageView>
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="A" textFill="#837e7e" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Matura MT Script Capitals" size="24.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="B" textFill="#837e7e" GridPane.rowIndex="2">
+               <font>
+                  <Font name="Matura MT Script Capitals" size="24.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="C" textFill="#837e7e" GridPane.rowIndex="3">
+               <font>
+                  <Font name="Matura MT Script Capitals" size="24.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="D" textFill="#837e7e" GridPane.rowIndex="4">
+               <font>
+                  <Font name="Matura MT Script Capitals" size="24.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="E" textFill="#837e7e" GridPane.rowIndex="5">
+               <font>
+                  <Font name="Matura MT Script Capitals" size="24.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="F" textFill="#837e7e" GridPane.rowIndex="6">
+               <font>
+                  <Font name="Matura MT Script Capitals" size="24.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="G" textFill="#837e7e" GridPane.rowIndex="7">
+               <font>
+                  <Font name="Matura MT Script Capitals" size="24.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="H" textFill="#837e7e" GridPane.rowIndex="8">
+               <font>
+                  <Font name="Matura MT Script Capitals" size="24.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="I" textFill="#837e7e" GridPane.rowIndex="9">
+               <font>
+                  <Font name="Matura MT Script Capitals" size="24.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="J" textFill="#837e7e" GridPane.rowIndex="10">
+               <font>
+                  <Font name="Matura MT Script Capitals" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </GridPane>
+      <ImageView fitHeight="50.0" fitWidth="500.0" layoutX="1037.0" layoutY="57.0">
+         <image>
+            <Image url="@images/numbersAndLettersBackground2.PNG" />
+         </image>
+      </ImageView>
+      <GridPane gridLinesVisible="true" layoutX="1037.0" layoutY="57.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="2" textFill="#837e7e" GridPane.columnIndex="1">
+               <font>
+                  <Font name="Matura MT Script Capitals" size="24.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="3" textFill="#837e7e" GridPane.columnIndex="2">
+               <font>
+                  <Font name="Matura MT Script Capitals" size="24.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="4" textFill="#837e7e" GridPane.columnIndex="3">
+               <font>
+                  <Font name="Matura MT Script Capitals" size="24.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="5" textFill="#837e7e" GridPane.columnIndex="4">
+               <font>
+                  <Font name="Matura MT Script Capitals" size="24.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="6" textFill="#837e7e" GridPane.columnIndex="5">
+               <font>
+                  <Font name="Matura MT Script Capitals" size="24.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="7" textFill="#837e7e" GridPane.columnIndex="6">
+               <font>
+                  <Font name="Matura MT Script Capitals" size="24.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="8" textFill="#837e7e" GridPane.columnIndex="7">
+               <font>
+                  <Font name="Matura MT Script Capitals" size="24.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="9" textFill="#837e7e" GridPane.columnIndex="8">
+               <font>
+                  <Font name="Matura MT Script Capitals" size="24.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="1" textFill="#837e7e">
+               <font>
+                  <Font name="Matura MT Script Capitals" size="24.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="10" textFill="#837e7e" GridPane.columnIndex="9">
+               <font>
+                  <Font name="Matura MT Script Capitals" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </GridPane>
+      <ImageView fitHeight="50.0" fitWidth="158.0" layoutX="1416.0" layoutY="651.0">
+         <image>
+            <Image url="@images/gameViewSeeRivalBoardButton.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="1435.0" layoutY="664.0" mnemonicParsing="false" onAction="#onShowEnemyBoardButtonClick" opacity="0.0" prefHeight="25.0" prefWidth="120.0" />
+      <ImageView fx:id="playerBoard" fitHeight="500.0" fitWidth="500.0" layoutX="126.0" layoutY="107.0">
+         <image>
+            <Image url="@images/positionBoardWallpaper.PNG" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="500.0" fitWidth="500.0" layoutX="1037.0" layoutY="106.0">
+         <image>
+            <Image url="@images/principalBoardWallpaper.PNG" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

@@ -1,21 +1,23 @@
 package org.example.navalbattle.model;
 
+import javafx.scene.layout.GridPane;
 import org.example.navalbattle.controller.GameController;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class NavalBattle {
     private Cell[][] playerBoardAux = new Cell[10][10];
     private Cell[][] enemyBoardAux = new Cell[10][10];
-    private Ship[] playerShips = new Ship[9];
-    private Ship[] enemyShips = new Ship[9];
+    private List<Ship> playerShips = new ArrayList<>();
+    private Ship[] enemyShips = new Ship[10];
+    GridPane playerBoard;
+    GridPane enemyBoard;
     private Random random = new Random();
     private GameController gameController;
-
-    public NavalBattle(GameController gameController){
-        this.gameController = gameController;
-    }
+    private int arrangeInt;
 
     public void updateOccupation() {
         for (int row = 0; row < 10; row++) {
@@ -39,21 +41,26 @@ public class NavalBattle {
         Cell enemyCell = enemyBoardAux[row][column];
         try{
             if(enemyCell.getHasBeenAttacked()){
-                throw new AttackException("La celda ya ha sido atacada.");
+                gameController.getHitImage().setVisible(false);
+                gameController.getMissImage().setVisible(false);
+                throw new NavalBattleException("La celda ya ha sido atacada.");
             }
             if(!enemyCell.isOccupied()){
+                gameController.getHitImage().setVisible(false);
                 enemyCell.getImageView().toFront();
                 enemyCell.getImageView().setVisible(true);
                 enemyCell.setImage("/org/example/navalbattle/images/fail.png");
                 enemyCell.setHasBeenAttacked(true);
+                gameController.getMissImage().setVisible(true);
             }
             else{
+                gameController.getMissImage().setVisible(false);
                 enemyCell.getShip().receiveDamage();
                 enemyCell.getImageView().toFront();
                 enemyCell.getImageView().setVisible(true);
                 enemyCell.setImage("/org/example/navalbattle/images/hit.png");
                 enemyCell.setHasBeenAttacked(true);
-                gameController.updateStatusLabel("¡Ataque exitoso!", 1);
+                gameController.getHitImage().setVisible(true);
                 for(Ship enemyShip: enemyShips){
                     if (enemyShip.isAlive()) {
                         win = false;
@@ -96,16 +103,16 @@ public class NavalBattle {
                     }
                 }
             }
-        } catch (AttackException e) {
-            gameController.updateStatusLabel(e.getMessage(), 2);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        } catch (NavalBattleException e1) {
+            System.out.println("An error has occurred: " + e1.getMessage());
+        } catch (IOException e2) {
+            System.out.println("An error has occurred: " + e2.getMessage());
         }
     }
 
     public void arrangeEnemyBoard() {
-        int randomInt = random.nextInt(3);
-        switch (randomInt) {
+        arrangeInt = random.nextInt(3);
+        switch (arrangeInt) {
             case 0:
                 //Aircraft Carrier
                 enemyBoardAux[7][6].setShip(enemyShips[0]);
@@ -202,7 +209,11 @@ public class NavalBattle {
         }
     }
 
-    public void setPlayerShips(Ship[] playerShips) {
+    public int getArrangeInt() {
+        return arrangeInt;
+    }
+
+    public void setPlayerShips(List<Ship> playerShips) {
         this.playerShips = playerShips;
     }
 
@@ -218,15 +229,15 @@ public class NavalBattle {
         this.enemyShips = enemyShips;
     }
 
-    public Cell[][] getPlayerBoardAux() {
-        return playerBoardAux;
+    public void setPlayerBoard(GridPane playerBoard) {
+        this.playerBoard = playerBoard;
     }
 
-    public Cell[][] getEnemyBoardAux() {
-        return enemyBoardAux;
+    public void setEnemyBoard(GridPane enemyBoard) {
+        this.enemyBoard = enemyBoard;
     }
 
-    public Ship[] getPlayerShips() {
-        return playerShips;
+    public void setGameController(GameController gameController) {
+        this.gameController = gameController;
     }
 }

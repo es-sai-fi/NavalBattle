@@ -20,11 +20,11 @@ public class WelcomeStage extends Stage {
             // Re-throwing the caught IOException
             throw new IOException("Error while loading FXML file", e);
         }
-        setTitle("Juego de Craps");
+        setTitle("Batalla Naval");
         Scene scene = new Scene(root);
         getIcons().add(
                 new Image(
-                String.valueOf(getClass().getResource("/org/example/navalbattle/images/favicon.png"))));
+                        String.valueOf(getClass().getResource("/org/example/navalbattle/images/favicon.png"))));
         setScene(scene);
         setResizable(false);
         show();

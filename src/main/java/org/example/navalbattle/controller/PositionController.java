@@ -1,23 +1,23 @@
 package org.example.navalbattle.controller;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import org.example.navalbattle.model.Cell;
-import org.example.navalbattle.model.InputException;
-import org.example.navalbattle.model.Ship;
-import org.example.navalbattle.model.ShipDrawing;
+import javafx.scene.layout.HBox;
+import org.example.navalbattle.model.*;
+import org.example.navalbattle.view.GameStage;
 import org.example.navalbattle.view.HelpStage;
-import org.example.navalbattle.view.WinStage;
+import org.example.navalbattle.view.PositionStage;
 
-import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -28,29 +28,30 @@ public class PositionController implements Initializable {
     @FXML
     GridPane playerBoard;
     @FXML
-    AnchorPane anchorPane;
+    HBox shipsBox;
     @FXML
     TextField addRowTextField;
     @FXML
     TextField addColumnTextField;
-    ShipDrawing[] shipDrawings = new ShipDrawing[10];
-    int boatIndexToAdd;
     boolean boatClicked;
-    Cell[][] playerBoardAux = new Cell[10][10];
-    List<Ship> playerShips = new ArrayList<>();
+    int indexBoatToAdd;
+    private Cell[][] playerBoardAux = new Cell[10][10];
+    private ShipDrawing[] shipDrawings = new ShipDrawing[10];
+    private List<Ship> playerShips = new ArrayList<>();
+    NavalBattle navalBattle = new NavalBattle();
     @FXML
     void onAddShipButtonClick(ActionEvent actionEvent){
         try{
             char rowInput = addRowTextField.getText().charAt(0);
             char columnInput = addColumnTextField.getText().charAt(0);
             if (addRowTextField.getText().isEmpty() || addColumnTextField.getText().isEmpty()) {
-                throw new InputException("No input has been done to either text field.");
+                throw new NavalBattleException("No input has been done to either text field.");
             }
             if(!isDigit(rowInput) || !isDigit(columnInput)){
-                throw new InputException("Input is not a number");
+                throw new NavalBattleException("Input is not a number");
             }
             if(!boatClicked){
-                throw new InputException("A boat has not been selected");
+                throw new NavalBattleException("A boat has not been selected");
             }
             int row = getNumericValue(rowInput);
             int column = getNumericValue(columnInput);
@@ -58,17 +59,21 @@ public class PositionController implements Initializable {
                 throw new IndexOutOfBoundsException("Row or column is out of bounds.");
             }
             if (playerBoardAux[row][column].isOccupied()){
-                throw new InputException("Cell is already occupied.");
+                throw new NavalBattleException("Cell is already occupied.");
             }
-            ShipDrawing shipDrawing = shipDrawings[boatIndexToAdd];
+            ShipDrawing shipDrawing = shipDrawings[indexBoatToAdd];
             int shipDrawingType = shipDrawing.getType();
             if(shipDrawingType == 1){
+                Cell cell = playerBoardAux[row][column];
                 Ship ship = new Ship(1);
                 playerShips.add(ship);
                 playerBoard.add(shipDrawing, column, row);
                 shipDrawing.setHasBeenPlaced(true);
-                playerBoardAux[row][column].setShip(ship);
+                cell.setShip(ship);
+                cell.setOccupied(true);
                 boatClicked = false;
+                addRowTextField.setText("");
+                addColumnTextField.setText("");
             }
             else{
                 Ship ship = new Ship(shipDrawingType);
@@ -78,7 +83,9 @@ public class PositionController implements Initializable {
                 if (shipDrawing.isVertical()){
                     if(finalRow <= 9) {
                         for (int i = row; i < row + type; i++) {
-                            playerBoardAux[row][column].setShip(ship);
+                            Cell cell = playerBoardAux[i][column];
+                            cell.setShip(ship);
+                            cell.setOccupied(true);
                         }
                         boatClicked = false;
                     }
@@ -89,7 +96,9 @@ public class PositionController implements Initializable {
                 else{
                     if(finalColumn <= 9) {
                         for (int j = column; j < column + type; j++) {
-                            playerBoardAux[row][column].setShip(ship);
+                            Cell cell = playerBoardAux[row][j];
+                            cell.setShip(ship);
+                            cell.setOccupied(true);
                         }
                         boatClicked = false;
                     }
@@ -100,13 +109,17 @@ public class PositionController implements Initializable {
                 playerBoard.add(shipDrawing, column, row);
                 playerShips.add(ship);
                 shipDrawing.setHasBeenPlaced(true);
+                addRowTextField.setText("");
+                addColumnTextField.setText("");
             }
 
 
-        } catch (InputException e1){
-            System.out.println("Se ha generado un error: " + e1.getMessage());
+        } catch (NavalBattleException e1){
+            System.out.println("An error has occurred: " + e1.getMessage());
+            addRowTextField.setText("");
+            addColumnTextField.setText("");
         } catch (IndexOutOfBoundsException e2){
-            System.out.println("Se ha generado un error: " + e2.getMessage());
+            System.out.println("An error has occurred: " + e2.getMessage());
             addRowTextField.setText("");
             addColumnTextField.setText("");
         }
@@ -122,16 +135,42 @@ public class PositionController implements Initializable {
     void onAddLetterKeyPressed(KeyEvent keyEvent){
         TextField textField = (TextField) keyEvent.getSource();
         textField.setEditable(true);
-        if(textField.getText().length() > 1){
-            textField.setEditable(false);
-            textField.setText("");
+        try{
+            if(textField.getText().length() >= 1){
+                textField.setEditable(false);
+                textField.setText("");
+                throw new NavalBattleException("More than 1 digit has been input");
+            }
+        } catch (NavalBattleException e){
+            System.out.println("An error has occurred: " + e.getMessage());
         }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         createPlayerBoard();
-        creatShipDrawings();
+        createShipDrawings();
+    }
+
+    public void createShipDrawings(){
+        shipDrawings[0] = new ShipDrawing(50, 200, 4);
+        shipDrawings[1] = new ShipDrawing(50, 150, 3);
+        shipDrawings[2] = new ShipDrawing(50, 150, 3);
+        shipDrawings[3] = new ShipDrawing(50, 100, 2);
+        shipDrawings[4] = new ShipDrawing(50, 100, 2);
+        shipDrawings[5] = new ShipDrawing(50, 100, 2);
+        shipDrawings[6] = new ShipDrawing(50, 50, 1);
+        shipDrawings[7] = new ShipDrawing(50, 50, 1);
+        shipDrawings[8] = new ShipDrawing(50, 50, 1);
+        shipDrawings[9] = new ShipDrawing(50, 50, 1);
+        for(int shipDrawingIndex = 0; shipDrawingIndex < 10; shipDrawingIndex++){
+            int finalShipDrawingIndex = shipDrawingIndex;
+            shipDrawings[shipDrawingIndex].setOnMouseClicked(event -> {
+                indexBoatToAdd = finalShipDrawingIndex;
+                boatClicked = true;
+            });
+            shipsBox.getChildren().add(shipDrawings[finalShipDrawingIndex]);
+        }
     }
 
     public void createPlayerBoard(){
@@ -144,14 +183,68 @@ public class PositionController implements Initializable {
         }
     }
 
-    public void creatShipDrawings(){
-
+    @FXML
+    void onRotateButtonClick(ActionEvent actionEvent) {
+        ShipDrawing shipDrawing = shipDrawings[indexBoatToAdd];
+        try{
+            if (boatClicked) {
+                shipDrawing.rotate();
+            }
+            else{
+                throw new NavalBattleException("A boat has not been clicked.");
+            }
+        } catch(NavalBattleException e){
+            System.out.println("An error has occurred: " + e.getMessage());
+        }
     }
-    public Cell[][] getPlayerBoardAux(){
-        return playerBoardAux;
-   }
 
-    public List<Ship> getPlayerShips() {
-        return playerShips;
+    @FXML
+    void onClearButtonClick(ActionEvent actionEvent){
+        shipsBox.getChildren().clear();
+        playerBoard.getChildren().clear();
+        playerBoardAux = new Cell[10][10];
+        playerShips.clear();
+        Arrays.fill(shipDrawings, null);
+        boatClicked = false;
+        addColumnTextField.setText("");
+        addRowTextField.setText("");
+        createPlayerBoard();
+        createShipDrawings();
+    }
+
+    @FXML
+    void onStartButtonClick(ActionEvent actionEvent) throws IOException {
+        boolean canContinue = true;
+        for (ShipDrawing shipDrawing : shipDrawings) {
+            if (!shipDrawing.hasBeenPlaced()) {
+                canContinue = false;
+                break;
+            }
+        }
+        try {
+            if (canContinue) {
+                GameController gameController = GameStage.getInstance().getGameController();
+                navalBattle.setGameController(gameController);
+                navalBattle.setPlayerBoardAux(playerBoardAux);
+                navalBattle.setPlayerShips(playerShips);
+
+                // Clear current playerBoard in GameController to avoid duplicates
+                gameController.getPlayerBoard().getChildren().clear();
+
+                // Transfer nodes from playerBoard in PositionStage to playerBoard in GameController
+                for (Node node : playerBoard.getChildren()) {
+                    Integer colIndex = GridPane.getColumnIndex(node);
+                    Integer rowIndex = GridPane.getRowIndex(node);
+                    gameController.getPlayerBoard().add(node, colIndex != null ? colIndex : 0, rowIndex != null ? rowIndex : 0);
+                }
+
+                gameController.setNavalBattle(navalBattle);
+                PositionStage.deleteInstance();
+            } else {
+                throw new NavalBattleException("All boats have not been placed.");
+            }
+        } catch (NavalBattleException e) {
+            System.out.println("An error has occurred: " + e.getMessage());
+        }
     }
 }
