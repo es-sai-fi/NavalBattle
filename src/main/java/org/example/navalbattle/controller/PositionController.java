@@ -219,6 +219,24 @@ public class PositionController implements Initializable {
         createShipDrawings();
     }
 
+    private Node getNodeFromGridPane(GridPane gridPane, int col, int row) {
+        ObservableList<Node> children = gridPane.getChildren();
+        for (Node node : children) {
+            Integer columnIndex = GridPane.getColumnIndex(node);
+            Integer rowIndex = GridPane.getRowIndex(node);
+
+            if (columnIndex == null)
+                columnIndex = 0;
+            if (rowIndex == null)
+                rowIndex = 0;
+
+            if (columnIndex == col && rowIndex == row) {
+                return node;
+            }
+        }
+        return null;
+    }
+
     @FXML
     void onStartButtonClick(ActionEvent actionEvent) throws IOException {
         boolean canContinue = true;

@@ -1,8 +1,10 @@
 package org.example.navalbattle.controller;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -54,9 +56,28 @@ public class GameController{
             int type = shipDrawingData.getType();
             boolean isVertical = shipDrawingData.isVertical();
             ShipDrawing shipDrawing = new ShipDrawing(type, isVertical);
-            playerBoard.add(shipDrawing, column, row);
+            Cell cell = (Cell) getNodeFromGridPane(playerBoard, column, row);
+            cell.setShipDrawing(shipDrawing);
             shipDrawing.toFront();
         }
+    }
+
+    private Node getNodeFromGridPane(GridPane gridPane, int col, int row) {
+        ObservableList<Node> children = gridPane.getChildren();
+        for (Node node : children) {
+            Integer columnIndex = GridPane.getColumnIndex(node);
+            Integer rowIndex = GridPane.getRowIndex(node);
+
+            if (columnIndex == null)
+                columnIndex = 0;
+            if (rowIndex == null)
+                rowIndex = 0;
+
+            if (columnIndex == col && rowIndex == row) {
+                return node;
+            }
+        }
+        return null;
     }
 
     public void createEnemyBoard() {
@@ -70,57 +91,69 @@ public class GameController{
         }
         navalBattle.setEnemyBoardAux(enemyBoardAux);
         navalBattle.arrangeEnemyBoard();
-        switch (navalBattle.getArrangeInt()){
+        switch (navalBattle.getArrangeInt()) {
             case 0:
+                Cell cell;
                 // Aircraft Carrier (Horizontal)
                 ShipDrawing aircraftCarrier = new ShipDrawing(4, false);
-                enemyBoard.add(aircraftCarrier, 6, 7);
+                cell = (Cell) getNodeFromGridPane(enemyBoard, 6, 7);
+                cell.setShipDrawing(aircraftCarrier);
 
                 // Submarine 1 (Vertical)
                 ShipDrawing submarine1 = new ShipDrawing(3, true);
-                enemyBoard.add(submarine1, 5, 1);
+                cell = (Cell) getNodeFromGridPane(enemyBoard, 5, 1);
+                cell.setShipDrawing(submarine1);
 
                 // Submarine 2 (Vertical)
                 ShipDrawing submarine2 = new ShipDrawing(3, true);
-                enemyBoard.add(submarine2, 6, 2);
+                cell = (Cell) getNodeFromGridPane(enemyBoard, 6, 2);
+                cell.setShipDrawing(submarine2);
 
                 // Destroyer 1 (Vertical)
                 ShipDrawing destroyer1 = new ShipDrawing(2, true);
-                enemyBoard.add(destroyer1, 0, 5);
+                cell = (Cell) getNodeFromGridPane(enemyBoard, 0, 5);
+                cell.setShipDrawing(destroyer1);
 
                 // Destroyer 2 (Vertical)
                 ShipDrawing destroyer2 = new ShipDrawing(2, true);
-                enemyBoard.add(destroyer2, 1, 6);
+                cell = (Cell) getNodeFromGridPane(enemyBoard, 1, 6);
+                cell.setShipDrawing(destroyer2);
 
                 // Destroyer 3 (Horizontal)
                 ShipDrawing destroyer3 = new ShipDrawing(2, false);
-                enemyBoard.add(destroyer3, 0, 1);
+                cell = (Cell) getNodeFromGridPane(enemyBoard, 0, 1);
+                cell.setShipDrawing(destroyer3);
 
                 // Frigate 1
                 ShipDrawing frigate1 = new ShipDrawing(1, true);
-                enemyBoard.add(frigate1, 6, 0);
+                cell = (Cell) getNodeFromGridPane(enemyBoard, 6, 0);
+                cell.setShipDrawing(frigate1);
 
                 // Frigate 2
                 ShipDrawing frigate2 = new ShipDrawing(1, true);
-                enemyBoard.add(frigate2, 9, 1);
+                cell = (Cell) getNodeFromGridPane(enemyBoard, 9, 1);
+                cell.setShipDrawing(frigate2);
 
                 // Frigate 3
                 ShipDrawing frigate3 = new ShipDrawing(1, true);
-                enemyBoard.add(frigate3, 3, 5);
+                cell = (Cell) getNodeFromGridPane(enemyBoard, 3, 5);
+                cell.setShipDrawing(frigate3);
 
                 // Frigate 4
                 ShipDrawing frigate4 = new ShipDrawing(1, true);
-                enemyBoard.add(frigate4, 4, 5);
-                aircraftCarrier.setVisible(false);
-                submarine1.setVisible(false);
-                submarine2.setVisible(false);
-                destroyer1.setVisible(false);
-                destroyer2.setVisible(false);
-                destroyer3.setVisible(false);
-                frigate1.setVisible(false);
-                frigate2.setVisible(false);
-                frigate3.setVisible(false);
-                frigate4.setVisible(false);
+                cell = (Cell) getNodeFromGridPane(enemyBoard, 4, 5);
+                cell.setShipDrawing(frigate4);
+
+                aircraftCarrier.setOpacity(0);
+                submarine1.setOpacity(0);
+                submarine2.setOpacity(0);
+                destroyer1.setOpacity(0);
+                destroyer2.setOpacity(0);
+                destroyer3.setOpacity(0);
+                frigate1.setOpacity(0);
+                frigate2.setOpacity(0);
+                frigate3.setOpacity(0);
+                frigate4.setOpacity(0);
                 enemyShipDrawings[0] = aircraftCarrier;
                 enemyShipDrawings[1] = submarine1;
                 enemyShipDrawings[2] = submarine2;
@@ -135,55 +168,65 @@ public class GameController{
 
             case 1:
                 // Aircraft Carrier (Vertical)
-                ShipDrawing aircraftCarrier1 = new ShipDrawing(200, true);
-                enemyBoard.add(aircraftCarrier1, 0, 4);
+                ShipDrawing aircraftCarrier1 = new ShipDrawing(4, true);
+                cell = (Cell) getNodeFromGridPane(enemyBoard, 0, 4);
+                cell.setShipDrawing(aircraftCarrier1);
 
                 // Submarine 1 (Horizontal)
                 ShipDrawing submarine11 = new ShipDrawing(3, false);
-                enemyBoard.add(submarine11, 3, 8);
+                cell = (Cell) getNodeFromGridPane(enemyBoard, 3, 8);
+                cell.setShipDrawing(submarine11);
 
                 // Submarine 2 (Vertical)
                 ShipDrawing submarine22 = new ShipDrawing(3, true);
-                enemyBoard.add(submarine22, 9, 3);
+                cell = (Cell) getNodeFromGridPane(enemyBoard, 9, 3);
+                cell.setShipDrawing(submarine22);
 
                 // Destroyer 1 (Vertical)
                 ShipDrawing destroyer11 = new ShipDrawing(2, true);
-                enemyBoard.add(destroyer11, 5, 5);
+                cell = (Cell) getNodeFromGridPane(enemyBoard, 5, 5);
+                cell.setShipDrawing(destroyer11);
 
                 // Destroyer 2 (Vertical)
                 ShipDrawing destroyer22 = new ShipDrawing(2, true);
-                enemyBoard.add(destroyer22, 6, 6);
+                cell = (Cell) getNodeFromGridPane(enemyBoard, 6, 6);
+                cell.setShipDrawing(destroyer22);
 
                 // Destroyer 3 (Vertical)
                 ShipDrawing destroyer33 = new ShipDrawing(2, true);
-                enemyBoard.add(destroyer33, 3, 4);
+                cell = (Cell) getNodeFromGridPane(enemyBoard, 3, 4);
+                cell.setShipDrawing(destroyer33);
 
                 // Frigate 1
                 ShipDrawing frigate11 = new ShipDrawing(1, true);
-                enemyBoard.add(frigate11, 1, 0);
+                cell = (Cell) getNodeFromGridPane(enemyBoard, 1, 0);
+                cell.setShipDrawing(frigate11);
 
                 // Frigate 2
                 ShipDrawing frigate22 = new ShipDrawing(1, true);
-                enemyBoard.add(frigate22, 3, 0);
+                cell = (Cell) getNodeFromGridPane(enemyBoard, 3, 0);
+                cell.setShipDrawing(frigate22);
 
                 // Frigate 3
                 ShipDrawing frigate33 = new ShipDrawing(1, true);
-                enemyBoard.add(frigate33, 3, 1);
+                cell = (Cell) getNodeFromGridPane(enemyBoard, 3, 1);
+                cell.setShipDrawing(frigate33);
 
                 // Frigate 4
                 ShipDrawing frigate44 = new ShipDrawing(1, true);
-                enemyBoard.add(frigate44, 9, 0);
+                cell = (Cell) getNodeFromGridPane(enemyBoard, 9, 0);
+                cell.setShipDrawing(frigate44);
 
-                aircraftCarrier1.setVisible(false);
-                submarine11.setVisible(false);
-                submarine22.setVisible(false);
-                destroyer11.setVisible(false);
-                destroyer22.setVisible(false);
-                destroyer33.setVisible(false);
-                frigate11.setVisible(false);
-                frigate22.setVisible(false);
-                frigate33.setVisible(false);
-                frigate44.setVisible(false);
+                aircraftCarrier1.setOpacity(0);
+                submarine11.setOpacity(0);
+                submarine22.setOpacity(0);
+                destroyer11.setOpacity(0);
+                destroyer22.setOpacity(0);
+                destroyer33.setOpacity(0);
+                frigate11.setOpacity(0);
+                frigate22.setOpacity(0);
+                frigate33.setOpacity(0);
+                frigate44.setOpacity(0);
                 enemyShipDrawings[0] = aircraftCarrier1;
                 enemyShipDrawings[1] = submarine11;
                 enemyShipDrawings[2] = submarine22;
@@ -198,65 +241,49 @@ public class GameController{
 
             case 2:
                 // Aircraft Carrier (Horizontal)
-                ShipDrawing aircraftCarrier2 = new ShipDrawing(4,false);
-                enemyBoard.add(aircraftCarrier2, 1, 8);
+                ShipDrawing aircraftCarrier2 = new ShipDrawing(4, false);
+                cell = (Cell) getNodeFromGridPane(enemyBoard, 1, 8);
+                cell.setShipDrawing(aircraftCarrier2);
 
                 // Submarine 1 (Vertical)
                 ShipDrawing submarine12 = new ShipDrawing(3, true);
-                enemyBoard.add(submarine12, 0, 2);
+                cell = (Cell) getNodeFromGridPane(enemyBoard, 0, 2);
+                cell.setShipDrawing(submarine12);
 
                 // Submarine 2 (Horizontal)
-                ShipDrawing submarine23 = new ShipDrawing(3, true);
-                enemyBoard.add(submarine23, 4, 2);
+                ShipDrawing submarine23 = new ShipDrawing(3, false);
+                cell = (Cell) getNodeFromGridPane(enemyBoard, 4, 2);
+                cell.setShipDrawing(submarine23);
 
                 // Destroyer 1 (Horizontal)
-                ShipDrawing destroyer12 = new ShipDrawing(2,false);
-                enemyBoard.add(destroyer12, 0, 8);
+                ShipDrawing destroyer12 = new ShipDrawing(2, false);
+                cell = (Cell) getNodeFromGridPane(enemyBoard, 0, 8);
+                cell.setShipDrawing(destroyer12);
 
                 // Destroyer 2 (Horizontal)
                 ShipDrawing destroyer23 = new ShipDrawing(2, false);
-                enemyBoard.add(destroyer23, 5, 8);
+                cell = (Cell) getNodeFromGridPane(enemyBoard, 5, 8);
+                cell.setShipDrawing(destroyer23);
 
                 // Destroyer 3 (Vertical)
                 ShipDrawing destroyer34 = new ShipDrawing(2, true);
-                enemyBoard.add(destroyer34, 1, 0);
+                cell = (Cell) getNodeFromGridPane(enemyBoard, 1, 0);
+                cell.setShipDrawing(destroyer34);
 
                 // Frigate 1
                 ShipDrawing frigate12 = new ShipDrawing(1, true);
-                enemyBoard.add(frigate12, 0, 6);
+                cell = (Cell) getNodeFromGridPane(enemyBoard, 0, 6);
+                cell.setShipDrawing(frigate12);
 
                 // Frigate 2
                 ShipDrawing frigate23 = new ShipDrawing(1, true);
-                enemyBoard.add(frigate23, 2, 5);
+                cell = (Cell) getNodeFromGridPane(enemyBoard, 2, 5);
+                cell.setShipDrawing(frigate23);
 
                 // Frigate 3
                 ShipDrawing frigate34 = new ShipDrawing(1, true);
-                enemyBoard.add(frigate34, 6, 5);
-
-                // Frigate 4
-                ShipDrawing frigate45 = new ShipDrawing(1, true);
-                enemyBoard.add(frigate45, 9, 9);
-
-                aircraftCarrier2.setVisible(false);
-                submarine12.setVisible(false);
-                submarine23.setVisible(false);
-                destroyer12.setVisible(false);
-                destroyer23.setVisible(false);
-                destroyer34.setVisible(false);
-                frigate12.setVisible(false);
-                frigate23.setVisible(false);
-                frigate34.setVisible(false);
-                frigate45.setVisible(false);
-                enemyShipDrawings[0] = aircraftCarrier2;
-                enemyShipDrawings[1] = submarine12;
-                enemyShipDrawings[2] = submarine23;
-                enemyShipDrawings[3] = destroyer12;
-                enemyShipDrawings[4] = destroyer23;
-                enemyShipDrawings[5] = destroyer34;
-                enemyShipDrawings[6] = frigate12;
-                enemyShipDrawings[7] = frigate23;
-                enemyShipDrawings[8] = frigate34;
-                enemyShipDrawings[9] = frigate45;
+                cell = (Cell) getNodeFromGridPane(enemyBoard, 6, 5);
+                cell.setShipDrawing(frigate34);
                 break;
         }
     }
@@ -264,7 +291,7 @@ public class GameController{
     @FXML
     void onShowEnemyBoardButtonClick(ActionEvent actionEvent){
         for(ShipDrawing enemyShipDrawing : enemyShipDrawings){
-            enemyShipDrawing.setVisible(true);
+            enemyShipDrawing.setOpacity(100);
         }
     }
 

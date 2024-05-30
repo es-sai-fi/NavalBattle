@@ -13,6 +13,7 @@ public class Cell extends Pane {
     private int row;
     private int column;
     private Ship ship;
+    private ShipDrawing shipDrawing;
     private boolean hasBeenAttacked = false;
     private boolean occupied;
 
@@ -24,7 +25,6 @@ public class Cell extends Pane {
         imageView.setFitHeight(50);
         imageView.setFitWidth(50);
         imageView.setPreserveRatio(true);
-        imageView.setVisible(false);
         this.row = row;
         this.column = column;
     }
@@ -33,7 +33,6 @@ public class Cell extends Pane {
         imageView.setFitHeight(50);
         imageView.setFitWidth(50);
         imageView.setPreserveRatio(true);
-        imageView.setVisible(false);
         this.row = row;
         this.column = column;
     }
@@ -79,5 +78,9 @@ public class Cell extends Pane {
 
     public ImageView getImageView() {
         return imageView;
+    }
+
+    public void setShipDrawing(ShipDrawing shipDrawing) {
+        this.shipDrawing = shipDrawing;
     }
 }
