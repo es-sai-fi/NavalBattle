@@ -16,26 +16,15 @@ public class ShipDrawing extends Pane {
     private boolean hasBeenPlaced;
     private boolean isVertical = true;
 
-    public ShipDrawing(int width, int height, int type) {
+    public ShipDrawing(int type, boolean isVertical) {
         boatGroup = new Group();
-        this.width = width;
-        this.height = height;
-        this.type = type;
-        this.color = determinarColor(type);
-        this.rectangle = new Rectangle(width, height, color);
-        boatGroup.getChildren().add(rectangle);
-        this.getChildren().add(boatGroup);
-        draw();
-    }
-
-    public ShipDrawing(int width, int height, int type, boolean isVertical) {
         this.isVertical = isVertical;
+        this.type = type;
+        width = 50;
+        height = 50 * type;
         if(!isVertical){
             rotate();
         }
-        boatGroup = new Group();
-        this.width = width;
-        this.height = height;
         this.type = type;
         this.color = determinarColor(type);
         this.rectangle = new Rectangle(width, height, color);
