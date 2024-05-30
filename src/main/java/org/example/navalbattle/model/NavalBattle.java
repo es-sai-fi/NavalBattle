@@ -13,10 +13,9 @@ public class NavalBattle {
     private Cell[][] enemyBoardAux = new Cell[10][10];
     private List<Ship> playerShips = new ArrayList<>();
     private Ship[] enemyShips = new Ship[10];
-    GridPane playerBoard;
-    GridPane enemyBoard;
     private Random random = new Random();
     private GameController gameController;
+    private List<ShipDrawingData> shipDrawingDataList;
     private int arrangeInt;
 
     public void updateOccupation() {
@@ -47,6 +46,7 @@ public class NavalBattle {
             }
             if(!enemyCell.isOccupied()){
                 gameController.getHitImage().setVisible(false);
+                enemyCell.toFront();
                 enemyCell.getImageView().toFront();
                 enemyCell.getImageView().setVisible(true);
                 enemyCell.setImage("/org/example/navalbattle/images/fail.png");
@@ -55,6 +55,7 @@ public class NavalBattle {
             }
             else{
                 gameController.getMissImage().setVisible(false);
+                enemyCell.toFront();
                 enemyCell.getShip().receiveDamage();
                 enemyCell.getImageView().toFront();
                 enemyCell.getImageView().setVisible(true);
@@ -78,14 +79,14 @@ public class NavalBattle {
                         if(!playerCell.getHasBeenAttacked()){
                             validAttack = true;
                             if(playerCell.isOccupied()){
+                                playerCell.toFront();
                                 playerCell.getShip().receiveDamage();
-                                playerCell.getImageView().toFront();
                                 playerCell.getImageView().setVisible(true);
                                 playerCell.setImage("/org/example/navalbattle/images/hit.png");
                                 playerCell.setHasBeenAttacked(true);
                             }
                             else{
-                                playerCell.getImageView().toFront();
+                                playerCell.toFront();
                                 playerCell.getImageView().setVisible(true);
                                 playerCell.setImage("/org/example/navalbattle/images/fail.png");
                                 playerCell.setHasBeenAttacked(true);
@@ -209,6 +210,14 @@ public class NavalBattle {
         }
     }
 
+    public void setShipDrawingDataList(List<ShipDrawingData> shipDrawingDataList) {
+        this.shipDrawingDataList = shipDrawingDataList;
+    }
+
+    public List<ShipDrawingData> getShipDrawingDataList() {
+        return shipDrawingDataList;
+    }
+
     public int getArrangeInt() {
         return arrangeInt;
     }
@@ -227,14 +236,6 @@ public class NavalBattle {
 
     public void setEnemyShips(Ship[] enemyShips) {
         this.enemyShips = enemyShips;
-    }
-
-    public void setPlayerBoard(GridPane playerBoard) {
-        this.playerBoard = playerBoard;
-    }
-
-    public void setEnemyBoard(GridPane enemyBoard) {
-        this.enemyBoard = enemyBoard;
     }
 
     public void setGameController(GameController gameController) {

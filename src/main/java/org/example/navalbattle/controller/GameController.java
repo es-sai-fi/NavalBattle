@@ -30,7 +30,7 @@ public class GameController{
     private List<ShipDrawingData> shipDrawingDataList = new ArrayList<>();
     Stage stage;
     ShipDrawing[] enemyShipDrawings = new ShipDrawing[10];
-    private NavalBattle navalBattle = new NavalBattle();
+    private NavalBattle navalBattle;
 
     public void initialize(NavalBattle navalBattle) {
         missImage.setVisible(false);
@@ -53,7 +53,9 @@ public class GameController{
             int column = shipDrawingData.getColumn();
             int type = shipDrawingData.getType();
             boolean isVertical = shipDrawingData.isVertical();
-            playerBoard.add(new ShipDrawing(type, isVertical), column, row);
+            ShipDrawing shipDrawing = new ShipDrawing(type, isVertical);
+            playerBoard.add(shipDrawing, column, row);
+            shipDrawing.toFront();
         }
     }
 
@@ -65,8 +67,8 @@ public class GameController{
                 enemyBoard.add(cell, column, row);
                 enemyBoardAux[row][column] = cell;
             }
-            navalBattle.setEnemyBoard(enemyBoard);
         }
+        navalBattle.setEnemyBoardAux(enemyBoardAux);
         navalBattle.arrangeEnemyBoard();
         switch (navalBattle.getArrangeInt()){
             case 0:
@@ -257,7 +259,6 @@ public class GameController{
                 enemyShipDrawings[9] = frigate45;
                 break;
         }
-        navalBattle.setEnemyBoardAux(enemyBoardAux);
     }
 
     @FXML
@@ -269,10 +270,6 @@ public class GameController{
 
     public void setShipDrawingDataList(List<ShipDrawingData> shipDrawingDataList) {
         this.shipDrawingDataList = shipDrawingDataList;
-    }
-
-    public GridPane getPlayerBoard() {
-        return playerBoard;
     }
 
     public void createEnemyShips() {
@@ -307,9 +304,5 @@ public class GameController{
 
     public void setNavalBattle(NavalBattle navalBattle) {
         this.navalBattle = navalBattle;
-    }
-
-    public void setPlayerBoard(GridPane playerBoard) {
-        this.playerBoard = playerBoard;
     }
 }

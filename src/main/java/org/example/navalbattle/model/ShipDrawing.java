@@ -22,12 +22,12 @@ public class ShipDrawing extends Pane {
         this.type = type;
         width = 50;
         height = 50 * type;
+        this.rectangle = new Rectangle(width, height, color);
+        this.type = type;
+        this.color = determinarColor(type);
         if(!isVertical){
             rotate();
         }
-        this.type = type;
-        this.color = determinarColor(type);
-        this.rectangle = new Rectangle(width, height, color);
         boatGroup.getChildren().add(rectangle);
         this.getChildren().add(boatGroup);
         draw();

@@ -232,6 +232,7 @@ public class PositionController implements Initializable {
             if (canContinue) {
                 GameController gameController = GameStage.getInstance().getGameController();
                 navalBattle.setGameController(gameController);
+                navalBattle.setShipDrawingDataList(shipDrawingDataList);
                 navalBattle.setPlayerBoardAux(playerBoardAux);
                 navalBattle.setPlayerShips(playerShips);
                 gameController.setShipDrawingDataList(shipDrawingDataList);
