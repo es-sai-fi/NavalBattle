@@ -79,7 +79,7 @@ public class PositionController implements Initializable {
                 Ship ship = new Ship(shipDrawingType);
                 int type = shipDrawing.getType();
                 int finalRow = row + type;
-                int finalColumn = row + type;
+                int finalColumn = column + type;
                 if (shipDrawing.isVertical()){
                     if(finalRow <= 9) {
                         for (int i = row; i < row + type; i++) {
@@ -187,7 +187,7 @@ public class PositionController implements Initializable {
     void onRotateButtonClick(ActionEvent actionEvent) {
         ShipDrawing shipDrawing = shipDrawings[indexBoatToAdd];
         try{
-            if (boatClicked) {
+            if (boatClicked && !(shipDrawing.getType() == 1)) {
                 shipDrawing.rotate();
             }
             else{

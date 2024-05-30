@@ -21,7 +21,7 @@ public class HelpStage extends Stage {
             throw new IOException("Error while loading FXML file", e);
         }
         setTitle("Ayuda");
-        Scene scene = new Scene(root, 400, 600);
+        Scene scene = new Scene(root, 600, 442);
         getIcons().add(
                 new Image(
                         String.valueOf(getClass().getResource("/org/example/navalbattle/images/favicon.png"))));

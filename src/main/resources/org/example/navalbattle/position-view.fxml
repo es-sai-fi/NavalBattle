@@ -46,47 +46,47 @@
             <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="2" textFill="#837e7e" GridPane.columnIndex="1">
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="1" textFill="#837e7e" GridPane.columnIndex="1">
                <font>
                   <Font name="Matura MT Script Capitals" size="24.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="3" textFill="#837e7e" GridPane.columnIndex="2">
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="2" textFill="#837e7e" GridPane.columnIndex="2">
                <font>
                   <Font name="Matura MT Script Capitals" size="24.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="4" textFill="#837e7e" GridPane.columnIndex="3">
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="3" textFill="#837e7e" GridPane.columnIndex="3">
                <font>
                   <Font name="Matura MT Script Capitals" size="24.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="5" textFill="#837e7e" GridPane.columnIndex="4">
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="4" textFill="#837e7e" GridPane.columnIndex="4">
                <font>
                   <Font name="Matura MT Script Capitals" size="24.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="6" textFill="#837e7e" GridPane.columnIndex="5">
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="5" textFill="#837e7e" GridPane.columnIndex="5">
                <font>
                   <Font name="Matura MT Script Capitals" size="24.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="7" textFill="#837e7e" GridPane.columnIndex="6">
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="6" textFill="#837e7e" GridPane.columnIndex="6">
                <font>
                   <Font name="Matura MT Script Capitals" size="24.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="8" textFill="#837e7e" GridPane.columnIndex="7">
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="7" textFill="#837e7e" GridPane.columnIndex="7">
                <font>
                   <Font name="Matura MT Script Capitals" size="24.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="9" textFill="#837e7e" GridPane.columnIndex="8">
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="8" textFill="#837e7e" GridPane.columnIndex="8">
                <font>
                   <Font name="Matura MT Script Capitals" size="24.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="10" textFill="#837e7e" GridPane.columnIndex="9">
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="9" textFill="#837e7e" GridPane.columnIndex="9">
                <font>
                   <Font name="Matura MT Script Capitals" size="24.0" />
                </font>
