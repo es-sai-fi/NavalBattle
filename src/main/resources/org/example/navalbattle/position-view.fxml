@@ -24,80 +24,6 @@
             <Image url="@images/positionViewHelpButton.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="50.0" fitWidth="500.0" layoutX="183.0" layoutY="61.0">
-         <image>
-            <Image url="@images/numbersAndLettersBackground2.PNG" />
-         </image>
-      </ImageView>
-      <GridPane gridLinesVisible="true" layoutX="184.0" layoutY="61.0">
-         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
-         </rowConstraints>
-         <children>
-            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="1" textFill="#837e7e" GridPane.columnIndex="1">
-               <font>
-                  <Font name="Matura MT Script Capitals" size="24.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="2" textFill="#837e7e" GridPane.columnIndex="2">
-               <font>
-                  <Font name="Matura MT Script Capitals" size="24.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="3" textFill="#837e7e" GridPane.columnIndex="3">
-               <font>
-                  <Font name="Matura MT Script Capitals" size="24.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="4" textFill="#837e7e" GridPane.columnIndex="4">
-               <font>
-                  <Font name="Matura MT Script Capitals" size="24.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="5" textFill="#837e7e" GridPane.columnIndex="5">
-               <font>
-                  <Font name="Matura MT Script Capitals" size="24.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="6" textFill="#837e7e" GridPane.columnIndex="6">
-               <font>
-                  <Font name="Matura MT Script Capitals" size="24.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="7" textFill="#837e7e" GridPane.columnIndex="7">
-               <font>
-                  <Font name="Matura MT Script Capitals" size="24.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="8" textFill="#837e7e" GridPane.columnIndex="8">
-               <font>
-                  <Font name="Matura MT Script Capitals" size="24.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="9" textFill="#837e7e" GridPane.columnIndex="9">
-               <font>
-                  <Font name="Matura MT Script Capitals" size="24.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="0" textFill="#837e7e">
-               <font>
-                  <Font name="Matura MT Script Capitals" size="24.0" />
-               </font>
-            </Label>
-         </children>
-      </GridPane>
       <Button layoutX="741.0" layoutY="321.0" mnemonicParsing="false" onAction="#onHelpButtonClick" opacity="0.0" prefHeight="31.0" prefWidth="35.0" />
       <HBox fx:id="shipsBox" alignment="CENTER" layoutX="47.0" layoutY="723.0" prefHeight="225.0" prefWidth="734.0" style="-fx-spacing: 20;" />
       <ImageView fitHeight="46.0" fitWidth="149.0" layoutX="646.0" layoutY="11.0">
@@ -142,6 +68,23 @@
             <Image url="@images/positionViewRotateButton.png" />
          </image>
       </ImageView>
+      <TextField fx:id="addRowTextField" alignment="CENTER" layoutX="193.0" layoutY="629.0" onKeyPressed="#onAddLetterKeyPressed" prefHeight="25.0" prefWidth="140.0" style="-fx-background-color: transparent;">
+         <font>
+            <Font name="Stencil" size="18.0" />
+         </font></TextField>
+      <Button layoutX="46.0" layoutY="22.0" mnemonicParsing="false" onAction="#onRotateButtonClick" opacity="0.0" prefHeight="25.0" prefWidth="109.0" />
+      <TextField fx:id="addColumnTextField" alignment="CENTER" layoutX="632.0" layoutY="629.0" onKeyPressed="#onAddLetterKeyPressed" prefHeight="25.0" prefWidth="140.0" style="-fx-background-color: transparent;">
+         <font>
+            <Font name="Stencil" size="18.0" />
+         </font>
+      </TextField>
+      <ImageView fitHeight="56.0" fitWidth="177.0" layoutX="175.0" layoutY="665.0">
+         <image>
+            <Image url="@images/positionViewAddShipButton.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="193.0" layoutY="677.0" mnemonicParsing="false" onAction="#onAddShipButtonClick" opacity="0.0" prefHeight="31.0" prefWidth="140.0" />
+      <Button layoutX="471.0" layoutY="22.0" mnemonicParsing="false" opacity="0.0" prefHeight="25.0" prefWidth="124.0" />
       <GridPane fx:id="playerBoard" layoutX="184.0" layoutY="111.0" prefHeight="297.0" prefWidth="363.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
@@ -168,15 +111,16 @@
             <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
          </rowConstraints>
       </GridPane>
+      <ImageView fitHeight="50.0" fitWidth="500.0" layoutX="183.0" layoutY="61.0">
+         <image>
+            <Image url="@images/numbersAndLettersBackground2.PNG" />
+         </image>
+      </ImageView>
       <ImageView fitHeight="550.0" fitWidth="50.0" layoutX="137.0" layoutY="61.0">
          <image>
             <Image url="@images/numbersAndLettersBackground1.PNG" />
          </image>
       </ImageView>
-      <TextField fx:id="addRowTextField" alignment="CENTER" layoutX="193.0" layoutY="629.0" onKeyPressed="#onAddLetterKeyPressed" prefHeight="25.0" prefWidth="140.0" style="-fx-background-color: transparent;">
-         <font>
-            <Font name="Stencil" size="18.0" />
-         </font></TextField>
       <GridPane alignment="CENTER" gridLinesVisible="true" layoutX="137.0" layoutY="61.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
@@ -247,18 +191,74 @@
             </Label>
          </children>
       </GridPane>
-      <Button layoutX="46.0" layoutY="22.0" mnemonicParsing="false" onAction="#onRotateButtonClick" opacity="0.0" prefHeight="25.0" prefWidth="109.0" />
-      <TextField fx:id="addColumnTextField" alignment="CENTER" layoutX="632.0" layoutY="629.0" onKeyPressed="#onAddLetterKeyPressed" prefHeight="25.0" prefWidth="140.0" style="-fx-background-color: transparent;">
-         <font>
-            <Font name="Stencil" size="18.0" />
-         </font>
-      </TextField>
-      <ImageView fitHeight="56.0" fitWidth="177.0" layoutX="175.0" layoutY="665.0">
-         <image>
-            <Image url="@images/positionViewAddShipButton.png" />
-         </image>
-      </ImageView>
-      <Button layoutX="193.0" layoutY="677.0" mnemonicParsing="false" onAction="#onAddShipButtonClick" opacity="0.0" prefHeight="31.0" prefWidth="140.0" />
-      <Button layoutX="471.0" layoutY="22.0" mnemonicParsing="false" opacity="0.0" prefHeight="25.0" prefWidth="124.0" />
+      <GridPane gridLinesVisible="true" layoutX="184.0" layoutY="61.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="1" textFill="#837e7e" GridPane.columnIndex="1">
+               <font>
+                  <Font name="Matura MT Script Capitals" size="24.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="2" textFill="#837e7e" GridPane.columnIndex="2">
+               <font>
+                  <Font name="Matura MT Script Capitals" size="24.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="3" textFill="#837e7e" GridPane.columnIndex="3">
+               <font>
+                  <Font name="Matura MT Script Capitals" size="24.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="4" textFill="#837e7e" GridPane.columnIndex="4">
+               <font>
+                  <Font name="Matura MT Script Capitals" size="24.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="5" textFill="#837e7e" GridPane.columnIndex="5">
+               <font>
+                  <Font name="Matura MT Script Capitals" size="24.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="6" textFill="#837e7e" GridPane.columnIndex="6">
+               <font>
+                  <Font name="Matura MT Script Capitals" size="24.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="7" textFill="#837e7e" GridPane.columnIndex="7">
+               <font>
+                  <Font name="Matura MT Script Capitals" size="24.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="8" textFill="#837e7e" GridPane.columnIndex="8">
+               <font>
+                  <Font name="Matura MT Script Capitals" size="24.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="9" textFill="#837e7e" GridPane.columnIndex="9">
+               <font>
+                  <Font name="Matura MT Script Capitals" size="24.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="57.0" text="0" textFill="#837e7e">
+               <font>
+                  <Font name="Matura MT Script Capitals" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </GridPane>
    </children>
 </AnchorPane>

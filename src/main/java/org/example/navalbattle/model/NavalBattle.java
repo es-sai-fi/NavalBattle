@@ -1,6 +1,7 @@
 package org.example.navalbattle.model;
 
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import org.example.navalbattle.controller.GameController;
 
@@ -15,6 +16,8 @@ public class NavalBattle {
     private List<Ship> playerShips = new ArrayList<>();
     private List<Ship> enemyShips = new ArrayList<>();
     private Random random = new Random();
+    private GridPane playerBoard;
+    private GridPane enemyBoard;
     private GameController gameController;
     private List<ShipDrawingData> playerShipsDrawingData;
     private List<ShipDrawingData> enemyShipsDrawingData = new ArrayList<>();
@@ -48,7 +51,6 @@ public class NavalBattle {
             if(!enemyCell.isOccupied()){
                 gameController.getHitImage().setVisible(false);
                 enemyCell.toFront();
-                enemyCell.getImageView().toFront();
                 enemyCell.setImage("/org/example/navalbattle/images/fail.png");
                 enemyCell.setHasBeenAttacked(true);
                 gameController.getMissImage().setVisible(true);
@@ -57,7 +59,6 @@ public class NavalBattle {
                 gameController.getMissImage().setVisible(false);
                 enemyCell.toFront();
                 enemyCell.getShip().receiveDamage();
-                enemyCell.getImageView().toFront();
                 enemyCell.setImage("/org/example/navalbattle/images/hit.png");
                 enemyCell.setHasBeenAttacked(true);
                 gameController.getHitImage().setVisible(true);
@@ -70,37 +71,37 @@ public class NavalBattle {
                 if(win){
                     gameController.win();
                 }
-                else{
-                    do {
-                        int randomRow = random.nextInt(10);
-                        int randomColumn = random.nextInt(10);
-                        Cell playerCell = playerBoardAux[randomRow][randomColumn];
-                        if(!playerCell.getHasBeenAttacked()){
-                            validAttack = true;
-                            if(playerCell.isOccupied()){
-                                playerCell.toFront();
-                                playerCell.getShip().receiveDamage();
-                                playerCell.setImage("/org/example/navalbattle/images/hit.png");
-                                playerCell.setHasBeenAttacked(true);
-                            }
-                            else{
-                                playerCell.toFront();
-                                playerCell.setImage("/org/example/navalbattle/images/fail.png");
-                                playerCell.setHasBeenAttacked(true);
+            }
+            do {
+                int randomRow = random.nextInt(10);
+                int randomColumn = random.nextInt(10);
+                Cell playerCell = playerBoardAux[randomRow][randomColumn];
+                if(!playerCell.getHasBeenAttacked()){
+                    validAttack = true;
+                    if(playerCell.isOccupied()){
+                        System.out.println("te pegue");
+                        playerCell.toFront();
+                        playerCell.getShip().receiveDamage();
+                        playerCell.setImage("/org/example/navalbattle/images/hit.png");
+                        playerCell.setHasBeenAttacked(true);
+                        for (Ship playerShip: playerShips){
+                            if (playerShip.isAlive()) {
+                                lose = false;
+                                break;
                             }
                         }
-                    }while(!validAttack);
-                    for (Ship playerShip: playerShips){
-                        if (playerShip.isAlive()) {
-                            lose = false;
-                            break;
+                        if(lose){
+                            gameController.lose();
                         }
                     }
-                    if(lose){
-                        gameController.lose();
+                    else{
+                        System.out.println("falle en pegarte");
+                        playerCell.toFront();
+                        playerCell.setImage("/org/example/navalbattle/images/fail.png");
+                        playerCell.setHasBeenAttacked(true);
                     }
                 }
-            }
+            }while(!validAttack);
         } catch (NavalBattleException e1) {
             System.out.println("An error has occurred: " + e1.getMessage());
         } catch (IOException e2) {
@@ -114,8 +115,8 @@ public class NavalBattle {
             boolean canBePlaced = true;
             boolean boatPlaced = false;
             while(!boatPlaced) {
-                int randomRow = random.nextInt(9);
-                int randomColumn = random.nextInt(9);
+                int randomRow = random.nextInt(10);
+                int randomColumn = random.nextInt(10);
                 Cell enemyCell = enemyBoardAux[randomRow][randomColumn];
                 if (!enemyCell.isOccupied()) {
                     int enemyShipDrawingType = enemyShipDrawing.getType();
@@ -133,7 +134,7 @@ public class NavalBattle {
                         int finalRow = randomRow + enemyShipDrawingType;
                         int finalColumn = randomColumn + enemyShipDrawingType;
                         if (enemyShipDrawing.isVertical()) {
-                            if (finalRow <= 9) {
+                            if(finalRow <= 10){
                                 for (int i = randomRow; i < finalRow; i++) {
                                     Cell cell = enemyBoardAux[i][randomColumn];
                                     if (cell.isOccupied()) {
@@ -154,7 +155,7 @@ public class NavalBattle {
                                 }
                             }
                         } else {
-                            if(finalColumn <= 9) {
+                            if(finalColumn <= 10){
                                 for (int j = randomColumn; j < finalColumn; j++) {
                                     Cell cell = enemyBoardAux[randomRow][j];
                                     if (cell.isOccupied()) {
@@ -184,7 +185,7 @@ public class NavalBattle {
     private void createEnemyShipDrawings(List<ShipDrawing> enemyShipDrawings) {
         int[] enemyShipDrawingTypes = {4, 3, 3, 2, 2, 2, 1, 1, 1, 1};
         for (int enemyShipDrawingType : enemyShipDrawingTypes){
-            boolean isVertical = random.nextInt(10)+1 <= 5;
+            boolean isVertical = random.nextBoolean();
             ShipDrawing enemyShipDrawing = new ShipDrawing(enemyShipDrawingType, isVertical);
             enemyShipDrawing.setVisible(false);
             enemyShipDrawings.add(enemyShipDrawing);
@@ -213,5 +214,13 @@ public class NavalBattle {
 
     public void setGameController(GameController gameController) {
         this.gameController = gameController;
+    }
+
+    public void setPlayerBoard(GridPane playerBoard) {
+        this.playerBoard = playerBoard;
+    }
+
+    public void setEnemyBoard(GridPane enemyBoard) {
+        this.enemyBoard = enemyBoard;
     }
 }

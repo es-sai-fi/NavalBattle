@@ -4,12 +4,8 @@ import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.shape.Rectangle;
-import org.example.navalbattle.controller.GameController;
 
 public class Cell extends Pane {
-    private ImageView imageView;
     private int row;
     private int column;
     private Ship ship;
@@ -17,10 +13,6 @@ public class Cell extends Pane {
     private boolean occupied;
 
     public Cell (int row, int column, NavalBattle navalBattle){
-        imageView = new ImageView();
-        imageView.setFitHeight(50);
-        imageView.setFitWidth(50);
-        imageView.setPreserveRatio(true);
         this.setOnMouseClicked(event -> {
             navalBattle.launchAttack(row, column);
         });
@@ -28,11 +20,7 @@ public class Cell extends Pane {
         this.column = column;
     }
 
-    public Cell (int row, int column){
-        imageView = new ImageView();
-        imageView.setFitHeight(50);
-        imageView.setFitWidth(50);
-        imageView.setPreserveRatio(true);
+    public Cell(int row, int column) {
         this.row = row;
         this.column = column;
     }
@@ -56,20 +44,11 @@ public class Cell extends Pane {
     public boolean getHasBeenAttacked() {
         return hasBeenAttacked;
     }
-    public void setImage(String url){
-        imageView.toFront();
-        imageView.setImage(new Image(String.valueOf(getClass().getResource(url))));
-    }
     @Override
     public Node getStyleableNode() {
         return super.getStyleableNode();
     }
-
     public void setHasBeenAttacked(boolean hasBeenAttacked) {
         this.hasBeenAttacked = hasBeenAttacked;
-    }
-
-    public ImageView getImageView() {
-        return imageView;
     }
 }

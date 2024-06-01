@@ -1,11 +1,11 @@
 package org.example.navalbattle.controller;
 
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -16,10 +16,7 @@ import org.example.navalbattle.view.PositionStage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 import static java.lang.Character.getNumericValue;
 import static java.lang.Character.isDigit;
@@ -86,7 +83,7 @@ public class PositionController implements Initializable {
                             throw new NavalBattleException("Ship can't be placed in said position.");
                         }
                     }
-                    if(finalRow <= 9) {
+                    if(finalRow <= 10) {
                         for (int i = row; i < finalRow; i++) {
                             Cell cell = playerBoardAux[i][column];
                             cell.setShip(ship);
@@ -104,7 +101,7 @@ public class PositionController implements Initializable {
                             throw new NavalBattleException("Ship can't be placed in said position.");
                         }
                     }
-                    if(finalColumn <= 9) {
+                    if(finalColumn <= 10) {
                         for (int j = column; j < finalColumn; j++) {
                             Cell cell = playerBoardAux[row][j];
                             cell.setShip(ship);
@@ -170,6 +167,7 @@ public class PositionController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         createPlayerBoard();
         createShipDrawings();
+        navalBattle.setPlayerBoard(playerBoard);
     }
 
     public void createShipDrawings(){
@@ -196,6 +194,8 @@ public class PositionController implements Initializable {
         for (int row = 0; row < 10; row++) {
             for (int column = 0; column < 10; column++) {
                 Cell cell = new Cell(row, column);
+                Image image = new Image(getClass().getResourceAsStream("/org/example/navalbattle/images/hit.png"));
+                cell.setImageView(new ImageView(image));
                 playerBoard.add(cell, column, row);
                 playerBoardAux[row][column] = cell;
             }

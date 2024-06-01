@@ -81,7 +81,6 @@ public class ShipDrawing extends Pane {
             height = temp;
             rectangle.setWidth(width);
             rectangle.setHeight(height);
-            isVertical = !isVertical;
         }
     }
 

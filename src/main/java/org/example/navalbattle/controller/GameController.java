@@ -39,6 +39,7 @@ public class GameController{
         this.navalBattle = navalBattle;
         createEnemyBoard();
         this.navalBattle.arrangeEnemyBoard(enemyBoard, enemyShipDrawings);
+        this.navalBattle.setEnemyBoard(enemyBoard);
         createPlayerBoard();
     }
 
