@@ -167,7 +167,6 @@ public class PositionController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         createPlayerBoard();
         createShipDrawings();
-        navalBattle.setPlayerBoard(playerBoard);
     }
 
     public void createShipDrawings(){
@@ -194,8 +193,6 @@ public class PositionController implements Initializable {
         for (int row = 0; row < 10; row++) {
             for (int column = 0; column < 10; column++) {
                 Cell cell = new Cell(row, column);
-                Image image = new Image(getClass().getResourceAsStream("/org/example/navalbattle/images/hit.png"));
-                cell.setImageView(new ImageView(image));
                 playerBoard.add(cell, column, row);
                 playerBoardAux[row][column] = cell;
             }

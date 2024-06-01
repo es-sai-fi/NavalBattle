@@ -11,8 +11,8 @@ import java.util.List;
 import java.util.Random;
 
 public class NavalBattle {
-    private Cell[][] playerBoardAux = new Cell[10][10];
-    private Cell[][] enemyBoardAux = new Cell[10][10];
+    private Cell[][] playerBoardAux;
+    private Cell[][] enemyBoardAux;
     private List<Ship> playerShips = new ArrayList<>();
     private List<Ship> enemyShips = new ArrayList<>();
     private Random random = new Random();
@@ -50,27 +50,21 @@ public class NavalBattle {
             }
             if(!enemyCell.isOccupied()){
                 gameController.getHitImage().setVisible(false);
-                enemyCell.toFront();
-                enemyCell.setImage("/org/example/navalbattle/images/fail.png");
+                Image image = new Image(getClass().getResourceAsStream("/org/example/navalbattle/images/fail.png"));
+                ImageView imageView = new ImageView(image);
+                enemyBoard.add(imageView, column, row);
                 enemyCell.setHasBeenAttacked(true);
                 gameController.getMissImage().setVisible(true);
             }
             else{
                 gameController.getMissImage().setVisible(false);
-                enemyCell.toFront();
                 enemyCell.getShip().receiveDamage();
-                enemyCell.setImage("/org/example/navalbattle/images/hit.png");
+                Image image = new Image(getClass().getResourceAsStream("/org/example/navalbattle/images/hit.png"));
+                ImageView imageView = new ImageView(image);
+                enemyBoard.add(imageView, column, row);
                 enemyCell.setHasBeenAttacked(true);
                 gameController.getHitImage().setVisible(true);
-                for(Ship enemyShip: enemyShips){
-                    if (enemyShip.isAlive()) {
-                        win = false;
-                        break;
-                    }
-                }
-                if(win){
-                    gameController.win();
-                }
+                checkWinState();
             }
             do {
                 int randomRow = random.nextInt(10);
@@ -79,25 +73,17 @@ public class NavalBattle {
                 if(!playerCell.getHasBeenAttacked()){
                     validAttack = true;
                     if(playerCell.isOccupied()){
-                        System.out.println("te pegue");
-                        playerCell.toFront();
+                        Image image = new Image(getClass().getResourceAsStream("/org/example/navalbattle/images/hit.png"));
+                        ImageView imageView = new ImageView(image);
                         playerCell.getShip().receiveDamage();
-                        playerCell.setImage("/org/example/navalbattle/images/hit.png");
+                        playerBoard.add(imageView, randomColumn, randomRow);
                         playerCell.setHasBeenAttacked(true);
-                        for (Ship playerShip: playerShips){
-                            if (playerShip.isAlive()) {
-                                lose = false;
-                                break;
-                            }
-                        }
-                        if(lose){
-                            gameController.lose();
-                        }
+                        checkLoseState();
                     }
                     else{
-                        System.out.println("falle en pegarte");
-                        playerCell.toFront();
-                        playerCell.setImage("/org/example/navalbattle/images/fail.png");
+                        Image image = new Image(getClass().getResourceAsStream("/org/example/navalbattle/images/fail.png"));
+                        ImageView imageView = new ImageView(image);
+                        playerBoard.add(imageView, randomColumn, randomRow);
                         playerCell.setHasBeenAttacked(true);
                     }
                 }
@@ -106,6 +92,32 @@ public class NavalBattle {
             System.out.println("An error has occurred: " + e1.getMessage());
         } catch (IOException e2) {
             System.out.println("An error has occurred: " + e2.getMessage());
+        }
+    }
+
+    private void checkWinState() throws IOException {
+        boolean win = true;
+        for(Ship enemyShip: enemyShips){
+            if(enemyShip.isAlive()){
+                win = false;
+                break;
+            }
+        }
+        if(win){
+            gameController.win();
+        }
+    }
+
+    private void checkLoseState() throws IOException {
+        boolean lose = true;
+        for(Ship playerShip: playerShips){
+            if(playerShip.isAlive()){
+                lose = false;
+                break;
+            }
+        }
+        if(lose){
+            gameController.win();
         }
     }
 

@@ -41,15 +41,10 @@ public class GameController{
         this.navalBattle.arrangeEnemyBoard(enemyBoard, enemyShipDrawings);
         this.navalBattle.setEnemyBoard(enemyBoard);
         createPlayerBoard();
+        this.navalBattle.setPlayerBoard(playerBoard);
     }
 
     public void createPlayerBoard(){
-        for (int row = 0; row < 10; row++) {
-            for (int column = 0; column < 10; column++) {
-                Cell cell = new Cell(row, column);
-                playerBoard.add(cell, column, row);
-            }
-        }
         for(ShipDrawingData playerShipsDrawingData: playerShipsDrawingData){
             int row = playerShipsDrawingData.getRow();
             int column = playerShipsDrawingData.getColumn();
@@ -101,5 +96,9 @@ public class GameController{
 
     public ImageView getMissImage() {
         return missImage;
+    }
+
+    public void setPlayerBoard(GridPane playerBoard) {
+        this.playerBoard = playerBoard;
     }
 }
