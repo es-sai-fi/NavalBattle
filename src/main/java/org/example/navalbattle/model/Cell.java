@@ -13,21 +13,21 @@ public class Cell extends Pane {
     private int row;
     private int column;
     private Ship ship;
-    private ShipDrawing shipDrawing;
     private boolean hasBeenAttacked = false;
     private boolean occupied;
 
     public Cell (int row, int column, NavalBattle navalBattle){
         imageView = new ImageView();
-        imageView.setOnMouseClicked(event -> {
-            navalBattle.launchAttack(row, column);
-        });
         imageView.setFitHeight(50);
         imageView.setFitWidth(50);
         imageView.setPreserveRatio(true);
+        this.setOnMouseClicked(event -> {
+            navalBattle.launchAttack(row, column);
+        });
         this.row = row;
         this.column = column;
     }
+
     public Cell (int row, int column){
         imageView = new ImageView();
         imageView.setFitHeight(50);
@@ -49,14 +49,6 @@ public class Cell extends Pane {
         return occupied;
     }
 
-    public int getRow() {
-        return row;
-    }
-
-    public int getColumn() {
-        return column;
-    }
-
     public void setOccupied(boolean occupied) {
         this.occupied = occupied;
     }
@@ -65,6 +57,7 @@ public class Cell extends Pane {
         return hasBeenAttacked;
     }
     public void setImage(String url){
+        imageView.toFront();
         imageView.setImage(new Image(String.valueOf(getClass().getResource(url))));
     }
     @Override
@@ -78,9 +71,5 @@ public class Cell extends Pane {
 
     public ImageView getImageView() {
         return imageView;
-    }
-
-    public void setShipDrawing(ShipDrawing shipDrawing) {
-        this.shipDrawing = shipDrawing;
     }
 }
