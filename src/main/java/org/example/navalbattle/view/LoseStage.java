@@ -20,7 +20,7 @@ public class LoseStage extends Stage {
             throw new IOException("Error while loading FXML file", e);
         }
         setTitle("Batalla Naval");
-        Scene scene = new Scene(root, 600, 600);
+        Scene scene = new Scene(root);
         getIcons().add(
                 new Image(
                         String.valueOf(getClass().getResource("/org/example/navalbattle/images/favicon.png"))));
