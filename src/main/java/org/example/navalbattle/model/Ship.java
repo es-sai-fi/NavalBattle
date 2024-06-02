@@ -7,15 +7,7 @@ public class Ship {
 
     public Ship(int type) {
         this.type = type;
-        if (type == 4) {
-            health = 4;
-        } else if (type == 3) {
-            health = 3;
-        } else if (type == 2) {
-            health = 2;
-        } else if (type == 1) {
-            health = 1;
-        }
+        health = type;
     }
 
     public int getHealth() {

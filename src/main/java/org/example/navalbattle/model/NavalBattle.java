@@ -1,5 +1,7 @@
 package org.example.navalbattle.model;
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import org.example.navalbattle.controller.GameController;
 
@@ -9,15 +11,16 @@ import java.util.List;
 import java.util.Random;
 
 public class NavalBattle {
-    private Cell[][] playerBoardAux = new Cell[10][10];
-    private Cell[][] enemyBoardAux = new Cell[10][10];
+    private Cell[][] playerBoardAux;
+    private Cell[][] enemyBoardAux;
     private List<Ship> playerShips = new ArrayList<>();
-    private Ship[] enemyShips = new Ship[10];
-    GridPane playerBoard;
-    GridPane enemyBoard;
+    private List<Ship> enemyShips = new ArrayList<>();
     private Random random = new Random();
+    private GridPane playerBoard;
+    private GridPane enemyBoard;
     private GameController gameController;
-    private int arrangeInt;
+    private List<ShipDrawingData> playerShipsDrawingData;
+    private List<ShipDrawingData> enemyShipsDrawingData = new ArrayList<>();
 
     public void updateOccupation() {
         for (int row = 0; row < 10; row++) {
@@ -47,62 +50,44 @@ public class NavalBattle {
             }
             if(!enemyCell.isOccupied()){
                 gameController.getHitImage().setVisible(false);
-                enemyCell.getImageView().toFront();
-                enemyCell.getImageView().setVisible(true);
-                enemyCell.setImage("/org/example/navalbattle/images/fail.png");
+                Image image = new Image(getClass().getResourceAsStream("/org/example/navalbattle/images/fail.png"));
+                ImageView imageView = new ImageView(image);
+                enemyBoard.add(imageView, column, row);
                 enemyCell.setHasBeenAttacked(true);
                 gameController.getMissImage().setVisible(true);
             }
             else{
                 gameController.getMissImage().setVisible(false);
                 enemyCell.getShip().receiveDamage();
-                enemyCell.getImageView().toFront();
-                enemyCell.getImageView().setVisible(true);
-                enemyCell.setImage("/org/example/navalbattle/images/hit.png");
+                Image image = new Image(getClass().getResourceAsStream("/org/example/navalbattle/images/hit.png"));
+                ImageView imageView = new ImageView(image);
+                enemyBoard.add(imageView, column, row);
                 enemyCell.setHasBeenAttacked(true);
                 gameController.getHitImage().setVisible(true);
-                for(Ship enemyShip: enemyShips){
-                    if (enemyShip.isAlive()) {
-                        win = false;
-                        break;
-                    }
-                }
-                if(win){
-                    gameController.win();
-                }
-                else{
-                    do {
-                        int randomRow = random.nextInt(10);
-                        int randomColumn = random.nextInt(10);
-                        Cell playerCell = playerBoardAux[randomRow][randomColumn];
-                        if(!playerCell.getHasBeenAttacked()){
-                            validAttack = true;
-                            if(playerCell.isOccupied()){
-                                playerCell.getShip().receiveDamage();
-                                playerCell.getImageView().toFront();
-                                playerCell.getImageView().setVisible(true);
-                                playerCell.setImage("/org/example/navalbattle/images/hit.png");
-                                playerCell.setHasBeenAttacked(true);
-                            }
-                            else{
-                                playerCell.getImageView().toFront();
-                                playerCell.getImageView().setVisible(true);
-                                playerCell.setImage("/org/example/navalbattle/images/fail.png");
-                                playerCell.setHasBeenAttacked(true);
-                            }
-                        }
-                    }while(!validAttack);
-                    for (Ship playerShip: playerShips){
-                        if (playerShip.isAlive()) {
-                            lose = false;
-                            break;
-                        }
-                    }
-                    if(lose){
-                        gameController.lose();
-                    }
-                }
+                checkWinState();
             }
+            do {
+                int randomRow = random.nextInt(10);
+                int randomColumn = random.nextInt(10);
+                Cell playerCell = playerBoardAux[randomRow][randomColumn];
+                if(!playerCell.getHasBeenAttacked()){
+                    validAttack = true;
+                    if(playerCell.isOccupied()){
+                        Image image = new Image(getClass().getResourceAsStream("/org/example/navalbattle/images/hit.png"));
+                        ImageView imageView = new ImageView(image);
+                        playerCell.getShip().receiveDamage();
+                        playerBoard.add(imageView, randomColumn, randomRow);
+                        playerCell.setHasBeenAttacked(true);
+                        checkLoseState();
+                    }
+                    else{
+                        Image image = new Image(getClass().getResourceAsStream("/org/example/navalbattle/images/fail.png"));
+                        ImageView imageView = new ImageView(image);
+                        playerBoard.add(imageView, randomColumn, randomRow);
+                        playerCell.setHasBeenAttacked(true);
+                    }
+                }
+            }while(!validAttack);
         } catch (NavalBattleException e1) {
             System.out.println("An error has occurred: " + e1.getMessage());
         } catch (IOException e2) {
@@ -110,107 +95,121 @@ public class NavalBattle {
         }
     }
 
-    public void arrangeEnemyBoard() {
-        arrangeInt = random.nextInt(3);
-        switch (arrangeInt) {
-            case 0:
-                //Aircraft Carrier
-                enemyBoardAux[7][6].setShip(enemyShips[0]);
-                enemyBoardAux[7][7].setShip(enemyShips[0]);
-                enemyBoardAux[7][8].setShip(enemyShips[0]);
-                enemyBoardAux[7][9].setShip(enemyShips[0]);
-                //Submarine 1
-                enemyBoardAux[1][5].setShip(enemyShips[1]);
-                enemyBoardAux[2][5].setShip(enemyShips[1]);
-                enemyBoardAux[3][5].setShip(enemyShips[1]);
-                //Submarine 2
-                enemyBoardAux[2][6].setShip(enemyShips[2]);
-                enemyBoardAux[3][6].setShip(enemyShips[2]);
-                enemyBoardAux[4][6].setShip(enemyShips[2]);
-                //Destroyer 1
-                enemyBoardAux[5][0].setShip(enemyShips[3]);
-                enemyBoardAux[6][0].setShip(enemyShips[3]);
-                //Destroyer 2
-                enemyBoardAux[6][1].setShip(enemyShips[4]);
-                enemyBoardAux[7][1].setShip(enemyShips[4]);
-                //Destroyer 3
-                enemyBoardAux[1][0].setShip(enemyShips[5]);
-                enemyBoardAux[1][1].setShip(enemyShips[5]);
-                //Frigate 1
-                enemyBoardAux[0][6].setShip(enemyShips[6]);
-                //Frigate 2
-                enemyBoardAux[1][9].setShip(enemyShips[7]);
-                //Frigate 3
-                enemyBoardAux[5][3].setShip(enemyShips[8]);
-                //Frigate 4
-                enemyBoardAux[5][4].setShip(enemyShips[9]);
-            case 1:
-                //Aircraft Carrier
-                enemyBoardAux[4][0].setShip(enemyShips[0]);
-                enemyBoardAux[5][0].setShip(enemyShips[0]);
-                enemyBoardAux[6][0].setShip(enemyShips[0]);
-                enemyBoardAux[7][0].setShip(enemyShips[0]);
-                //Submarine 1
-                enemyBoardAux[8][3].setShip(enemyShips[1]);
-                enemyBoardAux[8][4].setShip(enemyShips[1]);
-                enemyBoardAux[8][5].setShip(enemyShips[1]);
-                //Submarine 2
-                enemyBoardAux[3][9].setShip(enemyShips[2]);
-                enemyBoardAux[4][9].setShip(enemyShips[2]);
-                enemyBoardAux[5][9].setShip(enemyShips[2]);
-                //Destroyer 1
-                enemyBoardAux[5][5].setShip(enemyShips[3]);
-                enemyBoardAux[6][5].setShip(enemyShips[3]);
-                //Destroyer 2
-                enemyBoardAux[6][6].setShip(enemyShips[4]);
-                enemyBoardAux[7][6].setShip(enemyShips[4]);
-                //Destroyer 3
-                enemyBoardAux[4][3].setShip(enemyShips[5]);
-                enemyBoardAux[5][3].setShip(enemyShips[5]);
-                //Frigate 1
-                enemyBoardAux[0][1].setShip(enemyShips[6]);
-                //Frigate 2
-                enemyBoardAux[0][3].setShip(enemyShips[7]);
-                //Frigate 3
-                enemyBoardAux[1][3].setShip(enemyShips[8]);
-                //Frigate 4
-                enemyBoardAux[0][9].setShip(enemyShips[9]);
-            case 2:
-                //Aircraft Carrier
-                enemyBoardAux[8][1].setShip(enemyShips[0]);
-                enemyBoardAux[8][2].setShip(enemyShips[0]);
-                enemyBoardAux[8][3].setShip(enemyShips[0]);
-                enemyBoardAux[8][4].setShip(enemyShips[0]);
-                //Submarine 1
-                enemyBoardAux[2][0].setShip(enemyShips[1]);
-                enemyBoardAux[3][0].setShip(enemyShips[1]);
-                enemyBoardAux[4][0].setShip(enemyShips[1]);
-                //Submarine 2
-                enemyBoardAux[2][4].setShip(enemyShips[2]);
-                enemyBoardAux[2][5].setShip(enemyShips[2]);
-                enemyBoardAux[2][6].setShip(enemyShips[2]);
-                //Destroyer 1
-                enemyBoardAux[8][0].setShip(enemyShips[3]);
-                enemyBoardAux[8][1].setShip(enemyShips[3]);
-                //Destroyer 2
-                enemyBoardAux[8][5].setShip(enemyShips[4]);
-                enemyBoardAux[8][6].setShip(enemyShips[4]);
-                //Destroyer 3
-                enemyBoardAux[0][1].setShip(enemyShips[5]);
-                enemyBoardAux[0][2].setShip(enemyShips[5]);
-                //Frigate 1
-                enemyBoardAux[6][0].setShip(enemyShips[6]);
-                //Frigate 2
-                enemyBoardAux[5][2].setShip(enemyShips[7]);
-                //Frigate 3
-                enemyBoardAux[5][6].setShip(enemyShips[8]);
-                //Frigate 4
-                enemyBoardAux[9][9].setShip(enemyShips[9]);
+    private void checkWinState() throws IOException {
+        boolean win = true;
+        for(Ship enemyShip: enemyShips){
+            if(enemyShip.isAlive()){
+                win = false;
+                break;
+            }
+        }
+        if(win){
+            gameController.win();
         }
     }
 
-    public int getArrangeInt() {
-        return arrangeInt;
+    private void checkLoseState() throws IOException {
+        boolean lose = true;
+        for(Ship playerShip: playerShips){
+            if(playerShip.isAlive()){
+                lose = false;
+                break;
+            }
+        }
+        if(lose){
+            gameController.win();
+        }
+    }
+
+    public void arrangeEnemyBoard(GridPane enemyBoard, List<ShipDrawing> enemyShipDrawings) {
+        createEnemyShipDrawings(enemyShipDrawings);
+        for (ShipDrawing enemyShipDrawing : enemyShipDrawings) {
+            boolean canBePlaced = true;
+            boolean boatPlaced = false;
+            while(!boatPlaced) {
+                int randomRow = random.nextInt(10);
+                int randomColumn = random.nextInt(10);
+                Cell enemyCell = enemyBoardAux[randomRow][randomColumn];
+                if (!enemyCell.isOccupied()) {
+                    int enemyShipDrawingType = enemyShipDrawing.getType();
+                    if (enemyShipDrawingType == 1) {
+                        boatPlaced = true;
+                        Ship ship = new Ship(1);
+                        enemyShips.add(ship);
+                        enemyBoard.add(enemyShipDrawing, randomColumn, randomRow);
+                        enemyShipDrawing.toBack();
+                        enemyCell.setShip(ship);
+                        enemyCell.setOccupied(true);
+                        enemyShipsDrawingData.add(new ShipDrawingData(randomRow, randomColumn, 1, enemyShipDrawing.isVertical()));
+                    } else {
+                        Ship ship = new Ship(enemyShipDrawingType);
+                        int finalRow = randomRow + enemyShipDrawingType;
+                        int finalColumn = randomColumn + enemyShipDrawingType;
+                        if (enemyShipDrawing.isVertical()) {
+                            if(finalRow <= 10){
+                                for (int i = randomRow; i < finalRow; i++) {
+                                    Cell cell = enemyBoardAux[i][randomColumn];
+                                    if (cell.isOccupied()) {
+                                        canBePlaced = false;
+                                        break;
+                                    }
+                                }
+                                if(canBePlaced) {
+                                    for (int i = randomRow; i < finalRow; i++) {
+                                        Cell cell = enemyBoardAux[i][randomColumn];
+                                        cell.setShip(ship);
+                                        cell.setOccupied(true);
+                                    }
+                                    boatPlaced = true;
+                                    enemyBoard.add(enemyShipDrawing, randomColumn, randomRow);
+                                    enemyShipDrawing.toBack();
+                                    enemyShipsDrawingData.add(new ShipDrawingData(randomRow, randomColumn, enemyShipDrawingType, enemyShipDrawing.isVertical()));
+                                }
+                            }
+                        } else {
+                            if(finalColumn <= 10){
+                                for (int j = randomColumn; j < finalColumn; j++) {
+                                    Cell cell = enemyBoardAux[randomRow][j];
+                                    if (cell.isOccupied()) {
+                                        canBePlaced = false;
+                                        break;
+                                    }
+                                }
+                                if (canBePlaced) {
+                                    for (int j = randomColumn; j < finalColumn; j++) {
+                                        Cell cell = enemyBoardAux[randomRow][j];
+                                        cell.setShip(ship);
+                                        cell.setOccupied(true);
+                                    }
+                                    boatPlaced = true;
+                                    enemyBoard.add(enemyShipDrawing, randomColumn, randomRow);
+                                    enemyShipDrawing.toBack();
+                                    enemyShipsDrawingData.add(new ShipDrawingData(randomRow, randomColumn, enemyShipDrawingType, enemyShipDrawing.isVertical()));
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private void createEnemyShipDrawings(List<ShipDrawing> enemyShipDrawings) {
+        int[] enemyShipDrawingTypes = {4, 3, 3, 2, 2, 2, 1, 1, 1, 1};
+        for (int enemyShipDrawingType : enemyShipDrawingTypes){
+            boolean isVertical = random.nextBoolean();
+            ShipDrawing enemyShipDrawing = new ShipDrawing(enemyShipDrawingType, isVertical);
+            enemyShipDrawing.setVisible(false);
+            enemyShipDrawings.add(enemyShipDrawing);
+        }
+    }
+
+    public void setPlayerShipsDrawingData(List<ShipDrawingData> playerShipsDrawingData) {
+        this.playerShipsDrawingData = playerShipsDrawingData;
+    }
+
+    public List<ShipDrawingData> getPlayerShipsDrawingData() {
+        return playerShipsDrawingData;
     }
 
     public void setPlayerShips(List<Ship> playerShips) {
@@ -225,8 +224,8 @@ public class NavalBattle {
         this.enemyBoardAux = enemyBoardAux;
     }
 
-    public void setEnemyShips(Ship[] enemyShips) {
-        this.enemyShips = enemyShips;
+    public void setGameController(GameController gameController) {
+        this.gameController = gameController;
     }
 
     public void setPlayerBoard(GridPane playerBoard) {
@@ -235,9 +234,5 @@ public class NavalBattle {
 
     public void setEnemyBoard(GridPane enemyBoard) {
         this.enemyBoard = enemyBoard;
-    }
-
-    public void setGameController(GameController gameController) {
-        this.gameController = gameController;
     }
 }
