@@ -9,6 +9,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import org.example.navalbattle.view.GameStage;
 import org.example.navalbattle.view.PositionStage;
+import org.example.navalbattle.view.WelcomeStage;
 
 import java.io.IOException;
 
@@ -21,16 +22,14 @@ public class WelcomeController {
     private Button playButton;
     @FXML
     void onContinueButtonClick(ActionEvent event) throws IOException {
-        Stage stage = (Stage) playButton.getScene().getWindow();
         GameController gameStageController = GameStage.getInstance().getGameController();
-        stage.close();
+        WelcomeStage.deleteInstance();
     }
 
     @FXML
     void onPlayButtonClick(ActionEvent event) throws IOException {
-        Stage stage = (Stage) playButton.getScene().getWindow();
         PositionController positionController = PositionStage.getInstance().getPositionController();
-        stage.close();
+        WelcomeStage.deleteInstance();
     }
 
 }

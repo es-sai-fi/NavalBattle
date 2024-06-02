@@ -36,8 +36,8 @@ public class LoseStage extends Stage {
     }
 
     public static void deleteInstance() {
-        LoseStage.LoseStageHolder.INSTANCE.close();
-        LoseStage.LoseStageHolder.INSTANCE = null;
+        LoseStageHolder.INSTANCE.close();
+        LoseStageHolder.INSTANCE = null;
     }
 
     private static class LoseStageHolder {

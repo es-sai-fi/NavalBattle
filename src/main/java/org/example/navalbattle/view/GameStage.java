@@ -43,8 +43,8 @@ public class GameStage extends Stage {
     }
 
     public static void deleteInstance() {
-        GameStage.GameStageHolder.INSTANCE.close();
-        GameStage.GameStageHolder.INSTANCE = null;
+        GameStageHolder.INSTANCE.close();
+        GameStageHolder.INSTANCE = null;
     }
 
     private static class GameStageHolder {

@@ -37,8 +37,8 @@ public class WelcomeStage extends Stage {
     }
 
     public static void deleteInstance() {
-        WelcomeStage.WelcomeStageHolder.INSTANCE.close();
-        WelcomeStage.WelcomeStageHolder.INSTANCE = null;
+        WelcomeStageHolder.INSTANCE.close();
+        WelcomeStageHolder.INSTANCE = null;
     }
 
     private static class WelcomeStageHolder {

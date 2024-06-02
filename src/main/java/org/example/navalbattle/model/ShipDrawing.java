@@ -7,7 +7,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 
-public class ShipDrawing extends Pane {
+import java.io.Serializable;
+
+public class ShipDrawing extends Pane implements Serializable {
     private int width, height;
     private int type;
     private Color color;

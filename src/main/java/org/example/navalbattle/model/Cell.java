@@ -1,12 +1,11 @@
 package org.example.navalbattle.model;
 
 import javafx.scene.Node;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
-public class Cell extends Pane {
+import java.io.Serializable;
+
+public class Cell extends Pane  implements Serializable {
     private int row;
     private int column;
     private Ship ship;

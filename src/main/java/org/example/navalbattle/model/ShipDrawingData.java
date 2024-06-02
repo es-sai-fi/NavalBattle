@@ -1,6 +1,8 @@
 package org.example.navalbattle.model;
 
-public class ShipDrawingData {
+import java.io.Serializable;
+
+public class ShipDrawingData implements Serializable {
     public int row;
     public int column;
     public int type;

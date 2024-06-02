@@ -325,12 +325,12 @@
             </Label>
          </children>
       </GridPane>
-      <ImageView fitHeight="50.0" fitWidth="158.0" layoutX="1416.0" layoutY="651.0">
+      <ImageView fx:id="showEnemyBoardImage" fitHeight="50.0" fitWidth="158.0" layoutX="1416.0" layoutY="651.0">
          <image>
             <Image url="@images/gameViewSeeRivalBoardButton.png" />
          </image>
       </ImageView>
-      <Button layoutX="1435.0" layoutY="664.0" mnemonicParsing="false" onAction="#onShowEnemyBoardButtonClick" opacity="0.0" prefHeight="25.0" prefWidth="120.0" />
+      <Button fx:id="showEnemyBoardButton" layoutX="1435.0" layoutY="664.0" mnemonicParsing="false" onAction="#onShowEnemyBoardButtonClick" opacity="0.0" prefHeight="25.0" prefWidth="120.0" />
       <ImageView fitHeight="500.0" fitWidth="500.0" layoutX="126.0" layoutY="107.0">
          <image>
             <Image url="@images/positionBoardWallpaper.PNG" />

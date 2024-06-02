@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -13,12 +14,9 @@ import org.example.navalbattle.view.GameStage;
 import org.example.navalbattle.view.LoseStage;
 import org.example.navalbattle.view.WinStage;
 
-import javax.swing.*;
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ResourceBundle;
 
 public class GameController{
     @FXML
@@ -29,6 +27,10 @@ public class GameController{
     private GridPane playerBoard;
     @FXML
     private GridPane enemyBoard;
+    @FXML
+    private Button showEnemyBoardButton;
+    @FXML
+    private ImageView showEnemyBoardImage;
     private List<ShipDrawingData> playerShipsDrawingData = new ArrayList<>();
     private List<ShipDrawing> enemyShipDrawings = new ArrayList<>();
     private NavalBattle navalBattle;
@@ -38,8 +40,8 @@ public class GameController{
         hitImage.setVisible(false);
         this.navalBattle = navalBattle;
         createEnemyBoard();
-        this.navalBattle.arrangeEnemyBoard(enemyBoard, enemyShipDrawings);
         this.navalBattle.setEnemyBoard(enemyBoard);
+        this.navalBattle.arrangeEnemyBoard(enemyShipDrawings);
         createPlayerBoard();
         this.navalBattle.setPlayerBoard(playerBoard);
     }
@@ -72,6 +74,8 @@ public class GameController{
         for(ShipDrawing enemyShipDrawing : enemyShipDrawings){
             enemyShipDrawing.setVisible(true);
         }
+        showEnemyBoardImage.setVisible(false);
+        showEnemyBoardButton.setVisible(false);
     }
 
     public void setPlayerShipsDrawingData(List<ShipDrawingData> playerShipsDrawingData) {
