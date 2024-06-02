@@ -1,7 +1,9 @@
 package org.example.navalbattle.model;
 
 import javafx.scene.Node;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import org.example.navalbattle.controller.GameController;
 
 import java.io.Serializable;
 
@@ -12,15 +14,7 @@ public class Cell extends Pane  implements Serializable {
     private boolean hasBeenAttacked = false;
     private boolean occupied;
 
-    public Cell (int row, int column, NavalBattle navalBattle){
-        this.setOnMouseClicked(event -> {
-            navalBattle.launchAttack(row, column);
-        });
-        this.row = row;
-        this.column = column;
-    }
-
-    public Cell(int row, int column) {
+    public Cell (int row, int column){
         this.row = row;
         this.column = column;
     }
@@ -41,7 +35,7 @@ public class Cell extends Pane  implements Serializable {
         this.occupied = occupied;
     }
 
-    public boolean getHasBeenAttacked() {
+    public boolean hasBeenAttacked() {
         return hasBeenAttacked;
     }
     @Override
@@ -50,5 +44,13 @@ public class Cell extends Pane  implements Serializable {
     }
     public void setHasBeenAttacked(boolean hasBeenAttacked) {
         this.hasBeenAttacked = hasBeenAttacked;
+    }
+
+    public int getColumn() {
+        return column;
+    }
+
+    public int getRow() {
+        return row;
     }
 }
