@@ -40,7 +40,7 @@ public class WelcomeController {
         if(serializedNavalBattle.delete()){
             System.out.println("Save file deleted.");
         }
-        PositionController positionController = PositionStage.getInstance().getPositionController();
+        PositionStage.getInstance();
         WelcomeStage.deleteInstance();
     }
 

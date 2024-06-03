@@ -17,7 +17,6 @@ public class LoseStage extends Stage {
         try {
             root = loader.load();
         } catch (IOException e) {
-            // Re-throwing the caught IOException
             throw new IOException("Error while loading FXML file", e);
         }
         setTitle("Batalla Naval");

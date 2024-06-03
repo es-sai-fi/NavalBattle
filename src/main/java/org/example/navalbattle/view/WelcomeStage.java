@@ -5,10 +5,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import org.example.navalbattle.controller.WelcomeController;
 
 import java.io.IOException;
 
 public class WelcomeStage extends Stage {
+    private WelcomeController welcomeController;
 
     public WelcomeStage () throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(
@@ -20,6 +22,7 @@ public class WelcomeStage extends Stage {
             // Re-throwing the caught IOException
             throw new IOException("Error while loading FXML file", e);
         }
+        welcomeController = loader.getController();
         setTitle("Batalla Naval");
         Scene scene = new Scene(root);
         getIcons().add(

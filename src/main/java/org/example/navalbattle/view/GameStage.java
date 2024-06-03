@@ -10,7 +10,7 @@ import org.example.navalbattle.controller.GameController;
 import java.io.IOException;
 
 public class GameStage extends Stage {
-    private GameController gameController;
+    private final GameController gameController;
 
     public GameStage() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/navalbattle/game-view.fxml"));

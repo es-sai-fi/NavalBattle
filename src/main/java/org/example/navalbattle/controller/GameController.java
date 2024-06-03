@@ -86,9 +86,7 @@ public class GameController{
         if(serializedNavalBattle.delete()){
             System.out.println("Save file deleted.");
         }
-        WinStage winStage = new WinStage();
-        winStage.show();
-        GameStage.deleteInstance();
+        WinStage.getInstance();
     }
 
     public void lose() throws IOException {
@@ -96,12 +94,6 @@ public class GameController{
         if(serializedNavalBattle.delete()){
             System.out.println("Save file deleted.");
         }
-        LoseStage loseStage = new LoseStage();
-        loseStage.show();
-        GameStage.deleteInstance();
-    }
-
-    public void setPlayerBoard(GridPane playerBoard) {
-        this.playerBoard = playerBoard;
+        LoseStage.getInstance();
     }
 }
