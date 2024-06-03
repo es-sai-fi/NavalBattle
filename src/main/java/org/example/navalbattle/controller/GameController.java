@@ -86,6 +86,8 @@ public class GameController{
         if(serializedNavalBattle.delete()){
             System.out.println("Save file deleted.");
         }
+        playerBoard.setDisable(true);
+        enemyBoard.setDisable(true);
         WinStage.getInstance();
     }
 
@@ -94,6 +96,8 @@ public class GameController{
         if(serializedNavalBattle.delete()){
             System.out.println("Save file deleted.");
         }
+        playerBoard.setDisable(true);
+        enemyBoard.setDisable(true);
         LoseStage.getInstance();
     }
 }
