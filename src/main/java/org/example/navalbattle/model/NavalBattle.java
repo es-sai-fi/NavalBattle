@@ -23,7 +23,6 @@ public class NavalBattle implements Serializable {
 
     public void launchAttack(int row, int column, GridPane playerBoard, GridPane enemyBoard, GameController gameController) {
         Cell enemyCell = enemyBoardAux[row][column];
-        System.out.println("a");
 
         try {
             if (enemyCell.hasBeenAttacked()) {
@@ -31,7 +30,6 @@ public class NavalBattle implements Serializable {
             } else {
                 handlePlayerAttack(enemyCell, row, column, enemyBoard, gameController);
                 handleEnemyAttack(playerBoard, gameController);
-                NavalBattleSerialize.serialize(this);
             }
         } catch (NavalBattleException e) {
             System.out.println("An error has occurred: " + e.getMessage());
@@ -48,7 +46,6 @@ public class NavalBattle implements Serializable {
             enemyCell.getShip().receiveDamage();
             ImageView imageView = new ImageView(new Image(hitImagePath));
             enemyBoard.add(imageView, column, row);
-            checkWinState(gameController);
         }
         enemyCell.toFront();
         enemyCell.setHasBeenAttacked(true);
@@ -73,6 +70,9 @@ public class NavalBattle implements Serializable {
                     playerBoard.add(imageView, randomColumn, randomRow);
                 }
                 playerCell.setHasBeenAttacked(true);
+                NavalBattleSerialize.serialize(this);
+                checkWinState(gameController);
+                checkLoseState(gameController);
             }
         } while (!validAttack);
     }
@@ -130,6 +130,8 @@ public class NavalBattle implements Serializable {
                         ImageView imageView = new ImageView(new Image(failImagePath));
                         playerBoard.add(imageView, column, row);
                     }
+                    playerBoard.add(playerCell, column, row);
+                    playerCell.toFront();
                 }
             }
         }
@@ -154,23 +156,20 @@ public class NavalBattle implements Serializable {
                     enemyCell.setOnMouseClicked(event -> {
                         this.launchAttack(enemyCell.getRow(), enemyCell.getColumn(), playerBoard, enemyBoard, gameController);
                     });
-                    System.out.println("evento sobreescrito");
                     if(enemyCell.hasBeenAttacked()){
                         if(enemyCell.isOccupied()){
                             ImageView imageView = new ImageView(new Image(hitImagePath));
-                            enemyBoard.add(enemyCell, column, row);
                             enemyBoard.add(imageView, column, row);
                         }
                         else{
                             ImageView imageView = new ImageView(new Image(failImagePath));
-                            enemyBoard.add(enemyCell, column, row);
                             enemyBoard.add(imageView, column, row);
                         }
                     }
+                    enemyBoard.add(enemyCell, column, row);
                     enemyCell.toFront();
                 }
             }
-            System.out.println("organización finalizada");
         }
         else{
             createEnemyShipDrawings(enemyShipDrawings);
