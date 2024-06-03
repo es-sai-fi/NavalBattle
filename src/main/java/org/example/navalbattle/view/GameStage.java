@@ -10,7 +10,7 @@ import org.example.navalbattle.controller.GameController;
 import java.io.IOException;
 
 public class GameStage extends Stage {
-    private GameController gameController;
+    private final GameController gameController;
 
     public GameStage() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/navalbattle/game-view.fxml"));
@@ -43,8 +43,8 @@ public class GameStage extends Stage {
     }
 
     public static void deleteInstance() {
-        GameStage.GameStageHolder.INSTANCE.close();
-        GameStage.GameStageHolder.INSTANCE = null;
+        GameStageHolder.INSTANCE.close();
+        GameStageHolder.INSTANCE = null;
     }
 
     private static class GameStageHolder {

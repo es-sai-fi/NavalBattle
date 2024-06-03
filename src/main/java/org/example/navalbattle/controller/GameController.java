@@ -1,57 +1,55 @@
 package org.example.navalbattle.controller;
 
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
 import org.example.navalbattle.model.*;
 import org.example.navalbattle.view.GameStage;
 import org.example.navalbattle.view.LoseStage;
 import org.example.navalbattle.view.WinStage;
 
-import javax.swing.*;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ResourceBundle;
 
 public class GameController{
-    @FXML
-    private ImageView missImage;
-    @FXML
-    private ImageView hitImage;
     @FXML
     private GridPane playerBoard;
     @FXML
     private GridPane enemyBoard;
+    @FXML
+    private Button showEnemyBoardButton;
+    @FXML
+    private ImageView showEnemyBoardImage;
+    private boolean continueGame = false;
     private List<ShipDrawingData> playerShipsDrawingData = new ArrayList<>();
     private List<ShipDrawing> enemyShipDrawings = new ArrayList<>();
     private NavalBattle navalBattle;
 
-    public void initialize(NavalBattle navalBattle) {
-        missImage.setVisible(false);
-        hitImage.setVisible(false);
+    public void initialize(NavalBattle navalBattle) throws IOException {
         this.navalBattle = navalBattle;
         createEnemyBoard();
-        this.navalBattle.arrangeEnemyBoard(enemyBoard, enemyShipDrawings);
-        this.navalBattle.setEnemyBoard(enemyBoard);
-        createPlayerBoard();
-        this.navalBattle.setPlayerBoard(playerBoard);
+        this.navalBattle.arrangeEnemyBoard(enemyShipDrawings, continueGame, playerBoard, enemyBoard, this);
+        this.navalBattle.arrangePlayerBoard(continueGame, playerBoard);
+        NavalBattleSerialize.serialize(this.navalBattle);
     }
 
-    public void createPlayerBoard(){
-        for(ShipDrawingData playerShipsDrawingData: playerShipsDrawingData){
-            int row = playerShipsDrawingData.getRow();
-            int column = playerShipsDrawingData.getColumn();
-            int type = playerShipsDrawingData.getType();
-            boolean isVertical = playerShipsDrawingData.isVertical();
-            ShipDrawing shipDrawing = new ShipDrawing(type, isVertical);
-            playerBoard.add(shipDrawing, column, row);
+    public boolean continueGame() throws IOException, ClassNotFoundException {
+        try{
+            navalBattle = (NavalBattle) NavalBattleSerialize.deserialize("navalBattle.nvl");
+            continueGame = true;
+            navalBattle.arrangePlayerBoard(continueGame, playerBoard);
+            navalBattle.arrangeEnemyBoard(enemyShipDrawings, continueGame, playerBoard, enemyBoard, this);
+            return true;
+        } catch (FileNotFoundException e1) {
+            return false;
+        } catch (IOException | ClassNotFoundException e2) {
+            e2.printStackTrace();
+            return false;
         }
     }
 
@@ -59,7 +57,10 @@ public class GameController{
         Cell[][] enemyBoardAux = new Cell[10][10];
         for (int row = 0; row < 10; row++) {
             for (int column = 0; column < 10; column++) {
-                Cell cell = new Cell(row, column, navalBattle);
+                Cell cell = new Cell(row, column);
+                cell.setOnMouseClicked(event -> {
+                    navalBattle.launchAttack(cell.getRow(), cell.getColumn(), playerBoard, enemyBoard, this);
+                });
                 enemyBoard.add(cell, column, row);
                 enemyBoardAux[row][column] = cell;
             }
@@ -72,6 +73,8 @@ public class GameController{
         for(ShipDrawing enemyShipDrawing : enemyShipDrawings){
             enemyShipDrawing.setVisible(true);
         }
+        showEnemyBoardImage.setVisible(false);
+        showEnemyBoardButton.setVisible(false);
     }
 
     public void setPlayerShipsDrawingData(List<ShipDrawingData> playerShipsDrawingData) {
@@ -79,26 +82,22 @@ public class GameController{
     }
 
     public void win() throws IOException {
-        WinStage winStage = new WinStage();
-        winStage.show();
-        GameStage.deleteInstance();
+        File serializedNavalBattle = new File("A:\\IntelliJProyectos\\NavalBattle\\navalBattle.nvl");
+        if(serializedNavalBattle.delete()){
+            System.out.println("Save file deleted.");
+        }
+        playerBoard.setDisable(true);
+        enemyBoard.setDisable(true);
+        WinStage.getInstance();
     }
 
     public void lose() throws IOException {
-        LoseStage loseStage = new LoseStage();
-        loseStage.show();
-        GameStage.deleteInstance();
-    }
-
-    public ImageView getHitImage() {
-        return hitImage;
-    }
-
-    public ImageView getMissImage() {
-        return missImage;
-    }
-
-    public void setPlayerBoard(GridPane playerBoard) {
-        this.playerBoard = playerBoard;
+        File serializedNavalBattle = new File("A:\\IntelliJProyectos\\NavalBattle\\navalBattle.nvl");
+        if(serializedNavalBattle.delete()){
+            System.out.println("Save file deleted.");
+        }
+        playerBoard.setDisable(true);
+        enemyBoard.setDisable(true);
+        LoseStage.getInstance();
     }
 }
