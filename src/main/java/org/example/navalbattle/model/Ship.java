@@ -1,6 +1,8 @@
 package org.example.navalbattle.model;
 
-public class Ship {
+import java.io.Serializable;
+
+public class Ship implements Serializable {
     private final int type;
     private int health;
     private boolean alive = true;

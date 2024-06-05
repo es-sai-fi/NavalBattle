@@ -37,8 +37,8 @@ public class WinStage extends Stage {
     }
 
     public static void deleteInstance() {
-        WinStage.WinStageHolder.INSTANCE.close();
-        WinStage.WinStageHolder.INSTANCE = null;
+        WinStageHolder.INSTANCE.close();
+        WinStageHolder.INSTANCE = null;
     }
 
     private static class WinStageHolder {
