@@ -1,3 +1,7 @@
+/**
+ * @author Jose Martínez - Jhorman Gómez - Esteban Gómez
+ * @version final
+ */
 package org.example.navalbattle.model;
 
 import javafx.scene.image.Image;
@@ -11,6 +15,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Represents the core logic of the Naval Battle game, including player and enemy boards, ship placements, and attack handling.
+ */
 public class NavalBattle implements Serializable {
     private Cell[][] playerBoardAux;
     private Cell[][] enemyBoardAux;
@@ -21,12 +28,21 @@ public class NavalBattle implements Serializable {
     private final String hitImagePath = String.valueOf(getClass().getResource("/org/example/navalbattle/images/hit.png"));
     private final String failImagePath = String.valueOf(getClass().getResource("/org/example/navalbattle/images/fail.png"));
 
+    /**
+     * Launches an attack on the specified cell of the enemy board.
+     *
+     * @param row the row index of the target cell
+     * @param column the column index of the target cell
+     * @param playerBoard the player's board
+     * @param enemyBoard the enemy's board
+     * @param gameController the game controller
+     */
     public void launchAttack(int row, int column, GridPane playerBoard, GridPane enemyBoard, GameController gameController) {
         Cell enemyCell = enemyBoardAux[row][column];
 
         try {
             if (enemyCell.hasBeenAttacked()) {
-                throw new NavalBattleException("La celda ya ha sido atacada.");
+                throw new NavalBattleException("The cell has already been attacked.");
             } else {
                 handlePlayerAttack(enemyCell, row, column, enemyBoard, gameController);
                 handleEnemyAttack(playerBoard, gameController);
@@ -79,32 +95,38 @@ public class NavalBattle implements Serializable {
 
     private void checkWinState(GameController gameController) throws IOException {
         boolean win = true;
-        for(Ship enemyShip: enemyShips){
-            if(enemyShip.isAlive()){
+        for (Ship enemyShip : enemyShips) {
+            if (enemyShip.isAlive()) {
                 win = false;
                 break;
             }
         }
-        if(win){
+        if (win) {
             gameController.win();
         }
     }
 
     private void checkLoseState(GameController gameController) throws IOException {
         boolean lose = true;
-        for(Ship playerShip: playerShips){
-            if(playerShip.isAlive()){
+        for (Ship playerShip : playerShips) {
+            if (playerShip.isAlive()) {
                 lose = false;
                 break;
             }
         }
-        if(lose){
+        if (lose) {
             gameController.lose();
         }
     }
 
-    public void arrangePlayerBoard(boolean continueGame, GridPane playerBoard){
-        for(ShipDrawingData playerShipsDrawingData: playerShipsDrawingData){
+    /**
+     * Arranges the player's board for a new game or resumes a previous game.
+     *
+     * @param continueGame indicates if the game should be continued from a saved state
+     * @param playerBoard the player's board
+     */
+    public void arrangePlayerBoard(boolean continueGame, GridPane playerBoard) {
+        for (ShipDrawingData playerShipsDrawingData : playerShipsDrawingData) {
             int row = playerShipsDrawingData.getRow();
             int column = playerShipsDrawingData.getColumn();
             int type = playerShipsDrawingData.getType();
@@ -112,21 +134,25 @@ public class NavalBattle implements Serializable {
             ShipDrawing shipDrawing = new ShipDrawing(type, isVertical);
             playerBoard.add(shipDrawing, column, row);
         }
-        if(continueGame){
+        if (continueGame) {
             resumePlayerBoard(playerBoard);
         }
     }
 
-    public void resumePlayerBoard(GridPane playerBoard){
-        for(int row = 0; row < 10; row++){
-            for(int column = 0; column < 10; column++){
+    /**
+     * Resumes the player's board from a saved state.
+     *
+     * @param playerBoard the player's board
+     */
+    public void resumePlayerBoard(GridPane playerBoard) {
+        for (int row = 0; row < 10; row++) {
+            for (int column = 0; column < 10; column++) {
                 Cell playerCell = playerBoardAux[row][column];
-                if(playerCell.hasBeenAttacked()){
-                    if(playerCell.isOccupied()){
+                if (playerCell.hasBeenAttacked()) {
+                    if (playerCell.isOccupied()) {
                         ImageView imageView = new ImageView(new Image(hitImagePath));
                         playerBoard.add(imageView, column, row);
-                    }
-                    else{
+                    } else {
                         ImageView imageView = new ImageView(new Image(failImagePath));
                         playerBoard.add(imageView, column, row);
                     }
@@ -137,10 +163,19 @@ public class NavalBattle implements Serializable {
         }
     }
 
+    /**
+     * Arranges the enemy's board for a new game or resumes a previous game.
+     *
+     * @param enemyShipDrawings the list of enemy ship drawings
+     * @param continueGame indicates if the game should be continued from a saved state
+     * @param playerBoard the player's board
+     * @param enemyBoard the enemy's board
+     * @param gameController the game controller
+     */
     public void arrangeEnemyBoard(List<ShipDrawing> enemyShipDrawings, boolean continueGame, GridPane playerBoard, GridPane enemyBoard, GameController gameController) {
         Random random = new Random();
-        if(continueGame){
-            for(ShipDrawingData enemyShipDrawingData: enemyShipsDrawingData){
+        if (continueGame) {
+            for (ShipDrawingData enemyShipDrawingData : enemyShipsDrawingData) {
                 int row = enemyShipDrawingData.getRow();
                 int column = enemyShipDrawingData.getColumn();
                 int type = enemyShipDrawingData.getType();
@@ -150,18 +185,17 @@ public class NavalBattle implements Serializable {
                 shipDrawing.setVisible(false);
                 enemyBoard.add(shipDrawing, column, row);
             }
-            for(int row = 0; row < 10; row++){
-                for(int column = 0; column < 10; column++){
+            for (int row = 0; row < 10; row++) {
+                for (int column = 0; column < 10; column++) {
                     Cell enemyCell = enemyBoardAux[row][column];
                     enemyCell.setOnMouseClicked(event -> {
                         this.launchAttack(enemyCell.getRow(), enemyCell.getColumn(), playerBoard, enemyBoard, gameController);
                     });
-                    if(enemyCell.hasBeenAttacked()){
-                        if(enemyCell.isOccupied()){
+                    if (enemyCell.hasBeenAttacked()) {
+                        if (enemyCell.isOccupied()) {
                             ImageView imageView = new ImageView(new Image(hitImagePath));
                             enemyBoard.add(imageView, column, row);
-                        }
-                        else{
+                        } else {
                             ImageView imageView = new ImageView(new Image(failImagePath));
                             enemyBoard.add(imageView, column, row);
                         }
@@ -170,8 +204,7 @@ public class NavalBattle implements Serializable {
                     enemyCell.toFront();
                 }
             }
-        }
-        else{
+        } else {
             createEnemyShipDrawings(enemyShipDrawings);
             for (ShipDrawing enemyShipDrawing : enemyShipDrawings) {
                 boolean boatPlaced = false;
@@ -225,7 +258,7 @@ public class NavalBattle implements Serializable {
     private void createEnemyShipDrawings(List<ShipDrawing> enemyShipDrawings) {
         Random random = new Random();
         int[] enemyShipDrawingTypes = {4, 3, 3, 2, 2, 2, 1, 1, 1, 1};
-        for (int enemyShipDrawingType : enemyShipDrawingTypes){
+        for (int enemyShipDrawingType : enemyShipDrawingTypes) {
             boolean isVertical = random.nextBoolean();
             ShipDrawing enemyShipDrawing = new ShipDrawing(enemyShipDrawingType, isVertical);
             enemyShipDrawing.setVisible(false);
@@ -233,22 +266,47 @@ public class NavalBattle implements Serializable {
         }
     }
 
+    /**
+     * Sets the player's ship drawing data.
+     *
+     * @param playerShipsDrawingData the list of player's ship drawing data
+     */
     public void setPlayerShipsDrawingData(List<ShipDrawingData> playerShipsDrawingData) {
         this.playerShipsDrawingData = playerShipsDrawingData;
     }
 
+    /**
+     * Gets the player's ship drawing data.
+     *
+     * @return the list of player's ship drawing data
+     */
     public List<ShipDrawingData> getPlayerShipsDrawingData() {
         return playerShipsDrawingData;
     }
 
+    /**
+     * Sets the player's ships.
+     *
+     * @param playerShips the list of player's ships
+     */
     public void setPlayerShips(List<Ship> playerShips) {
         this.playerShips = playerShips;
     }
 
+    /**
+     * Sets the auxiliary player board.
+     *
+     * @param playerBoardAux the player's board auxiliary
+     */
     public void setPlayerBoardAux(Cell[][] playerBoardAux) {
         this.playerBoardAux = playerBoardAux;
     }
 
+    /**
+     * Sets the auxiliary enemy board.
+     *
+     * @param enemyBoardAux the enemy's board auxiliary
+     */
     public void setEnemyBoardAux(Cell[][] enemyBoardAux) {
         this.enemyBoardAux = enemyBoardAux;
     }
